@@ -24,6 +24,8 @@ run
 bash start.sh
 ```
 
+Then visit [https://localhost:3001/](https://localhost:3001/) to look at it.
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
