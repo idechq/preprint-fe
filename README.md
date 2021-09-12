@@ -1,4 +1,30 @@
-# Getting Started with Create React App
+# iDEC Preprint Server Frontend Draft
+
+## Installation
+
+Docker
+
+build image  
+
+```shell
+docker build -t preprint-fe:dev .
+```
+
+warning: please be patient you will see it takes an absurd amount of time running the following step  
+
+```shell
+RUN chown -R node
+```
+
+don't know how to fix it yet.
+
+run
+
+```shell
+bash start.sh
+```
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
