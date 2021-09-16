@@ -8,20 +8,17 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import { createStyles, alpha, Theme, createTheme, useTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createStyles, alpha, Theme, createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Divider from '@material-ui/core/Divider';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
-import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
@@ -29,12 +26,26 @@ import LinkOutlinedIcon from '@material-ui/icons/LinkOutlined';
 import GroupOutlinedIcon from '@material-ui/icons/GroupOutlined';
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined';
-import GetAppOutlinedIcon from '@material-ui/icons/GetAppOutlined';
+import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import MenuBookOutlinedIcon from '@material-ui/icons/MenuBookOutlined';
+import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
+import FormatQuoteOutlinedIcon from '@material-ui/icons/FormatQuoteOutlined';
+import OndemandVideoOutlinedIcon from '@material-ui/icons/OndemandVideoOutlined';
+import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
 
+import {
+  PdfLoader,
+  PdfHighlighter,
+  Tip,
+  Highlight,
+  Popup,
+  AreaHighlight,
+} from "react-pdf-highlighter";
 
-const mainMenueDrawerWidth = 240;
+import type { IHighlight, NewHighlight } from "react-pdf-highlighter";
+
+const mainMenueDrawerWidth = 248;
 const articleDrawerWidth = 350;
 const articleCommentDrawerWidth = '50vw';
 
@@ -64,9 +75,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     articleDrawer: {
       width: articleDrawerWidth,
-      [theme.breakpoints.up('sm')]: {
-        width: '100vw',
-      },
+      // [theme.breakpoints.down('sm')]: {
+      //   width: '100vw',
+      // },
       flexShrink: 1,
     },
     articleCommentDrawer: {
@@ -94,7 +105,6 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       overflowX: 'hidden',
       overflowY: 'hidden',
-      width: theme.spacing(6),
       [theme.breakpoints.up('sm')]: {
         width: theme.spacing(8),
       },
@@ -341,16 +351,16 @@ function ArticleInfoItems() {
     <Divider />
     <List subheader={<ListSubheader>Download</ListSubheader>}>
         <ListItem button key='d1'>
-          <ListItemIcon><GetAppOutlinedIcon /></ListItemIcon>
-          <ListItemText
-            primary="Citation"
-          />
+          <ListItemIcon><DescriptionOutlinedIcon /></ListItemIcon>
+          <ListItemText primary="Main Article" />
         </ListItem>
         <ListItem button key='d2'>
-          <ListItemIcon><GetAppOutlinedIcon /></ListItemIcon>
-          <ListItemText
-            primary="PDF"
-          />
+          <ListItemIcon><NoteAddOutlinedIcon /></ListItemIcon>
+          <ListItemText primary="Supplementary Information" />
+        </ListItem>
+        <ListItem button key='d3'>
+          <ListItemIcon><FormatQuoteOutlinedIcon /></ListItemIcon>
+          <ListItemText primary="Citation" />
         </ListItem>
       </List>
     </>
@@ -369,11 +379,11 @@ function ArticleTeamInfoItems() {
         <ListItemText primary="Project Wiki" />
       </ListItem>
       <ListItem button key={1}>
-        <ListItemIcon><MenuBookOutlinedIcon /></ListItemIcon>
+        <ListItemIcon><DashboardOutlinedIcon /></ListItemIcon>
         <ListItemText primary="Project Poster" />
       </ListItem>
       <ListItem button key={1}>
-        <ListItemIcon><MenuBookOutlinedIcon /></ListItemIcon>
+        <ListItemIcon><OndemandVideoOutlinedIcon /></ListItemIcon>
         <ListItemText primary="Presentation" />
       </ListItem>
     </List>
@@ -382,7 +392,12 @@ function ArticleTeamInfoItems() {
       subheader={<ListSubheader>Team Awards</ListSubheader>}
       dense={true}
       disablePadding>
-      <ListItem className={classes.nested} key='a1'>
+      <ListItem key="team_awards" className={classes.chipContainer}>
+          <AwardChip label="Best poster award" icon={true} />
+          <AwardChip label="Nominated Molecular Evolutionary Machines" color="secondary" />
+          <AwardChip label="Best wiki award" icon={true} />
+        </ListItem>
+      {/* <ListItem className={classes.nested} key='a1'>
         <ListItemText primary="Best poster award"/>
       </ListItem>
       <ListItem className={classes.nested} key='a2'>
@@ -390,7 +405,7 @@ function ArticleTeamInfoItems() {
       </ListItem>
       <ListItem className={classes.nested} key='a3'>
         <ListItemText primary="Best Molecular Evolutionary Machines"/>
-      </ListItem>     
+      </ListItem>      */}
     </List>
     </>
   )
@@ -423,6 +438,26 @@ function KeyWordChip(
       label={label}
       size="small"
       component="a"
+      color={color}
+      href={href} clickable />
+  )
+}
+
+type AwardChipProps = {
+  label?: string,
+  color?: "default" | "primary" | "secondary",
+  href?: string,
+  icon?: boolean,
+}
+
+function AwardChip(
+  {label = "label", color = "primary", href = "#", icon = false}: AwardChipProps) {
+  return (
+    <Chip
+      label={label}
+      size="medium"
+      component="a"
+      icon={icon? <StarOutlinedIcon /> : undefined}
       color={color}
       href={href} clickable />
   )
@@ -570,10 +605,10 @@ export default function App() {
       <Drawer
         variant="permanent"
         className={clsx(
-        {
-          [classes.articleDrawer]: tabOpened!=="comments",
-          [classes.articleCommentDrawer]: tabOpened==="comments",
-        },
+        // {
+        //   [classes.articleDrawer]: tabOpened!=="comments",
+        //   [classes.articleCommentDrawer]: tabOpened==="comments",
+        // },
         {
           [classes.articleDrawerOpen]: articleDrawerOpen && tabOpened!=="comments",
           [classes.articleCommentDrawerOpen]: articleDrawerOpen && tabOpened==="comments",
@@ -616,7 +651,7 @@ export default function App() {
               </>
             }
             </div>
-        <div className={clsx(classes.articleDrawer, {
+        <div className={clsx({
             [classes.hide]: !articleDrawerOpen,
           })}>
           {renderArticleDrawer(tabOpened)}
