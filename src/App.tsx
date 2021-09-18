@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@mui/material/Grid';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -33,17 +34,6 @@ import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
 import FormatQuoteOutlinedIcon from '@material-ui/icons/FormatQuoteOutlined';
 import OndemandVideoOutlinedIcon from '@material-ui/icons/OndemandVideoOutlined';
 import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
-
-import {
-  PdfLoader,
-  PdfHighlighter,
-  Tip,
-  Highlight,
-  Popup,
-  AreaHighlight,
-} from "react-pdf-highlighter";
-
-import type { IHighlight, NewHighlight } from "react-pdf-highlighter";
 
 const mainMenueDrawerWidth = 248;
 const articleDrawerWidth = 350;
@@ -200,7 +190,7 @@ const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginRight: `calc(100wh - ${articleDrawerWidth}px)`,
+      marginRight: `calc(100wh - ${articleDrawerWidth}px) !important`,
     },
     nested: {
       paddingLeft: theme.spacing(4),
@@ -599,7 +589,8 @@ export default function App() {
           [classes.contentShift]: articleDrawerOpen,
         })} >
         <div className={classes.toolbar} />
-          <PDFViewer2/>
+          <PDFViewer2 />
+          {/* <ArticleCanvas /> */}
       </main>
       
       <Drawer

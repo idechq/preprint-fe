@@ -1,10 +1,10 @@
 import React from "react";
 import type { IHighlight } from "react-pdf-highlighter";
 
-interface Props {
-  highlights: Array<IHighlight>;
-  resetHighlights: () => void;
-  toggleDocument: () => void;
+type Props = {
+  highlights: Array<IHighlight>,
+  resetHighlights: () => void,
+  toggleDocument?: () => void,
 }
 
 const updateHash = (highlight: IHighlight) => {
