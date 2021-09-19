@@ -126,6 +126,15 @@ function AppSearchBar () {
   )
 }
 
+const PDFDiv = styled('div')(({ theme }) => ({
+  // flexGrow: 1,
+  width: "100%",
+  height: `calc(100vh - 64px)`,
+  [theme.breakpoints.down('sm')]: {
+    height: `calc(100vh - 56px)`,
+  },
+}));
+
 const openedMixin = (theme: Theme): CSSObject => ({
   width: articleDrawerWidth,
   [theme.breakpoints.down('sm')]: {
@@ -171,20 +180,9 @@ const Main = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })<{
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    // marginRight: 0,
     width: `calc(100vw - (${articleDrawerWidth}px))`,
   }),
 }));
-
-const PDFDiv = styled('div')(({ theme }) => ({
-  // flexGrow: 1,
-  width: "100%",
-  height: `calc(100vh - 64px)`,
-  [theme.breakpoints.down('sm')]: {
-    height: `calc(100vh - 56px)`,
-  },
-}));
-
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -212,48 +210,6 @@ const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
   }),
 );
 
-// const useStyles = makeStyles((theme: Theme) => 
-//   createStyles({
-//     PDFcontainer: {
-//       // https://github.com/mui-org/material-ui/issues/10739#issuecomment-817742141
-//       ...overrideExistingStyle(
-//         theme.mixins.toolbar,
-//         'minHeight',
-//         // Full height - toolbar height - padding top - padding bottom
-//         (value) => `calc(100vh - ${value}px  - 8px)`,
-//       ),
-//       //
-//     },
-
-//   }),
-// );
-
-function overrideExistingStyle(style, property, setNewValue) {
-    return Object.fromEntries(
-      Object.entries(style).filter(
-        ([key, value]) => key === property || typeof value === 'object',
-      ).map(
-        ([key, value]) => (
-          typeof value === 'object'
-            ? [key, overrideExistingStyle(value, property, setNewValue)]
-            : [property, setNewValue(value)]
-        ),
-      ),
-    );
-  }
-
-function PDFViewer2({open}: {open?:boolean}) {
-  return (
-    <>
-    <iframe
-      style={{flexGrow: 1, width: `calc(100vw - ${articleDrawerWidth}px)`,
-      }}
-      title="embeddedPDF" src="/test-pdf.pdf" />
-    </>
-  )
-}
-
-
 function PDFViewer1() {
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   return (
@@ -270,8 +226,6 @@ function PDFViewer1() {
     </>
   )
 }
-
-
 
 function MainMenuItems () {
 
