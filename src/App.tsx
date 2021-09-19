@@ -212,7 +212,12 @@ const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
   }),
 );
 
-function PDFViewer1() {
+type PDFViewer1Props = {
+  articleHref: string,
+  defaultScale?: number,
+};
+
+function PDFViewer1({articleHref, defaultScale}: PDFViewer1Props) {
   const aboveMdScreen = useMediaQuery({ query: '(min-width: 600px)' })
 
   const renderToolbar = (Toolbar: (props: ToolbarProps) => React.ReactElement) => (
@@ -318,9 +323,9 @@ function PDFViewer1() {
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
       <PDFDiv>
           <Viewer
-            fileUrl="/test-pdf.pdf"
+            fileUrl={articleHref}
             plugins={[defaultLayoutPluginInstance]}
-            // defaultScale={1}
+            defaultScale={defaultScale ? defaultScale : undefined}
           />
       </PDFDiv>
     </Worker>
@@ -405,54 +410,119 @@ function MainMenuItems () {
   )
 }
 
-function ArticleInfoItems() {
+const mockArticleInfo = {
+  version: 1,
+  latest: false,
+  supplants: "https://doi.org/10.1101/2021.09.09.459643",
+  postedDate: "2021-09-19T21:53:55.749Z",
+  doi: "https://doi.org/10.1101/2021.09.09.459643",
+  keywords: ["directed evolution", "pathway", "automation"],
+  mainArticleURL: "/test-pdf.pdf",
+  suppArticleURL: "#",
+  risURL: "#",
+}
+
+type articleInfoProps = {
+  articleInfo: {
+    version: number,
+    latest: boolean,
+    supplants: string,
+    postedDate: string,
+    doi: string,
+    keywords: Array<string>,
+    mainArticleURL: string,
+    suppArticleURL: string,
+    risURL: string,
+  }
+}
+
+function ArticleInfoItems({articleInfo}: articleInfoProps) {
+
+  const postedDate = articleInfo.postedDate;
+
+  const keywordChips = articleInfo.keywords.map((item) => <KeyWordChip label={item} /> );
+
+  const downloadButtonInfo = [
+    {
+      id: "main",
+      icon: <DescriptionOutlinedIcon />,
+      label: "Main Article",
+      href: articleInfo.mainArticleURL,
+    },
+    {
+      id: "supp",
+      icon: <NoteAddOutlinedIcon />,
+      label: "Supplementary Information",
+      href: articleInfo.suppArticleURL,
+    },
+    {
+      id: "ris",
+      icon: <FormatQuoteOutlinedIcon />,
+      label: "Citation",
+      href: articleInfo.risURL,
+    },
+  ];
+
+  const downloadButtons = downloadButtonInfo.map((item)=>{
+    return(
+      <ListItemButton
+        key={"listKey-dlBtn-"+item.id}
+        component="a"
+        href={item.href}
+        disabled={item.href==="#"}
+      >
+        <ListItemIcon>{item.icon}</ListItemIcon>
+        <ListItemText primary={item.label} />
+      </ListItemButton>
+  )})
+
   return (
     <>
     <List dense={true}>
-        <ListItem key={2}>
-          <ListItemText
-            primary="Version 1.0"
-            secondary="latest"
-          />
+        <ListItem key="listKey-postedDate">
+          <ListItemText>Posted: {postedDate}</ListItemText>
         </ListItem>
-        <ListItem key={4}>
-          <ListItemText>Posted: September 30, 2021</ListItemText>
-        </ListItem>
-        <ListItem key={3}>
+        <ListItemButton
+          key="listKey-doi"
+          component="a"
+          href={articleInfo.doi}
+        >
           <ListItemText
             primary="DOI:"
-            secondary="https://doi.org/10.1101/2021.09.09.459643"
+            secondary={articleInfo.doi}
+          />
+        </ListItemButton>
+        <ListItem key="listKey-version">
+          <ListItemText
+            primary={"Version " + articleInfo.version}
+            secondary={articleInfo.latest ? "latest" : ""}
           />
         </ListItem>
-        <ListItem key={3}>
+        <ListItemButton
+          key="listKey-supplantedBy"
+          component="a"
+          href={articleInfo.supplants}
+        >
+          <ListItemText
+            primary="Supplanted by"
+            secondary={articleInfo.supplants}
+          />
+        </ListItemButton>
+        <ListItem key="listKey-keywords-title">
           <ListItemText
             primary="Keywords"
           />
         </ListItem>
-        <ListItem key={7}>
+        <ListItem key="listKey-keywords-chips">
           <Stack direction="row" spacing={1}>
-            <KeyWordChip label="directed evolution" />
-            <KeyWordChip label="pathway" />
-            <KeyWordChip label="automation" />
+            {keywordChips}
           </Stack>
         </ListItem>
     </List>
-  
     <Divider />
     <List subheader={<ListSubheader>Download</ListSubheader>}>
-        <ListItem button key='d1'>
-          <ListItemIcon><DescriptionOutlinedIcon /></ListItemIcon>
-          <ListItemText primary="Main Article" />
-        </ListItem>
-        <ListItem button key='d2'>
-          <ListItemIcon><NoteAddOutlinedIcon /></ListItemIcon>
-          <ListItemText primary="Supplementary Information" />
-        </ListItem>
-        <ListItem button key='d3'>
-          <ListItemIcon><FormatQuoteOutlinedIcon /></ListItemIcon>
-          <ListItemText primary="Citation" />
-        </ListItem>
-      </List>
+      {downloadButtons}
+    </List>
     </>
   )
 }
@@ -541,7 +611,7 @@ function ArticleTeamInfoItems({teamInfo}: articleTeamInfoProps) {
         href={item.href}
         target="_blank"
         rel="noreferrer"
-        disabled={ item.href==="#" ? true : false}
+        disabled={ item.href==="#" }
         style={ item.href==="#" ?
           {paddingLeft: theme.spacing(4),
           paddingTop: theme.spacing(0),
@@ -669,7 +739,7 @@ export default function App() {
   const articleDrawerMinimizedButtonInfo = [
     {id: "teamInfo", icon: <GroupOutlinedIcon />, disabled: false },
     {id: "articleInfo", icon: <InfoOutlinedIcon />, disabled: false },
-    {id: "comments", icon: <CommentOutlinedIcon />, disabled: false },
+    {id: "comments", icon: <CommentOutlinedIcon />, disabled: true },
     {id: "annotations", icon: <BorderColorOutlinedIcon />, disabled: true },
   ];
 
@@ -705,18 +775,21 @@ export default function App() {
         setTabName('Article Information');
   }}
 
+  const articleInfo = mockArticleInfo;
+  const articleTeamInfo = mockTeamInfo;
+
   const renderArticleDrawer = (tabOpened: any) => {
     switch(tabOpened) {
       case "articleInfo":
-        return <ArticleInfoItems />;
+        return <ArticleInfoItems articleInfo={articleInfo} />;
       case "teamInfo":
-        return <ArticleTeamInfoItems teamInfo={mockTeamInfo} />;
+        return <ArticleTeamInfoItems teamInfo={articleTeamInfo} />;
       case "comments":
         return <ArticleCommentItems />;
       case "annotations":
         return <ArticleAnnotationsItems />;
       default:
-        return <ArticleInfoItems />;
+        return <ArticleInfoItems articleInfo={articleInfo} />;
   }};
 
   return (
@@ -770,7 +843,7 @@ export default function App() {
 
       <Main open={articleDrawerOpen}>
         <DrawerHeader />
-        <PDFViewer1 />
+        <PDFViewer1 articleHref={articleInfo.mainArticleURL}/>
       </Main>
 
       <ArticleDrawer variant="permanent" open={articleDrawerOpen} anchor="right">
