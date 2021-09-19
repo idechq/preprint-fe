@@ -167,7 +167,7 @@ const Main = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })<{
       marginRight: 0,
     },
   ...(open && {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
