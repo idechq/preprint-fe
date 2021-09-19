@@ -153,21 +153,38 @@ const closedMixin = (theme: Theme): CSSObject => ({
 const Main = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
+  backgroundColor: "blue",
+  width: `calc(100vw - (${theme.spacing(8)}) - 1px)`,
   // flexGrow: 1,
   // padding: theme.spacing(3),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginRight: `calc(100wh - ${articleDrawerWidth}px) !important`,
+  marginRight: -articleDrawerWidth,
+  [theme.breakpoints.down('sm')]:{
+      width: "100vw",
+      marginRight: 0,
+    },
   ...(open && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginRight: 0
+    // marginRight: 0,
+    width: `calc(100vw - (${articleDrawerWidth}px))`,
   }),
 }));
+
+const PDFDiv = styled('div')(({ theme }) => ({
+  // flexGrow: 1,
+  width: "100%",
+  height: `calc(100vh - 64px)`,
+  [theme.breakpoints.down('sm')]: {
+    height: `calc(100vh - 56px)`,
+  },
+}));
+
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -228,9 +245,8 @@ function overrideExistingStyle(style, property, setNewValue) {
 function PDFViewer2({open}: {open?:boolean}) {
   return (
     <>
-    <Toolbar/>
     <iframe
-      style={{flexGrow: 1, width: `calc(100wh - ${articleDrawerWidth}px)`,
+      style={{flexGrow: 1, width: `calc(100vw - ${articleDrawerWidth}px)`,
       }}
       title="embeddedPDF" src="/test-pdf.pdf" />
     </>
@@ -243,18 +259,14 @@ function PDFViewer1() {
   return (
     <>
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-      <div id="pdfdiv"
-          style={{
-            flexGrow: 1,
-            height: "800px",
-          }}
-      >
+      <PDFDiv>
           <Viewer
-              fileUrl="/test-pdf.pdf"
-              plugins={[defaultLayoutPluginInstance]}
+            fileUrl="/test-pdf.pdf"
+            plugins={[defaultLayoutPluginInstance]}
+            defaultScale={1}
           />
-      </div>
-        </Worker>
+      </PDFDiv>
+    </Worker>
     </>
   )
 }
