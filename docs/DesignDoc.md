@@ -52,3 +52,7 @@ RHS tap 4: comments
 ### PDF Viewer / HTML display
 
 Undecided.
+
+## Potential Issues
+
+The current iDEC model requries one preprint article from each team, but for database management and this frontend this is going to be a huge problem down the road. Over the years we may see multiple teams of a one organization contributing to one preprint. This will result in one preprint having potentially 5-6 teams associated with it so long as a persistent member stay on in the iDEC competition.

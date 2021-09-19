@@ -1,32 +1,29 @@
 import React from 'react';
-import clsx from 'clsx';
-import Drawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-
 import { css } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { styled, alpha } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
+import { createTheme, Theme, ThemeProvider, styled, alpha, CSSObject } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
 
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import Drawer from '@mui/material/Drawer';
+import MuiDrawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Link from '@mui/material/Link';
 
 import Icon from '@mdi/react';
 import { mdiCalendarClock,
         mdiDirectionsFork,
         mdiSealVariant,
-        mdiKey,
         mdiHome,
         mdiBadgeAccountHorizontal,
         mdiBookshelf,
         mdiHandshake,
         mdiScaleBalance,
+        mdiPresentation,
+        mdiTrophyVariant,
       } from '@mdi/js';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -43,17 +40,15 @@ import ListItemText from '@mui/material/ListItemText';
 import Chip from '@mui/material/Chip';
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import FormatQuoteOutlinedIcon from '@mui/icons-material/FormatQuoteOutlined';
-import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
-import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
+import VideoLibraryOutlinedIcon from '@material-ui/icons/VideoLibraryOutlined';
+
 
 const theme = createTheme({
   // Material color chosen closest to iDEC themes chosen by Kening
@@ -68,7 +63,7 @@ const theme = createTheme({
 
 const mainMenueDrawerWidth = 248;
 const articleDrawerWidth = 350;
-const articleCommentDrawerWidth = '50vw';
+const articleCommentDrawerWidth = '34vw';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -126,166 +121,77 @@ function AppSearchBar () {
   )
 }
 
-// const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
-//   open?: boolean;
-// }>(({ theme, open }) => ({
-//   flexGrow: 1,
-//   padding: theme.spacing(3),
-//   transition: theme.transitions.create('margin', {
-//     easing: theme.transitions.easing.sharp,
-//     duration: theme.transitions.duration.leavingScreen,
-//   }),
-//   marginRight: -drawerWidth,
-//   ...(open && {
-//     transition: theme.transitions.create('margin', {
-//       easing: theme.transitions.easing.easeOut,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//     marginRight: 0,
-//   }),
-// }));
+const openedMixin = (theme: Theme): CSSObject => ({
+  width: articleDrawerWidth,
+  [theme.breakpoints.down('sm')]: {
+    width: '100vw',
+  },
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
 
-// interface AppBarProps extends MuiAppBarProps {
-//   open?: boolean;
-// }
+const closedMixin = (theme: Theme): CSSObject => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(8)} + 1px)`,
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
+});
 
-// const AppBar = styled(MuiAppBar, {
-//   shouldForwardProp: (prop) => prop !== 'open',
-// })<AppBarProps>(({ theme, open }) => ({
-//   transition: theme.transitions.create(['margin', 'width'], {
-//     easing: theme.transitions.easing.sharp,
-//     duration: theme.transitions.duration.leavingScreen,
-//   }),
-//   ...(open && {
-//     width: `calc(100% - ${drawerWidth}px)`,
-//     transition: theme.transitions.create(['margin', 'width'], {
-//       easing: theme.transitions.easing.easeOut,
-//       duration: theme.transitions.duration.enteringScreen,
-//     }),
-//     marginRight: drawerWidth,
-//   }),
-// }));
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+  open?: boolean;
+}>(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginRight: `calc(100wh - ${articleDrawerWidth}px) !important`,
+  ...(open && {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: 0
+  }),
+}));
 
-// const DrawerHeader = styled('div')(({ theme }) => ({
-//   display: 'flex',
-//   alignItems: 'center',
-//   padding: theme.spacing(0, 1),
-//   // necessary for content to be below app bar
-//   ...theme.mixins.toolbar,
-//   justifyContent: 'flex-start',
-// }));
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  // padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
 
-
+const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: articleDrawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
 
 // const useStyles = makeStyles((theme: Theme) => 
 //   createStyles({
-//     appBar: {
-//       zIndex: theme.zIndex.drawer + 1,
-//     },
-
-//     articleDrawer: {
-//       width: articleDrawerWidth,
-//       // [theme.breakpoints.down('sm')]: {
-//       //   width: '100vw',
-//       // },
-//       flexShrink: 1,
-//     },
-//     articleCommentDrawer: {
-//       width: articleCommentDrawerWidth,
-//       flexShrink: 1,
-//     },
-//     articleDrawerOpen: {
-//       width: articleDrawerWidth,
-//       transition: theme.transitions.create('width', {
-//         easing: theme.transitions.easing.sharp,
-//         duration: theme.transitions.duration.enteringScreen,
-//       }),
-//     },
-//     articleCommentDrawerOpen: {
-//       width: articleCommentDrawerWidth,
-//       transition: theme.transitions.create('width', {
-//         easing: theme.transitions.easing.sharp,
-//         duration: theme.transitions.duration.enteringScreen,
-//       }),
-//     },
-//     articleDrawerClose: {
-//       transition: theme.transitions.create('width', {
-//         easing: theme.transitions.easing.sharp,
-//         duration: theme.transitions.duration.leavingScreen,
-//       }),
-//       overflowX: 'hidden',
-//       overflowY: 'hidden',
-//       [theme.breakpoints.up('sm')]: {
-//         width: theme.spacing(8),
-//       },
-//     },
-//     mainMenuDrawerHeader: {
-//       display: 'flex',
-//       padding: theme.spacing(2),
-//       alignItems: 'center',
-//     },
-//     drawerHeader: {
-//       display: 'flex',
-//       alignItems: 'center',
-//       padding: theme.spacing(0, 1),
-//       // necessary for content to be below app bar
-//       ...theme.mixins.toolbar,
-//       justifyContent: 'flex-start',
-//     },
-//     menuButton: {
-//       marginRight: theme.spacing(2),
-//     },
-//     // necessary for content to be below app bar
-//     toolbar: theme.mixins.toolbar,
-//     title: {
-//       flexGrow: 1,
-//       display: 'none',
-//       [theme.breakpoints.up('sm')]: {
-//         display: 'block',
-//       },
-//     },
-//     hide: {
-//       display: 'none',
-//     },
-//     search: {
-//       position: 'relative',
-//       borderRadius: theme.shape.borderRadius,
-//       backgroundColor: alpha(theme.palette.common.white, 0.15),
-//       '&:hover': {
-//         backgroundColor: alpha(theme.palette.common.white, 0.25),
-//       },
-//       marginLeft: 0,
-//       width: '100%',
-//       [theme.breakpoints.up('sm')]: {
-//         marginLeft: theme.spacing(1),
-//         width: 'auto',
-//       },
-//     },
-//     searchIcon: {
-//       padding: theme.spacing(0, 2),
-//       height: '100%',
-//       position: 'absolute',
-//       pointerEvents: 'none',
-//       display: 'flex',
-//       alignItems: 'center',
-//       justifyContent: 'center',
-//     },
-//     inputRoot: {
-//       color: 'inherit',
-//     },
-//     inputInput: {
-//       padding: theme.spacing(1, 1, 1, 0),
-//       // vertical padding + font size from searchIcon
-//       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-//       transition: theme.transitions.create('width'),
-//       width: '100%',
-//       [theme.breakpoints.up('sm')]: {
-//         width: '16ch',
-//         '&:focus': {
-//           width: '20ch',
-//         },
-//       },
-//     },
 //     PDFcontainer: {
 //       // https://github.com/mui-org/material-ui/issues/10739#issuecomment-817742141
 //       ...overrideExistingStyle(
@@ -296,36 +202,7 @@ function AppSearchBar () {
 //       ),
 //       //
 //     },
-//     content: {
-//       flexGrow: 1,
-//       padding: theme.spacing(0),
-//       transition: theme.transitions.create('margin', {
-//         easing: theme.transitions.easing.sharp,
-//         duration: theme.transitions.duration.leavingScreen,
-//       }),
-//       marginRight: 0,
-//     },
-//     contentShift: {
-//       transition: theme.transitions.create('margin', {
-//         easing: theme.transitions.easing.easeOut,
-//         duration: theme.transitions.duration.enteringScreen,
-//       }),
-//       marginRight: `calc(100wh - ${articleDrawerWidth}px) !important`,
-//     },
-//     nested: {
-//       paddingLeft: theme.spacing(4),
-//     },
-//     chipContainer: {
-//       display: 'flex',
-//       justifyContent: 'flex-start',
-//       flexWrap: 'wrap',
-//       '& > *': {
-//         margin: theme.spacing(0.5),
-//       },
-//     },
-//     rightDrawerButtonList: {
-//       paddingLeft: 0,
-//     },
+
 //   }),
 // );
 
@@ -400,16 +277,21 @@ function MainMenuItems () {
       href: "#" },
   ]
 
-  function ListItemLink(
-    { key, icon, label, href, newWindow }:
+  const listItemLink = ({ key, icon, label, href, newWindow }:
       { key: string, icon: string, label:string, href:string, newWindow?: boolean }
-    ) {
-    return(
-      <ListItemButton key={key} component="a" href={href} target={newWindow ? "_blank" : ""}>
+    ) => {
+      return (
+      <ListItemButton
+        key={key}
+        component="a"
+        href={href}
+        target={newWindow ? "_blank" : ""}
+        rel={newWindow ? "noreferrer" : ""}
+      >
         <ListItemIcon><Icon path={icon} size={1}/></ListItemIcon>
         <ListItemText primary={label}/>
-        </ListItemButton>
-    )
+      </ListItemButton>
+      )
   }
 
   return (
@@ -419,148 +301,244 @@ function MainMenuItems () {
         </div>
         <Divider />
         <List subheader={<ListSubheader>Browse articles by</ListSubheader>}>
-          {browseByInfo.map((item) => ListItemLink(item))}
+          {browseByInfo.map((item) => listItemLink(item))}
         </List>
         <Divider />
         <List subheader={<ListSubheader>About iDEC</ListSubheader>}>
-          {iDECLinkInfo.map((item) => ListItemLink(item))}
+          {iDECLinkInfo.map((item) => listItemLink(item))}
         </List>
       </div>
   )
 }
 
-// function ArticleInfoItems() {
-//   const classes = useStyles();
-//   return (
-//     <>
-//     <Divider />
-//     <List dense={true}>
-//         <ListItem key={1}>
-//           <ListItemText
-//             primary="Team: OUC China" secondary="iDEC 2021"
-//           />
-//         </ListItem>
-//         <ListItem key={2}>
-//           <ListItemText
-//             primary="Version 1.0"
-//             secondary="latest"
-//           />
-//         </ListItem>
-//         <ListItem key={4}>
-//           <ListItemText>Posted: September 30, 2021</ListItemText>
-//         </ListItem>
-//         <ListItem key={3}>
-//           <ListItemText
-//             primary="DOI:"
-//             secondary="https://doi.org/10.1101/2021.09.09.459643"
-//           />
-//         </ListItem>
-//         <ListItem key={3}>
-//           <ListItemText
-//             primary="Keywords"
-//           />
-//         </ListItem>
-//         <ListItem key={7} className={classes.chipContainer}>
-//           <KeyWordChip label="directed evolution" />
-//           <KeyWordChip label="pathway" />
-//           <KeyWordChip label="automation" />
-//         </ListItem>
-//     </List>
+function ArticleInfoItems() {
+  return (
+    <>
+    <List dense={true}>
+        <ListItem key={2}>
+          <ListItemText
+            primary="Version 1.0"
+            secondary="latest"
+          />
+        </ListItem>
+        <ListItem key={4}>
+          <ListItemText>Posted: September 30, 2021</ListItemText>
+        </ListItem>
+        <ListItem key={3}>
+          <ListItemText
+            primary="DOI:"
+            secondary="https://doi.org/10.1101/2021.09.09.459643"
+          />
+        </ListItem>
+        <ListItem key={3}>
+          <ListItemText
+            primary="Keywords"
+          />
+        </ListItem>
+        <ListItem key={7}>
+          <Stack direction="row" spacing={1}>
+            <KeyWordChip label="directed evolution" />
+            <KeyWordChip label="pathway" />
+            <KeyWordChip label="automation" />
+          </Stack>
+        </ListItem>
+    </List>
   
-//     <Divider />
-//     <List subheader={<ListSubheader>Download</ListSubheader>}>
-//         <ListItem button key='d1'>
-//           <ListItemIcon><DescriptionOutlinedIcon /></ListItemIcon>
-//           <ListItemText primary="Main Article" />
-//         </ListItem>
-//         <ListItem button key='d2'>
-//           <ListItemIcon><NoteAddOutlinedIcon /></ListItemIcon>
-//           <ListItemText primary="Supplementary Information" />
-//         </ListItem>
-//         <ListItem button key='d3'>
-//           <ListItemIcon><FormatQuoteOutlinedIcon /></ListItemIcon>
-//           <ListItemText primary="Citation" />
-//         </ListItem>
-//       </List>
-//     </>
-//   )
-// }
+    <Divider />
+    <List subheader={<ListSubheader>Download</ListSubheader>}>
+        <ListItem button key='d1'>
+          <ListItemIcon><DescriptionOutlinedIcon /></ListItemIcon>
+          <ListItemText primary="Main Article" />
+        </ListItem>
+        <ListItem button key='d2'>
+          <ListItemIcon><NoteAddOutlinedIcon /></ListItemIcon>
+          <ListItemText primary="Supplementary Information" />
+        </ListItem>
+        <ListItem button key='d3'>
+          <ListItemIcon><FormatQuoteOutlinedIcon /></ListItemIcon>
+          <ListItemText primary="Citation" />
+        </ListItem>
+      </List>
+    </>
+  )
+}
 
-// function ArticleTeamInfoItems() {
-//   const classes = useStyles();
-//   return (
-//     <>
-//     <Divider />
-//     <List dense={true}>
-//       <ListSubheader>iDEC 2021 OUC China</ListSubheader>
-//       <ListItem button key={1}>
-//         <ListItemIcon><MenuBookOutlinedIcon /></ListItemIcon>
-//         <ListItemText primary="Project Wiki" />
-//       </ListItem>
-//       <ListItem button key={1}>
-//         <ListItemIcon><DashboardOutlinedIcon /></ListItemIcon>
-//         <ListItemText primary="Project Poster" />
-//       </ListItem>
-//       <ListItem button key={1}>
-//         <ListItemIcon><OndemandVideoOutlinedIcon /></ListItemIcon>
-//         <ListItemText primary="Presentation" />
-//       </ListItem>
-//     </List>
-//     <Divider />
-//     <List
-//       subheader={<ListSubheader>Team Awards</ListSubheader>}
-//       dense={true}
-//       disablePadding>
-//       <ListItem key="team_awards" className={classes.chipContainer}>
-//           <AwardChip label="Best poster award" icon={true} />
-//           <AwardChip label="Nominated Molecular Evolutionary Machines" color="secondary" />
-//           <AwardChip label="Best wiki award" icon={true} />
-//         </ListItem>
-//       {/* <ListItem className={classes.nested} key='a1'>
-//         <ListItemText primary="Best poster award"/>
-//       </ListItem>
-//       <ListItem className={classes.nested} key='a2'>
-//         <ListItemText primary="Best wiki award"/>
-//       </ListItem>
-//       <ListItem className={classes.nested} key='a3'>
-//         <ListItemText primary="Best Molecular Evolutionary Machines"/>
-//       </ListItem>      */}
-//     </List>
-//     </>
-//   )
-// }
+const mockTeamInfo = {
+    teamName: "Edinburgh",
+    teamYear: 2020,
+    teamTracks: [
+      "Molecular Evolutionary Machines",
+      "Molecular Evolutionary Outcomes",
+      "Pathway Evolutionary Outcomes"
+    ],
+    teamWikiURL: "#1",
+    teamPosterURL: "#",
+    teamPresentationURL: "#",
+    teamAwards: [
+      {name: "Best Wiki", result: "winner"},
+      {name: "Industry advisory group award", result: "nominated"}, 
+      {name: "Best New Evolutionary Machine", result: "nominated"}
+    ],
+  }
 
-// function ArticleCommentItems() {
-//   return (
-//     <>
-//     </>
-//   )
-// }
+type articleTeamInfoProps = {
+  teamInfo: {
+      teamName: string,
+      teamYear: number,
+      teamTracks: Array<string>,
+      teamWikiURL: string,
+      teamPosterURL: string,
+      teamPresentationURL: string,
+      teamAwards: Array<{
+        name: string,
+        result: string,
+      }>
+    },
+}
 
-// function ArticleAnnotationsItems() {
-//   return (
-//     <>
-//     </>
-//   )
-// }
+function ArticleTeamInfoItems({teamInfo}: articleTeamInfoProps) {
 
-// type chipProps = {
-//   label?: string,
-//   color?: "default" | "primary" | "secondary",
-//   href?: string,
-//   icon?: boolean,
-// }
+    const teamTracksItems = teamInfo.teamTracks.map((item)=>{
+      return(
+        <ListItem style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom: 0}}>
+        <ListItemText>
+        <Link
+          href="#"
+          underline="hover"
+        >{item}
+        </Link>
+        </ListItemText>
+      </ListItem>
+    )})
 
-// function KeyWordChip(
-//   {label = "label", color = "secondary"}: KeyWordChipProps) {
-//   return (
-//     <Chip
-//       label={label}
-//       size="small"
-//       color={color}
-//       />
-//   )
-// }
+    const noTrackItems = (
+      <ListItem style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom: 0}} disabled>
+        <ListItemText>Undeclared</ListItemText>
+      </ListItem> )
+      
+
+    const teamOutputListElements = [
+      {
+        id: "wiki",
+        label: "Project Wiki",
+        icon: <MenuBookOutlinedIcon />,
+        href: teamInfo.teamWikiURL,
+      },
+      {
+        id: "poster",
+        label: "Project Poster",
+        icon: <Icon path={mdiPresentation} size={1}/>,
+        href: teamInfo.teamPosterURL,
+      },
+      {
+        id: "presentation",
+        label: "Festival Presentation",
+        icon: <VideoLibraryOutlinedIcon />,
+        href: teamInfo.teamPresentationURL,
+      },
+    ]
+
+    const teamOutputListItemButtons = teamOutputListElements.map((item)=>{
+      return(
+        <ListItemButton
+          key={"listKey-"+item.id}
+          component="a"
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          disabled={ item.href==="#" ? true : false}
+          style={ item.href==="#" ?
+            {paddingLeft: theme.spacing(4),
+            paddingTop: theme.spacing(0),
+            paddingBottom:theme.spacing(0)}
+            :
+            {paddingLeft: theme.spacing(4),
+            paddingTop: theme.spacing(1),
+            paddingBottom:theme.spacing(1)}
+          }
+        >
+        <ListItemIcon>{item.icon}</ListItemIcon>
+        <ListItemText
+          primary={item.label}
+          secondary={ item.href==="#" ? "To be released" : ""}
+        />
+      </ListItemButton>
+      )})
+
+    const teamAwardItems = teamInfo.teamAwards.map((item)=>{
+      return(
+        <ListItemButton
+          key={"listKey-"+item.name}
+          component="a"
+          href="#"
+          style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom:0}}
+        >
+        <ListItemText
+          primary={item.name}
+          secondary={item.result}
+        />
+        {item.result==="winner" ? <ListItemIcon><Icon path={mdiTrophyVariant} size={1}/></ListItemIcon> : null }    
+      </ListItemButton>
+    )})
+
+  return (
+    <>
+    <Typography style={{paddingLeft: theme.spacing(2), fontWeight: "bold", color: "#424242"}}>
+      {teamInfo.teamName + " (" + teamInfo.teamYear + ")"}</Typography>
+    <List
+      dense={true}
+      disablePadding
+      // style={{paddingLeft: theme.spacing(2)}}
+    >
+      <ListSubheader>Tracks</ListSubheader>
+      {teamInfo.teamTracks.length>0 ? teamTracksItems: noTrackItems}
+      <ListSubheader>Outputs</ListSubheader>
+      {teamOutputListItemButtons}
+      { teamInfo.teamAwards.length>0 ?
+      <>
+      <ListSubheader>Awards</ListSubheader>
+      {teamAwardItems}
+      </>
+      : null
+      }
+    </List>
+    </>
+  )
+}
+
+
+
+function ArticleCommentItems() {
+  return (
+    <>
+    </>
+  )
+}
+
+function ArticleAnnotationsItems() {
+  return (
+    <>
+    </>
+  )
+}
+
+type chipProps = {
+  label: string,
+  color?: "default" | "primary" | "secondary",
+  href?: string,
+  icon?: boolean,
+}
+
+function KeyWordChip(
+  {label = "label", color = "secondary"}: chipProps) {
+  return (
+    <Chip
+      label={label}
+      size="small"
+      color={color}
+      />
+  )
+}
 
 export default function App() {
   const [mainMenuState, setMainMenuState] = React.useState(false);
@@ -588,12 +566,31 @@ export default function App() {
     setTabOpened(iconButtonID);
     updateTapName(iconButtonID);
   };
+
   const handleArticleDrawerClose = () => {
     setDrawerOpen(false);
   };
-  // const toggleArticleDrawer= () => {
-  //   setDrawerOpen(!articleDrawerOpen);
-  // };
+
+  const articleDrawerMinimizedButtonInfo = [
+    {id: "teamInfo", icon: <GroupOutlinedIcon />, disabled: false },
+    {id: "articleInfo", icon: <InfoOutlinedIcon />, disabled: false },
+    {id: "comments", icon: <CommentOutlinedIcon />, disabled: false },
+    {id: "annotations", icon: <BorderColorOutlinedIcon />, disabled: true },
+  ];
+
+  const articleDrawerMinimizedButtons = articleDrawerMinimizedButtonInfo.map((item) => {
+    return (
+      <ListItem key={"listKey-"+item.id} sx={{paddingLeft: 1}}>
+        <IconButton
+          id={item.id}
+          onClick={handleArticleDrawerOpen}
+          size="large"
+          disabled={item.disabled}>
+          {item.icon}
+        </IconButton>
+      </ListItem>
+    )
+  })
 
   const updateTapName = (iconButtonID: string | null) => {
     switch(iconButtonID) {
@@ -613,53 +610,46 @@ export default function App() {
         setTabName('Article Information');
   }}
 
-
-  // const renderArticleDrawer = (tabOpened: any) => {
-  //   switch(tabOpened) {
-  //     case "articleInfo":
-  //       return <ArticleInfoItems />;
-  //     case "teamInfo":
-  //       return <ArticleTeamInfoItems />;
-  //     case "comments":
-  //       return <ArticleCommentItems />;
-  //     case "annotations":
-  //       return <ArticleAnnotationsItems />;
-  //     default:
-  //       return <ArticleInfoItems />;
-  // }};
+  const renderArticleDrawer = (tabOpened: any) => {
+    switch(tabOpened) {
+      case "articleInfo":
+        return <ArticleInfoItems />;
+      case "teamInfo":
+        return <ArticleTeamInfoItems teamInfo={mockTeamInfo} />;
+      case "comments":
+        return <ArticleCommentItems />;
+      case "annotations":
+        return <ArticleAnnotationsItems />;
+      default:
+        return <ArticleInfoItems />;
+  }};
 
   return (
       <React.Fragment>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-      <React.Fragment key="leftDrawer">
-        <Drawer anchor="left"
-          open={mainMenuState}
-          onClose={toggleDrawer(false)}
+      <React.Fragment>
+      <Drawer anchor="left"
+        open={mainMenuState}
+        onClose={toggleDrawer(false)}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
+      >
+        <div
+          role="presentation"
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
         >
-          <div
-            role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-          >
-            <MainMenuItems />
-          </div>
-          </Drawer>
-        </React.Fragment>
-
-      {/* this is temporary */}
-      {/* <React.Fragment>
-        <IconButton
-              edge="start"
-              aria-label="menu"
-              onClick={toggleDrawer(true)}
-              size="large">
-              <MenuIcon />
-            </IconButton>
-      </React.Fragment> */}
+          <MainMenuItems />
+        </div>
+        </Drawer>
+      </React.Fragment>
 
       <div style={{display: 'flex'}}>
-        <AppBar position="fixed" color="primary">
+        <AppBar
+          position="fixed"
+          color="primary"
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        >
         <Toolbar>
           <IconButton
             size="large"
@@ -682,64 +672,54 @@ export default function App() {
           <AppSearchBar />
         </Toolbar>
       </AppBar>
-      {/*
-      <main className={clsx(classes.content, {
-          [classes.contentShift]: articleDrawerOpen,
-        })} >
-        <div className={classes.toolbar} />
-          <PDFViewer2 />
-      </main>
-      
-      <Drawer
-        variant="permanent"
-        className={clsx({
-          [classes.articleDrawerOpen]: articleDrawerOpen && tabOpened!=="comments",
-          [classes.articleCommentDrawerOpen]: articleDrawerOpen && tabOpened==="comments",
-          [classes.articleDrawerClose]: !articleDrawerOpen,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.articleDrawerOpen]: articleDrawerOpen && tabOpened!=="comments",
-            [classes.articleCommentDrawerOpen]: articleDrawerOpen && tabOpened==="comments",
-            [classes.articleDrawerClose]: !articleDrawerOpen,
-          }),
-        }}
-        anchor="right"
-      >
-        
-        <div className={classes.toolbar} />
-        <div className={classes.drawerHeader}>
-            {articleDrawerOpen ?
-              <ListItem className={classes.rightDrawerButtonList} button onClick={handleArticleDrawerClose}><ChevronRightIcon />
+
+      <Main open={articleDrawerOpen}>
+        <DrawerHeader />
+        <Typography paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
+          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
+          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
+          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
+          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
+          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
+          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
+          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
+          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
+          sapien faucibus et molestie ac.
+        </Typography>
+        <Typography paragraph>
+          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
+          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
+          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
+          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
+          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
+          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
+          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
+          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
+          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
+          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
+          posuere sollicitudin aliquam ultrices sagittis orci a.
+        </Typography>
+      </Main>
+
+      <ArticleDrawer variant="permanent" open={articleDrawerOpen} anchor="right">
+        <Toolbar />
+        {articleDrawerOpen ?
+          // Opened tab contains tabName and clickable header for closing drawer
+          <>
+            <DrawerHeader>
+              <ListItem  button onClick={handleArticleDrawerClose}><ChevronRightIcon />
               <Typography>{tabName}</Typography></ListItem>
-              :
-              <>
-              <List>
-              <ListItem className={classes.rightDrawerButtonList}>
-                <IconButton id="articleInfo" onClick={handleArticleDrawerOpen} size="large"><InfoOutlinedIcon /></IconButton>
-              </ListItem>
               <Divider />
-              <ListItem className={classes.rightDrawerButtonList}>
-                <IconButton id="teamInfo" onClick={handleArticleDrawerOpen} size="large"><GroupOutlinedIcon /></IconButton>
-              </ListItem>
-              <Divider />
-              <ListItem className={classes.rightDrawerButtonList}>
-                <IconButton id="annotations" onClick={handleArticleDrawerOpen} size="large"><BorderColorOutlinedIcon /></IconButton>
-              </ListItem>
-              <Divider />          
-              <ListItem className={classes.rightDrawerButtonList}>
-                <IconButton id="comments" onClick={handleArticleDrawerOpen} size="large"><CommentOutlinedIcon /></IconButton>
-              </ListItem>
-              </List>
-              </>
-            }
-            </div>
-        <div className={clsx({
-            [classes.hide]: !articleDrawerOpen,
-          })}>
-          {renderArticleDrawer(tabOpened)}
-        </div>
-      </Drawer> */}
+            </DrawerHeader>
+            {renderArticleDrawer(tabOpened)}
+          </>
+          :
+          <List>{articleDrawerMinimizedButtons}</List>
+        }
+      </ArticleDrawer>
     </div>
 
     </ThemeProvider>
