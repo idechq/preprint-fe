@@ -68,7 +68,7 @@ const theme = createTheme({
 
 const mainMenueDrawerWidth = 248;
 const articleDrawerWidth = 350;
-const articleCommentDrawerWidth = '34vw';
+const articleCommentDrawerWidth = 600;
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -391,72 +391,73 @@ type articleTeamInfoProps = {
 
 function ArticleTeamInfoItems({teamInfo}: articleTeamInfoProps) {
 
-    const teamTracksItems = teamInfo.teamTracks.map((item)=>{
-      return(
-        <ListItem style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom: 0}}>
-        <ListItemText>
-        <Link
-          href="#"
-          underline="hover"
-        >{item}
-        </Link>
-        </ListItemText>
-      </ListItem>
+  const teamTracksItems = teamInfo.teamTracks.map((item, key)=>{
+    return(
+      <ListItem style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom: 0}}>
+      <ListItemText>
+      <Link
+        key={"listKey-track"+key}
+        href="#"
+        underline="hover"
+      >{item}
+      </Link>
+      </ListItemText>
+    </ListItem>
+  )})
+
+  const noTrackItems = (
+    <ListItem style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom: 0}} disabled>
+      <ListItemText>Undeclared</ListItemText>
+    </ListItem> )
+    
+
+  const teamOutputListElements = [
+    {
+      id: "wiki",
+      label: "Project Wiki",
+      icon: <MenuBookOutlinedIcon />,
+      href: teamInfo.teamWikiURL,
+    },
+    {
+      id: "poster",
+      label: "Project Poster",
+      icon: <Icon path={mdiPresentation} size={1}/>,
+      href: teamInfo.teamPosterURL,
+    },
+    {
+      id: "presentation",
+      label: "Festival Presentation",
+      icon: <VideoLibraryOutlinedIcon />,
+      href: teamInfo.teamPresentationURL,
+    },
+  ]
+
+  const teamOutputListItemButtons = teamOutputListElements.map((item)=>{
+    return(
+      <ListItemButton
+        key={"listKey-"+item.id}
+        component="a"
+        href={item.href}
+        target="_blank"
+        rel="noreferrer"
+        disabled={ item.href==="#" ? true : false}
+        style={ item.href==="#" ?
+          {paddingLeft: theme.spacing(4),
+          paddingTop: theme.spacing(0),
+          paddingBottom:theme.spacing(0)}
+          :
+          {paddingLeft: theme.spacing(4),
+          paddingTop: theme.spacing(1),
+          paddingBottom:theme.spacing(1)}
+        }
+      >
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemText
+        primary={item.label}
+        secondary={ item.href==="#" ? "To be released" : ""}
+      />
+    </ListItemButton>
     )})
-
-    const noTrackItems = (
-      <ListItem style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom: 0}} disabled>
-        <ListItemText>Undeclared</ListItemText>
-      </ListItem> )
-      
-
-    const teamOutputListElements = [
-      {
-        id: "wiki",
-        label: "Project Wiki",
-        icon: <MenuBookOutlinedIcon />,
-        href: teamInfo.teamWikiURL,
-      },
-      {
-        id: "poster",
-        label: "Project Poster",
-        icon: <Icon path={mdiPresentation} size={1}/>,
-        href: teamInfo.teamPosterURL,
-      },
-      {
-        id: "presentation",
-        label: "Festival Presentation",
-        icon: <VideoLibraryOutlinedIcon />,
-        href: teamInfo.teamPresentationURL,
-      },
-    ]
-
-    const teamOutputListItemButtons = teamOutputListElements.map((item)=>{
-      return(
-        <ListItemButton
-          key={"listKey-"+item.id}
-          component="a"
-          href={item.href}
-          target="_blank"
-          rel="noreferrer"
-          disabled={ item.href==="#" ? true : false}
-          style={ item.href==="#" ?
-            {paddingLeft: theme.spacing(4),
-            paddingTop: theme.spacing(0),
-            paddingBottom:theme.spacing(0)}
-            :
-            {paddingLeft: theme.spacing(4),
-            paddingTop: theme.spacing(1),
-            paddingBottom:theme.spacing(1)}
-          }
-        >
-        <ListItemIcon>{item.icon}</ListItemIcon>
-        <ListItemText
-          primary={item.label}
-          secondary={ item.href==="#" ? "To be released" : ""}
-        />
-      </ListItemButton>
-      )})
 
     const teamAwardItems = teamInfo.teamAwards.map((item)=>{
       return(
