@@ -36,7 +36,8 @@ import ListItem  from '@mui/material/ListItem';
 import ListItemButton  from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Chip from '@mui/material/Chip';
+
+import KeyWordChip from './components/customChips'
 
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
@@ -124,8 +125,6 @@ function AppSearchBar () {
     </Search>
   )
 }
-
-
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: articleDrawerWidth,
@@ -526,23 +525,6 @@ function ArticleAnnotationsItems() {
   )
 }
 
-type chipProps = {
-  label: string,
-  color?: "default" | "primary" | "secondary",
-  href?: string,
-  icon?: boolean,
-}
-
-function KeyWordChip(
-  {label = "label", color = "secondary"}: chipProps) {
-  return (
-    <Chip
-      label={label}
-      size="small"
-      color={color}
-      />
-  )
-}
 
 export default function App() {
   const [mainMenuState, setMainMenuState] = React.useState(false);
