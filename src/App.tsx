@@ -1,5 +1,4 @@
 import React from 'react';
-import { useMediaQuery } from 'react-responsive'
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, Theme, ThemeProvider, styled, alpha, CSSObject } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -49,10 +48,7 @@ import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import FormatQuoteOutlinedIcon from '@mui/icons-material/FormatQuoteOutlined';
 import VideoLibraryOutlinedIcon from '@material-ui/icons/VideoLibraryOutlined';
 
-// react-pdf-viewer
-import { Viewer, Worker } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin, ToolbarProps, ToolbarSlot } from '@react-pdf-viewer/default-layout';
-import { RotateDirection } from '@react-pdf-viewer/rotate';
+import PDFViewer from './components/PDFviewer'
 
 // Mock info
 import mockInfoJson from './test/mockInfo'
@@ -129,14 +125,7 @@ function AppSearchBar () {
   )
 }
 
-const PDFDiv = styled('div')(({ theme }) => ({
-  // flexGrow: 1,
-  width: "100%",
-  height: `calc(100vh - 64px)`,
-  [theme.breakpoints.down('sm')]: {
-    height: `calc(100vh - 56px)`,
-  },
-}));
+
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: articleDrawerWidth,
@@ -212,127 +201,6 @@ const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
     }),
   }),
 );
-
-type PDFViewer1Props = {
-  articleHref: string,
-  defaultScale?: number,
-};
-
-function PDFViewer1({articleHref, defaultScale}: PDFViewer1Props) {
-  const aboveMdScreen = useMediaQuery({ query: '(min-width: 600px)' })
-
-  const renderToolbar = (Toolbar: (props: ToolbarProps) => React.ReactElement) => (
-    <Toolbar>
-        {(slots: ToolbarSlot) => {
-            const {
-                CurrentPageInput,
-                EnterFullScreen,
-                Download,
-                GoToNextPage,
-                GoToPreviousPage,
-                NumberOfPages,
-                Print,
-                Rotate,
-                ShowSearchPopover,
-                ShowProperties,
-                SwitchTheme,
-                Zoom,
-                ZoomIn,
-                ZoomOut,
-            } = slots;
-            return (
-                <div
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <div style={{alignItems: 'center', display: 'flex',}}>
-                        <div>
-                            <ShowSearchPopover />
-                        </div>
-                        <div>
-                            <GoToPreviousPage />
-                        </div>
-                        <div style={{ height: '30px', width: "40px" }}>
-                            <CurrentPageInput />
-                        </div>
-                        <div style={{ padding: '0px 2px 0px 6px' }}>
-                            <span style={{fontSize: "15px" }}>/ <NumberOfPages /> </span>
-                        </div>
-                        <div style={{ padding: '0px 2px' }}>
-                            <GoToNextPage />
-                        </div>
-                    </div>
-                    
-                    <div style={{alignItems: 'center', display: 'flex',}}>
-                        <div style={{ padding: '0px 2px'}}>
-                            <ZoomOut />
-                        </div>
-                        <div style={{ padding: '0px 2px' }}>
-                            <Zoom />
-                        </div>
-                        <div style={{ padding: '0px 2px' }}>
-                            <ZoomIn />
-                        </div>
-                    </div>
-
-                    <div
-                      style={ aboveMdScreen? {alignItems: 'center', display: 'flex',}
-                              : {display: "none"}}
-                    >
-                        <div style={{ padding: '0px 4px'}}>
-                        </div>
-                        <div style={{ padding: '0px 2px' }}>
-                            <Download />
-                        </div>
-                        <div style={{ padding: '0px 2px' }}>
-                            <Rotate direction={RotateDirection.Forward} />
-                        </div>
-                        <div style={{ padding: '0px 2px'}}>
-                            <SwitchTheme />
-                        </div>
-                        <div style={{ padding: '0px 2px'}}>
-                            <EnterFullScreen />
-                        </div>
-                        <div style={{ padding: '0px 2px' }}>
-                            <Print />
-                        </div>
-                        <div style={{ padding: '0px 2px' }}>
-                            <ShowProperties />
-                        </div>
-                    </div>
-                </div>
-            );
-        }}
-    </Toolbar>
-  );
-
-  
-  const defaultLayoutPluginInstance = defaultLayoutPlugin({
-    renderToolbar,
-    sidebarTabs: (defaultTabs) => [
-          // Remove the attachments tab (\`defaultTabs[2]\`)
-          defaultTabs[0], // Bookmarks tab
-          defaultTabs[1], // Thumbnails tab
-        ]
-  });
-
-  return (
-    <>
-    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-      <PDFDiv>
-          <Viewer
-            fileUrl={articleHref}
-            plugins={[defaultLayoutPluginInstance]}
-            defaultScale={defaultScale ? defaultScale : undefined}
-          />
-      </PDFDiv>
-    </Worker>
-    </>
-  )
-}
 
 function MainMenuItems () {
 
@@ -814,7 +682,7 @@ export default function App() {
 
       <Main open={articleDrawerOpen}>
         <DrawerHeader />
-        <PDFViewer1 articleHref={articleInfo.mainArticleURL}/>
+        <PDFViewer articleHref={articleInfo.mainArticleURL}/>
       </Main>
 
       <ArticleDrawer variant="permanent" open={articleDrawerOpen} anchor="right">
