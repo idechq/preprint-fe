@@ -165,7 +165,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
 const Main = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
-  backgroundColor: "blue",
+  // backgroundColor: "blue", //Used for checking div stretch
   width: `calc(100vw - (${theme.spacing(8)}) - 1px)`,
   // flexGrow: 1,
   // padding: theme.spacing(3),
