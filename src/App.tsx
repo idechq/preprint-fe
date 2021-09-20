@@ -54,8 +54,9 @@ import { Viewer, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin, ToolbarProps, ToolbarSlot } from '@react-pdf-viewer/default-layout';
 import { RotateDirection } from '@react-pdf-viewer/rotate';
 
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+// Mock info
+import mockInfoJson from './test/mockInfo'
+const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
 
 const theme = createTheme({
   // Material color chosen closest to iDEC themes chosen by Kening
@@ -410,18 +411,6 @@ function MainMenuItems () {
   )
 }
 
-const mockArticleInfo = {
-  version: 1,
-  latest: false,
-  supplants: "https://doi.org/10.1101/2021.09.09.459643",
-  postedDate: "2021-09-19T21:53:55.749Z",
-  doi: "https://doi.org/10.1101/2021.09.09.459643",
-  keywords: ["directed evolution", "pathway", "automation"],
-  mainArticleURL: "/test-pdf.pdf",
-  suppArticleURL: "#",
-  risURL: "#",
-}
-
 type articleInfoProps = {
   articleInfo: {
     version: number,
@@ -526,24 +515,6 @@ function ArticleInfoItems({articleInfo}: articleInfoProps) {
     </>
   )
 }
-
-const mockTeamInfo = {
-    teamName: "Edinburgh",
-    teamYear: 2020,
-    teamTracks: [
-      "Molecular Evolutionary Machines",
-      "Molecular Evolutionary Outcomes",
-      "Pathway Evolutionary Outcomes"
-    ],
-    teamWikiURL: "#1",
-    teamPosterURL: "#",
-    teamPresentationURL: "#",
-    teamAwards: [
-      {name: "Best Wiki", result: "winner"},
-      {name: "Industry advisory group award", result: "nominated"}, 
-      {name: "Best New Evolutionary Machine", result: "nominated"}
-    ],
-  }
 
 type articleTeamInfoProps = {
   teamInfo: {
@@ -775,8 +746,8 @@ export default function App() {
         setTabName('Article Information');
   }}
 
-  const articleInfo = mockArticleInfo;
-  const articleTeamInfo = mockTeamInfo;
+  const articleInfo = mockInfo.articleInfo;
+  const articleTeamInfo = mockInfo.articleTeamInfo;
 
   const renderArticleDrawer = (tabOpened: any) => {
     switch(tabOpened) {
