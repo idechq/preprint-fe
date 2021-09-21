@@ -108,10 +108,10 @@ function MainMenuItems () {
       icon: mdiDirectionsFork,
       label: "Track",
       href: "#" },
-    { key: "byAward",
-      icon: mdiSealVariant,
-      label: "Award",
-      href: "#" },
+    // { key: "byAward",
+    //   icon: mdiSealVariant,
+    //   label: "Award",
+    //   href: "#" },
   ]
 
   const iDECLinkInfo = [
