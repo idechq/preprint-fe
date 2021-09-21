@@ -103,7 +103,6 @@ const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
 type ArticleDisplayPageProps = {
   articleMetadata: {
     id:Number,
-    articleInfo: {
       title: string,
       authors: Array<string>,
       abstract: string,
@@ -116,8 +115,7 @@ type ArticleDisplayPageProps = {
       mainArticleURL: string,
       suppArticleURL: string,
       risURL:string,
-    },
-    articleTeamInfo:{
+    teams: Array<{
         teamName: string,
         teamYear: number,
         teamTracks: Array<string>,
@@ -125,11 +123,37 @@ type ArticleDisplayPageProps = {
         teamPosterURL: string,
         teamPresentationURL: string,
         teamAwards:Array<{name: string, result: string}>,
-    }
+    }>
   }
 }
 
 export default function ArticleDisplayPage({articleMetadata}: ArticleDisplayPageProps) {
+
+  const articleInfo = (({
+    version,
+    latest,
+    supplants,
+    postedDate,
+    doi,
+    keywords,
+    mainArticleURL,
+    suppArticleURL,
+    risURL
+  })=>({
+    version,
+    latest,
+    supplants,
+    postedDate,
+    doi,
+    keywords,
+    mainArticleURL,
+    suppArticleURL,
+    risURL}))(articleMetadata);
+
+  const articleAllTeamsInfo =articleMetadata.teams;
+  // It is expected that for the first few years, there will only be one team per article 
+  const articleTeamInfo = articleAllTeamsInfo[0]
+
   const [articleDrawerOpen, setDrawerOpen] = React.useState(false);
   const [tabOpened, setTabOpened] = React.useState<string | null>('articleInfo');
   const [tabName, setTabName] = React.useState<string | null>('Article Information');
@@ -187,22 +211,22 @@ export default function ArticleDisplayPage({articleMetadata}: ArticleDisplayPage
   const renderArticleDrawer = (tabOpened: any) => {
     switch(tabOpened) {
       case "articleInfo":
-        return <ArticleInfoItems articleInfo={articleMetadata.articleInfo} />;
+        return <ArticleInfoItems articleInfo={articleInfo} />;
       case "teamInfo":
-        return <ArticleTeamInfoItems teamInfo={articleMetadata.articleTeamInfo} />;
+        return <ArticleTeamInfoItems teamInfo={articleTeamInfo} />;
       case "comments":
         return <ArticleCommentItems />;
       case "annotations":
         return <ArticleAnnotationsItems />;
       default:
-        return <ArticleInfoItems articleInfo={articleMetadata.articleInfo} />;
+        return <ArticleInfoItems articleInfo={articleInfo} />;
   }};
 
   return (
     <React.Fragment>
       <Main open={articleDrawerOpen}>
         <DrawerHeader />
-        <PDFViewer articleHref={articleMetadata.articleInfo.mainArticleURL}/>
+        <PDFViewer articleHref={articleInfo.mainArticleURL}/>
       </Main>
 
       <ArticleDrawer variant="permanent" open={articleDrawerOpen} anchor="right">
