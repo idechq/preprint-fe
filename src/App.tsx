@@ -1,4 +1,15 @@
 import React from 'react';
+
+import { Location } from "history";
+import {
+  Link as RouterLink,
+  BrowserRouter as Router,
+  Switch as RouterSwitch,
+  Route,
+  NavLink, 
+  useLocation,
+} from 'react-router-dom';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -32,7 +43,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 import theme from './styles/theme'
-import ArticleDisplayPage from './pages/articleDisplayPage';
+import DrawerHeader from './components/DrawerHeader';
+import ArticleDisplayPage from './pages/ArticleDisplayPage';
+import { Acknowledgements, Terms } from './pages/StaticPages'
 
 // Mock info
 import mockInfoJson from './test/mockInfo'
@@ -100,14 +113,18 @@ function AppSearchBar () {
 function MainMenuItems () {
 
   const browseByInfo = [
-    { key: "byYear",
-      icon: mdiCalendarClock,
-      label: "Year",
-      href: "#" },
-    { key: "byTrack",
-      icon: mdiDirectionsFork,
-      label: "Track",
-      href: "#" },
+    { key: "all",
+      icon: mdiFormatListBulleted,
+      label: "All",
+      href: "/" },
+    // { key: "byYear",
+    //   icon: mdiCalendarClock,
+    //   label: "by Year",
+    //   href: "?browseBy=year" },
+    // { key: "byTrack",
+    //   icon: mdiDirectionsFork,
+    //   label: "by Track",
+    //   href: "?browseBy=track" },
     // { key: "byAward",
     //   icon: mdiSealVariant,
     //   label: "Award",
@@ -133,11 +150,11 @@ function MainMenuItems () {
     { key: "link-acknowledgement",
       icon: mdiHandshake,
       label: "Acknowledgements",
-      href: "#" },
+      href: "/acknowledgements" },
     { key: "link-terms",
       icon: mdiScaleBalance,
       label: "Terms",
-      href: "#" },
+      href: "/terms" },
   ]
 
   const listItemLink = ({ key, icon, label, href, newWindow }:
@@ -174,6 +191,19 @@ function MainMenuItems () {
   )
 }
 
+function Home() {
+  return (
+    <Box sx={{width: '100vw'}}>
+    </Box>
+  )
+}
+
+function ArticleLoader() {
+  const location = useLocation<Location>().pathname;
+  
+  return <p>{location}</p>
+}
+
 export default function App() {
   const [mainMenuState, setMainMenuState] = React.useState(false);
 
@@ -191,6 +221,7 @@ export default function App() {
   };
 
   return (
+    <Router>
       <React.Fragment>
       <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -239,13 +270,31 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <ArticleDisplayPage
-        articleMetadata={mockInfo}
-      />
+          <Box>
+            <DrawerHeader />
+            <RouterSwitch>
+              <Route path="/article/test">
+                <ArticleLoader/>
+              </Route>
+              <Route path="/article/mock-article">
+                <ArticleDisplayPage articleMetadata={mockInfo} />
+              </Route>
+              <Route path="/terms">
+                <Terms />
+              </Route>
+              <Route path="/acknowledgement">
+                <Acknowledgements />
+              </Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
+            </RouterSwitch>
     </Box>
 
+        </Box>
     </ThemeProvider>
   </React.Fragment>
+  </Router>
   )
 }
 
