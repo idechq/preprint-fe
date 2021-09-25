@@ -13,7 +13,7 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import FormatQuoteOutlinedIcon from '@mui/icons-material/FormatQuoteOutlined';
-import VideoLibraryOutlinedIcon from '@material-ui/icons/VideoLibraryOutlined';
+import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
 
 import Icon from '@mdi/react';
 import { 
@@ -183,7 +183,7 @@ function ArticleTeamInfoItems({teamInfo}: articleTeamInfoProps) {
     {
       id: "presentation",
       label: "Festival Presentation",
-      icon: <VideoLibraryOutlinedIcon />,
+      icon: <VideocamOutlinedIcon />,
       href: teamInfo.teamPresentationURL,
     },
   ]
