@@ -13,15 +13,20 @@ import {
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Drawer from '@mui/material/Drawer';
 
+import Container from '@mui/material/Container'
+import Paper from '@mui/material/Paper'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Icon from '@mdi/react';
-import { mdiCalendarClock,
+import {
+        mdiFormatListBulleted ,
+        mdiCalendarClock,
         mdiDirectionsFork,
         mdiSealVariant,
         mdiHome,
@@ -46,6 +51,7 @@ import theme from './styles/theme'
 import DrawerHeader from './components/DrawerHeader';
 import ArticleDisplayPage from './pages/ArticleDisplayPage';
 import { Acknowledgements, Terms } from './pages/StaticPages'
+import ScreenHeightDiv from './components/ScreenHeightDiv';
 
 // Mock info
 import mockInfoJson from './test/mockInfo'
@@ -53,6 +59,7 @@ const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
 
 const mainMenueDrawerWidth = 248;
 
+// const styleX = theme.
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -180,7 +187,7 @@ function MainMenuItems () {
           <Typography variant='h5'>Navigation</Typography>
         </div>
         <Divider />
-        <List subheader={<ListSubheader>Browse articles by</ListSubheader>}>
+        <List subheader={<ListSubheader>Browse articles</ListSubheader>}>
           {browseByInfo.map((item) => listItemLink(item))}
         </List>
         <Divider />
@@ -194,6 +201,29 @@ function MainMenuItems () {
 function Home() {
   return (
     <Box sx={{width: '100vw'}}>
+      <Grid container spacing={{ xs: 1, sm: 2}}>
+        <Grid item lg={4}>
+          <ScreenHeightDiv sx={{backgroundColor: 'blue'}}>
+
+          </ScreenHeightDiv>
+        </Grid>
+
+        <Grid item lg={8}>
+          <Box sx={{padding: theme.spacing(4),
+                    backgroundColor: "grey",
+                    display: 'grid',
+          }}>
+          <Paper elevation={2}>
+              <Box sx= {{padding: theme.spacing(3)}}>
+              Testing
+              </Box>
+            </Paper>
+          </Box>
+        
+      
+        </Grid>
+      
+      </Grid>
     </Box>
   )
 }
@@ -223,52 +253,52 @@ export default function App() {
   return (
     <Router>
       <React.Fragment>
-      <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <React.Fragment>
-      <Drawer anchor="left"
-        open={mainMenuState}
-        onClose={toggleDrawer(false)}
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
-      >
-        <div
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
+        <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <React.Fragment>
+        <Drawer anchor="left"
+          open={mainMenuState}
+          onClose={toggleDrawer(false)}
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
         >
-          <MainMenuItems />
-        </div>
-        </Drawer>
-      </React.Fragment>
+          <div
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+          >
+            <MainMenuItems />
+          </div>
+          </Drawer>
+        </React.Fragment>
 
-      <Box sx={{ display: 'flex' }}>
-        <AppBar
-          position="fixed"
-          color="primary"
-          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer(true)}
-            sx={{ mr: 2 }}
+        <Box sx={{ display: 'flex' }}>
+          <AppBar
+            position="fixed"
+            color="primary"
+            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            idecRXiv
-          </Typography>
-          <AppSearchBar />
-        </Toolbar>
-      </AppBar>
+            <Toolbar>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer(true)}
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              >
+                idecRχiv
+              </Typography>
+              <AppSearchBar />
+            </Toolbar>
+          </AppBar>
 
           <Box>
             <DrawerHeader />
@@ -289,12 +319,11 @@ export default function App() {
                 <Home />
               </Route>
             </RouterSwitch>
-    </Box>
+          </Box>
 
         </Box>
-    </ThemeProvider>
-  </React.Fragment>
+        </ThemeProvider>
+    </React.Fragment>
   </Router>
   )
 }
-
