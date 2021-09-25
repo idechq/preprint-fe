@@ -22,7 +22,7 @@ import {
       } from '@mdi/js';
 
 import theme from '../styles/theme'
-import KeyWordChip from './customChips'
+import KeyWordChip from './CustomChips'
 
 
 type articleInfoProps = {

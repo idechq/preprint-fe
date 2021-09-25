@@ -14,13 +14,14 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
+import DrawerHeader from '../components/DrawerHeader';
 import PDFViewer from '../components/PDFviewer'
 import {
   ArticleInfoItems,
   ArticleTeamInfoItems,
   ArticleCommentItems,
   ArticleAnnotationsItems
-} from '../components/articleDrawerContents'
+} from '../components/ArticleDrawerContents'
 
 const articleDrawerWidth = 350;
 const articleCommentDrawerWidth = 600;
@@ -74,15 +75,6 @@ const Main = styled('div', { shouldForwardProp: (prop) => prop !== 'open' })<{
   }),
 }));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  // padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
 const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: articleDrawerWidth,
@@ -103,26 +95,26 @@ const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
 type ArticleDisplayPageProps = {
   articleMetadata: {
     id:Number,
-      title: string,
-      authors: Array<string>,
-      abstract: string,
-      version: number,
-      latest: boolean,
-      supplants: string,
-      postedDate: string,
-      doi: string,
-      keywords: Array<string>,
-      mainArticleURL: string,
-      suppArticleURL: string,
-      risURL:string,
+    title: string,
+    authors: Array<string>,
+    abstract: string,
+    version: number,
+    latest: boolean,
+    supplants: string,
+    postedDate: string,
+    doi: string,
+    keywords: Array<string>,
+    mainArticleURL: string,
+    suppArticleURL: string,
+    risURL:string,
     teams: Array<{
-        teamName: string,
-        teamYear: number,
-        teamTracks: Array<string>,
-        teamWikiURL: string,
-        teamPosterURL: string,
-        teamPresentationURL: string,
-        teamAwards:Array<{name: string, result: string}>,
+      teamName: string,
+      teamYear: number,
+      teamTracks: Array<string>,
+      teamWikiURL: string,
+      teamPosterURL: string,
+      teamPresentationURL: string,
+      teamAwards:Array<{name: string, result: string}>,
     }>
   }
 }
@@ -154,6 +146,7 @@ export default function ArticleDisplayPage({articleMetadata}: ArticleDisplayPage
   // It is expected that for the first few years, there will only be one team per article 
   const articleTeamInfo = articleAllTeamsInfo[0]
 
+  // Should turn the following into useReducer for better management
   const [articleDrawerOpen, setDrawerOpen] = React.useState(false);
   const [tabOpened, setTabOpened] = React.useState<string | null>('articleInfo');
   const [tabName, setTabName] = React.useState<string | null>('Article Information');
@@ -225,7 +218,6 @@ export default function ArticleDisplayPage({articleMetadata}: ArticleDisplayPage
   return (
     <React.Fragment>
       <Main open={articleDrawerOpen}>
-        <DrawerHeader />
         <PDFViewer articleHref={articleInfo.mainArticleURL}/>
       </Main>
 
