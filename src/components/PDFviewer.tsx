@@ -8,14 +8,7 @@ import { useMediaQuery } from 'react-responsive'
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-const PDFDiv = styled('div')(({ theme }) => ({
-  // flexGrow: 1,
-  width: "100%",
-  height: `calc(100vh - 64px)`,
-  [theme.breakpoints.down('sm')]: {
-    height: `calc(100vh - 56px)`,
-  },
-}));
+import ScreenHeightDiv from './ScreenHeightDiv';
 
 type PDFViewer1Props = {
   articleHref: string,
@@ -125,13 +118,13 @@ export default function PDFViewer({articleHref, defaultScale}: PDFViewer1Props) 
   return (
     <>
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-      <PDFDiv>
+      <ScreenHeightDiv>
           <Viewer
             fileUrl={articleHref}
             plugins={[defaultLayoutPluginInstance]}
             defaultScale={defaultScale ? defaultScale : undefined}
           />
-      </PDFDiv>
+      </ScreenHeightDiv>
     </Worker>
     </>
   )
