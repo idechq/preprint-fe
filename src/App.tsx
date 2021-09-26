@@ -266,8 +266,9 @@ function Home() {
         <Grid item xs={9} md={12} lg={9}>
           <Typography
             variant="h5"
-            color="text.primary"
+            color="#2a206a"
             sx={{
+              fontWeight: "bold",
               marginLeft: theme.spacing(2),
               [theme.breakpoints.between('md', 'lg')]: {
                 textAlign: "center",
