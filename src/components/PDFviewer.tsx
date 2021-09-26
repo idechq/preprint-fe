@@ -1,12 +1,12 @@
 // https://react-pdf-viewer.dev/examples/create-a-toolbar-with-different-slots-for-the-default-layout/
 
-import { styled } from '@mui/material/styles';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin, ToolbarProps, ToolbarSlot } from '@react-pdf-viewer/default-layout';
 import { RotateDirection } from '@react-pdf-viewer/rotate';
-import { useMediaQuery } from 'react-responsive'
+import useMediaQuery from '@mui/material/useMediaQuery';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import theme from '../styles/theme';
 
 import ScreenHeightDiv from './ScreenHeightDiv';
 
@@ -16,7 +16,18 @@ type PDFViewer1Props = {
 };
 
 export default function PDFViewer({articleHref, defaultScale}: PDFViewer1Props) {
-  const aboveMdScreen = useMediaQuery({ query: '(min-width: 600px)' })
+  const above600pxScreen = useMediaQuery('(min-width:600px)');
+  const aboveLgScreen = useMediaQuery(theme.breakpoints.up('lg'));
+  const aboveMdScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const aboveSmScreen = useMediaQuery(theme.breakpoints.up('sm'));
+  const aboveXsScreen = useMediaQuery(theme.breakpoints.up('xs'));
+  const autoScale = () => {
+    if (aboveLgScreen) { return 1.5 }
+    else if (aboveMdScreen) { return 1 }
+    else if (aboveSmScreen) { return 0.8 }
+    else if (aboveXsScreen) { return 0.7 }
+    else { return undefined }
+  };
 
   const renderToolbar = (Toolbar: (props: ToolbarProps) => React.ReactElement) => (
     <Toolbar>
@@ -76,7 +87,7 @@ export default function PDFViewer({articleHref, defaultScale}: PDFViewer1Props) 
                     </div>
 
                     <div
-                      style={ aboveMdScreen? {alignItems: 'center', display: 'flex',}
+                      style={ above600pxScreen? {alignItems: 'center', display: 'flex',}
                               : {display: "none"}}
                     >
                         <div style={{ padding: '0px 4px'}}>
@@ -122,7 +133,7 @@ export default function PDFViewer({articleHref, defaultScale}: PDFViewer1Props) 
           <Viewer
             fileUrl={articleHref}
             plugins={[defaultLayoutPluginInstance]}
-            defaultScale={defaultScale ? defaultScale : undefined}
+            defaultScale={defaultScale ? defaultScale : autoScale()}
           />
       </ScreenHeightDiv>
     </Worker>
