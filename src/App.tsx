@@ -473,6 +473,10 @@ function AppBarBreadcrum() {
       return null;
     }
 
+    if (breadcrumNameMapping.hasOwnProperty(value)===false) {
+      return linkInBreadcrum("404 Not Found");
+    }
+
     return last ? linkInBreadcrum(breadcrumNameMapping[value]) : linkInBreadcrum(breadcrumNameMapping[value], to)
   })
 
@@ -496,6 +500,29 @@ function AppBarBreadcrum() {
       {breadcrums}
     </Breadcrumbs>
     </>
+  )
+}
+
+function NoMatch() {
+  return (
+    <ScreenHeightDiv
+      sx={{
+        display: "flex", 
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Typography
+        variant="h3"
+        color="text.secondary"
+        sx={{
+          mx: "auto",
+          my: "auto",
+        }}
+      >
+        404 - Page requested does not exist
+      </Typography>
+    </ScreenHeightDiv>
   )
 }
 
@@ -573,8 +600,11 @@ export default function App() {
               <Route path="/acknowledgement">
                 <Acknowledgements />
               </Route>
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
+              </Route>
+              <Route path="*">
+                <NoMatch />
               </Route>
             </RouterSwitch>
           </Box>
