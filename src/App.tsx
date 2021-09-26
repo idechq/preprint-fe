@@ -60,7 +60,7 @@ import DrawerHeader from './components/DrawerHeader';
 import ArticleDisplayPage from './pages/ArticleDisplayPage';
 import { Acknowledgements, Terms } from './pages/StaticPages'
 import ScreenHeightDiv from './components/ScreenHeightDiv';
-
+import OpenInNewOutlinedIcon from '@mui/icons-material/OpenInNewOutlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import { 
         mdiPresentation,
@@ -79,7 +79,7 @@ import mockInfoJson from './test/mockInfo'
 const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
 
 
-const mainMenueDrawerWidth = 248;
+const mainMenueDrawerWidth = 270;
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -169,7 +169,7 @@ function MainMenuItems () {
       label: "iDEC Team Portal",
       href: "https://reg.idec.io/",
       newWindow: true },
-    { key: "byAward",
+    { key: "link-idec-wiki",
       icon: mdiBookshelf,
       label: "iDEC Wiki",
       href: "https://wiki.idec.io/",
@@ -180,7 +180,7 @@ function MainMenuItems () {
     //   href: "/acknowledgements" },
     { key: "link-terms",
       icon: mdiScaleBalance,
-      label: "Terms",
+      label: "Terms and Conditions",
       href: "/terms" },
   ]
 
@@ -197,6 +197,7 @@ function MainMenuItems () {
       >
         <ListItemIcon><Icon path={icon} size={1}/></ListItemIcon>
         <ListItemText primary={label}/>
+        {newWindow ? <IconButton disabled><OpenInNewOutlinedIcon fontSize="small" /></IconButton>: null}
       </ListItemButton>
       )
   }
