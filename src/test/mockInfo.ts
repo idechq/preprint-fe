@@ -17,6 +17,7 @@ const mockInfoJson = [{
 		"pathway",
 		"automation"
 	],
+	"license": "CC-BY-SA-4.0 License",
 	"mainArticleURL": "/test-pdf.pdf",
 	"suppArticleURL": "#",
 	"risURL": "#",

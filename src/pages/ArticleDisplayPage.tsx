@@ -104,6 +104,7 @@ type ArticleDisplayPageProps = {
     postedDate: string,
     doi: string,
     keywords: Array<string>,
+    license, string,
     mainArticleURL: string,
     suppArticleURL: string,
     risURL:string,
@@ -128,6 +129,7 @@ export default function ArticleDisplayPage({articleMetadata}: ArticleDisplayPage
     postedDate,
     doi,
     keywords,
+    license,
     mainArticleURL,
     suppArticleURL,
     risURL
@@ -138,6 +140,7 @@ export default function ArticleDisplayPage({articleMetadata}: ArticleDisplayPage
     postedDate,
     doi,
     keywords,
+    license,
     mainArticleURL,
     suppArticleURL,
     risURL}))(articleMetadata);

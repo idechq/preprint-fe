@@ -33,6 +33,7 @@ type articleInfoProps = {
     postedDate: string,
     doi: string,
     keywords: Array<string>,
+    license: string,
     mainArticleURL: string,
     suppArticleURL: string,
     risURL: string,
@@ -95,6 +96,12 @@ function ArticleInfoItems({articleInfo}: articleInfoProps) {
             secondary={articleInfo.doi}
           />
         </ListItemButton>
+         <ListItem key="listKey-license">
+          <ListItemText
+            primary="License"
+            secondary={articleInfo.license}
+          />
+        </ListItem>
         <ListItem key="listKey-version">
           <ListItemText
             primary={"Version " + articleInfo.version}
