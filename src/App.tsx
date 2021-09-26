@@ -219,11 +219,8 @@ function MainMenuItems () {
   )
 }
 
-function Home() {
-
-  const [showAbstract, setAbstractVisibility] = React.useState(false);
-
-  const viewOptions = (
+function BasicGreetingDiv() {
+  return (
     <Paper variant="outlined" sx={{marginTop: theme.spacing(2)}}>
       <Stack
         sx={{
@@ -298,24 +295,57 @@ function Home() {
       </Stack>
     </Paper>
   )
+}
 
-  const abstractWindow = (
-    <Box>
-      <Typography variant="h6" mt={2}>Abstract</Typography>
-      <Typography variant="body1">Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>
-    </Box>
-  )
+type ArticleCardProps = {
+  articleCardInfo: {
+      id: number,
+      doi: string,
+      title: string,
+      authors: Array<string>,
+      abstract: string,
+      teamName: string,
+      teamYear: number,
+      teamTracks: Array<string>,
+      teamWikiURL?: string,
+      teamPosterURL?: string,
+      teamPresentationURL?: string,
+      teamAwards?: Array<{
+        name: string,
+        result: string,
+      }>
+    },
+}
 
-  const articleCard = (
-    <Card sx={{ minWidth: 275, }}>
+const mockArticleCardInfo = {
+      id: 1,
+      doi: "https://doi.org/10.1101/mock-article",
+      title: "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
+      authors: ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
+      abstract: "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      teamName: "Edinburgh",
+      teamYear: 2021,
+      teamTracks: ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
+      teamWikiURL: "#",
+      teamPosterURL: "#",
+      teamPresentationURL: "#",
+      teamAwards: [],
+}
+
+function ArticleCard({articleCardInfo}: ArticleCardProps) {
+  const authors = articleCardInfo.authors.join(", ").slice(0, -2);
+  const tracks = articleCardInfo.teamTracks.join(", ").slice(0, -2);
+  const href = "/article/" + articleCardInfo.doi.split("/").slice(-1);
+  return(
+  <Card sx={{ minWidth: 275 }} key={"article-card" + articleCardInfo.id}>
             <CardContent>
               {/* <Stack direction="row" justifyContent="space-between" alignItems="center"> */}
                   {/* <Box padding={0} margin={0}> */}
                   <Typography sx={{ fontSize: 14, fontWeight: "bold"}} color="text.secondary" display="inline">
-                    iDEC 2021 | Edinburgh
+            iDEC {articleCardInfo.teamYear} | {articleCardInfo.teamName}
                   </Typography>
                   <Typography sx={{ fontSize: 12, }} color="text.secondary">
-                    Molecular Evolutionary Machines, Pathway Evolutionary Outcomes
+            {tracks}
                   </Typography>
                   {/* <Typography sx={{ fontSize: 14}} color="text.secondary" marginBottom={1}>
                     Tracks: Molecular Evolutionary Machines, Molecular Evolutionary Outcomes, Pathway Evolutionary Outcomes
@@ -347,51 +377,47 @@ function Home() {
               <KeyWordChip label="Pathway Evolutionary Outcomes" />
               </Stack> */}
               <Typography component="div" sx={{ fontSize:18, fontWeight: "bold", mb: 0.5 }}>
-                <Link href="/article/mock-article" underline="hover">
-                Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum
-                </Link>
+        <Link href={href} underline="hover">{articleCardInfo.title}</Link>
               </Typography>
-              <Typography variant="body2">
-                "Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"
-              </Typography>
+      <Typography variant="body2">{authors}</Typography>
             </CardContent>
             {/* <CardActions>
               <Button size="small">Learn More</Button>
             </CardActions> */}
           </Card>
   )
+}
+
+function Home() {
+
+  // const abstractWindow = (
+  //   <Box>
+  //     <Typography variant="h6" mt={2}>Abstract</Typography>
+  //     <Typography variant="body1">Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>
+  //   </Box>
+  // )
 
   return (
       <Container>
       <Grid container spacing={0}>
         <Grid item sm={12} md={4} lg={4}>
-        
-        {showAbstract? abstractWindow: viewOptions}
-  
+          <BasicGreetingDiv />
         </Grid>
 
         <Grid item sm={12} md={8} lg={8}>
           <Box
             sx={{
               padding: theme.spacing(2),
-              // paddingRight: theme.spacing(12),
-              // paddingLeft: theme.spacing(6),
               [theme.breakpoints.down('md')]: {
                 paddingX: 0,
               },
             }}
           >
             <Stack spacing={theme.spacing(2)}>
-            {articleCard}{articleCard}{articleCard}
-            {articleCard}{articleCard}{articleCard}
-            {articleCard}{articleCard}{articleCard}
-            {articleCard}{articleCard}{articleCard}
+            <ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/>
             </Stack>
           </Box>
-        
-      
         </Grid>
-      
       </Grid>
       </Container>
   )
@@ -402,7 +428,6 @@ function ArticleLoader() {
   
   return <p>{location}</p>
 }
-
 
 function AppBarBreadcrum() {
   const location = useLocation<Location>().pathname;
