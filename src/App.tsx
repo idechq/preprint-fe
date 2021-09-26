@@ -413,7 +413,7 @@ function AppBarBreadcrum() {
   };
   const pathnames = location.split('/').filter((x) => x);
 
-  const linkInBreadcrum = (displayName: string, to?: string) => {
+  const linkInBreadcrum = (displayName: string, to?: string, sx?: {}) => {
     if (to) { return (
     <Typography
       variant="h6"
@@ -421,7 +421,7 @@ function AppBarBreadcrum() {
       color="white"
       component={Link}
       href={to}
-      sx={{display: "inline"}}
+      sx={sx? sx : {display: "inline", minWidth: 0}}
       >
         {displayName}
       </Typography>
@@ -431,7 +431,7 @@ function AppBarBreadcrum() {
       variant="h6"
       noWrap={true}
       color="white"
-      sx={{display: "inline"}}
+      sx={sx? sx : {display: "inline", minWidth: 0}}
       >
         {displayName}
       </Typography>
@@ -451,22 +451,25 @@ function AppBarBreadcrum() {
   })
 
   return (
-    <div style={{overflow: "hidden"}}>
+    <>
+    {linkInBreadcrum("idecRχiv", "/", {display: {xs: 'inline-block', sm: 'none'}})}
     <Breadcrumbs
       separator="›"
-      // component="div"
+      component="div"
       sx={{
-        flexDirection: "row",
-        color: "white",
-        // flexGrow: 1,
-        whiteSpace: "nowrap",
+        "& ol": {
+          flexWrap: "nowrap",
+          whiteSpace: "nowrap",
         textOverflow: "ellipsis",
-        display: { xs: 'none', sm: 'inline-block' }
-      }}
+        },
+        color: "white",
+        display: { xs: 'none', sm: 'inline-block' },
+        }}
     >
       {linkInBreadcrum("idecRχiv", "/")}
       {breadcrums}
-    </Breadcrumbs></div>
+    </Breadcrumbs>
+    </>
   )
 }
 
