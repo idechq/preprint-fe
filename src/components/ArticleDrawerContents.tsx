@@ -41,7 +41,7 @@ type articleInfoProps = {
 
 function ArticleInfoItems({articleInfo}: articleInfoProps) {
 
-  const postedDate = articleInfo.postedDate;
+  const postedDate = articleInfo.postedDate.slice(0, 10);
 
   const keywordChips = articleInfo.keywords.map((item) => <KeyWordChip label={item} /> );
 
@@ -151,12 +151,13 @@ function ArticleTeamInfoItems({teamInfo}: articleTeamInfoProps) {
     return(
       <ListItem style={{paddingLeft: theme.spacing(4), paddingTop: 0, paddingBottom: 0}}>
       <ListItemText>
-      <Link
+      {/* <Link
         key={"listKey-track"+key}
         href="#"
         underline="hover"
-      >{item}
-      </Link>
+      > */}
+      {item}
+      {/* </Link> */}
       </ListItemText>
     </ListItem>
   )})
