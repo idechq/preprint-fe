@@ -1,4 +1,6 @@
-import { Typography } from '@mui/material';
+import { Container } from '@mui/material';
+import theme from '../styles/theme'
+import TermsText from './termsSantinized';
 
 function Acknowledgements() {
   return (
@@ -12,11 +14,19 @@ function Acknowledgements() {
 }
 
 function Terms() {
+  // const termsHTML = require('./termsPlain.html');
+  // const purifiedTermsHTML = DOMPurify.sanitize(termsHTML);
+
   return (
-    <div>
-      <Typography variant="h1">Terms and Conditions</Typography>
-      <Typography variant="body1">Terms and conditions go here</Typography>
-    </div>
+    <Container
+      sx={{
+        paddingY: theme.spacing(2),
+        backgroundColor: "white",
+      }}
+    >
+    <TermsText />
+      
+    </Container>
   )
 }
 
