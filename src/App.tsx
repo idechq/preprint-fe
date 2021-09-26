@@ -73,9 +73,11 @@ import KeyWordChip from './components/CustomChips';
 
 import Popper from '@mui/material/Popper';
 
+
 // Mock info
 import mockInfoJson from './test/mockInfo'
 const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
+
 
 const mainMenueDrawerWidth = 248;
 
@@ -221,18 +223,78 @@ function Home() {
   const [showAbstract, setAbstractVisibility] = React.useState(false);
 
   const viewOptions = (
-    <Stack sx={{paddingY: theme.spacing(2)}}spacing={theme.spacing(2)}>
-      <Box width="30%" mx="auto">
-      <Image
-        src="/logo512.png"
-        color="#ffffff00"
-        aspectRatio={1}
-        />
-      </Box>
-      <Typography variant="h5">This is the way the life begins. Not with a plan but a competition.</Typography>
-      
-      
-    </Stack>
+    <Paper variant="outlined" sx={{marginTop: theme.spacing(2)}}>
+      <Stack
+        sx={{
+              paddingY: theme.spacing(2),
+              paddingX: theme.spacing(2),
+            }}
+        spacing={theme.spacing(2)}
+        alignItems="center"
+      >
+        <Typography variant="h2" style={{fontWeight: "bold"}} color="text.primary">idecRχiv</Typography>
+        <Typography variant="body1" color="text.secondary">The preprint repository for the</Typography>
+
+        <Grid container alignItems="center" justifyContent="center"
+        >
+        <Grid item xs={3} md={12} lg={3}>
+          <Box
+            sx={{
+              marginX: "auto",
+              height: "auto",
+              width: "80%",
+              [theme.breakpoints.down('lg')]: {
+                width: "80px",
+              },
+              [theme.breakpoints.down('md')]: {
+                width: "40px",
+                marginRight: "40px",
+              },
+              [theme.breakpoints.down('sm')]: {
+                marginRight: 0,
+                width: "80px",
+              },
+            }}
+          >
+            <Image
+              src="/logo512.png"
+              color="#ffffff00"
+              aspectRatio={1}
+              />
+          </Box>
+        </Grid>
+        <Grid item xs={9} md={12} lg={9}>
+          <Typography
+            variant="h5"
+            color="text.primary"
+            sx={{
+              marginLeft: theme.spacing(2),
+              [theme.breakpoints.between('md', 'lg')]: {
+                textAlign: "center",
+                marginX: "auto",
+                marginLeft: 0,
+                marginTop: theme.spacing(2),
+              },
+              [theme.breakpoints.between('sm', 'md')]: {
+                marginLeft: theme.spacing(-2),
+              }
+            }}
+          >International Directed Evolution Competition</Typography>
+        </Grid>
+        </Grid>
+        <Typography
+          variant="body1"
+          paragraph
+          color="text.secondary"
+          sx={{
+            fontSize: 14,
+            textAlign: "center",
+            marginX: theme.spacing(3),
+            marginTop: 0
+          }}
+        >This is the way the life begins. Not with a plan but a competition. - Dr. Martin Borch Jensen</Typography>
+      </Stack>
+    </Paper>
   )
 
   const abstractWindow = (
@@ -300,21 +362,21 @@ function Home() {
   return (
       <Container>
       <Grid container spacing={0}>
-        <Grid item sm={12} md={3} lg={4}>
-        <Container>
-          {showAbstract? abstractWindow: viewOptions}
-        </Container>
+        <Grid item sm={12} md={4} lg={4}>
+        
+        {showAbstract? abstractWindow: viewOptions}
+  
         </Grid>
 
-        <Grid item sm={12} md={9} lg={8}>
+        <Grid item sm={12} md={8} lg={8}>
           <Box
             sx={{
               padding: theme.spacing(2),
               // paddingRight: theme.spacing(12),
               // paddingLeft: theme.spacing(6),
-              // [theme.breakpoints.down('md')]: {
-              //   padding: theme.spacing(2),
-              // },
+              [theme.breakpoints.down('md')]: {
+                paddingX: 0,
+              },
             }}
           >
             <Stack spacing={theme.spacing(2)}>
