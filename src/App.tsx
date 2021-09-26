@@ -341,53 +341,53 @@ function ArticleCard({articleCardInfo}: ArticleCardProps) {
   const href = "/article/" + articleCardInfo.doi.split("/").slice(-1);
   return(
   <Card sx={{ minWidth: 275 }} key={"article-card" + articleCardInfo.id}>
-            <CardContent>
-              {/* <Stack direction="row" justifyContent="space-between" alignItems="center"> */}
-                  {/* <Box padding={0} margin={0}> */}
-                  <Typography sx={{ fontSize: 14, fontWeight: "bold"}} color="text.secondary" display="inline">
+    <CardContent>
+      {/* <Stack direction="row" justifyContent="space-between" alignItems="center"> */}
+          {/* <Box padding={0} margin={0}> */}
+          <Typography sx={{ fontSize: 14, fontWeight: "bold"}} color="text.secondary" display="inline">
             iDEC {articleCardInfo.teamYear} | {articleCardInfo.teamName}
-                  </Typography>
-                  <Typography sx={{ fontSize: 12, }} color="text.secondary">
+          </Typography>
+          <Typography sx={{ fontSize: 12, }} color="text.secondary">
             {tracks}
-                  </Typography>
-                  {/* <Typography sx={{ fontSize: 14}} color="text.secondary" marginBottom={1}>
-                    Tracks: Molecular Evolutionary Machines, Molecular Evolutionary Outcomes, Pathway Evolutionary Outcomes
-                  </Typography> */}
+          </Typography>
+          {/* <Typography sx={{ fontSize: 14}} color="text.secondary" marginBottom={1}>
+            Tracks: Molecular Evolutionary Machines, Molecular Evolutionary Outcomes, Pathway Evolutionary Outcomes
+          </Typography> */}
 
-                  {/* <IconButton
-                    size="small"
-                    sx={{ml: 0.25,}}
-                  ><MenuBookOutlinedIcon sx={{fontSize: 15}}/></IconButton>
-                   <IconButton
-                    size="small"
-                  ><svg style={{ width:"15px", height: "15px",}} viewBox="0 0 24 22">
-                    <path fill="currentColor" d="M2,3H10A2,2 0 0,1 12,1A2,2 0 0,1 14,3H22V5H21V16H15.25L17,22H15L13.25,16H10.75L9,22H7L8.75,16H3V5H2V3M5,5V14H19V5H5Z" />
-                </svg></IconButton>
-                  <IconButton
-                    size="small"
-                  ><VideocamOutlinedIcon sx={{fontSize: 17}}/></IconButton> */}
-                  {/* 
-                  <Typography sx={{ fontSize: 14}} color="text.secondary" display="inline-flex" marginBottom={1}>|</Typography>
-                  </Box> */}
-                
-                {/* <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                  iDEC 2021 | Edinburgh
-                </Typography> */}
-              {/* </Stack> */}
-              {/* <Stack direction="row" spacing={1}>
-              <KeyWordChip label="Molecular Evolutionary Machines" />
-              <KeyWordChip label="Molecular Evolutionary Outcomes" />
-              <KeyWordChip label="Pathway Evolutionary Outcomes" />
-              </Stack> */}
-              <Typography component="div" sx={{ fontSize:18, fontWeight: "bold", mb: 0.5 }}>
+          {/* <IconButton
+            size="small"
+            sx={{ml: 0.25,}}
+          ><MenuBookOutlinedIcon sx={{fontSize: 15}}/></IconButton>
+            <IconButton
+            size="small"
+          ><svg style={{ width:"15px", height: "15px",}} viewBox="0 0 24 22">
+            <path fill="currentColor" d="M2,3H10A2,2 0 0,1 12,1A2,2 0 0,1 14,3H22V5H21V16H15.25L17,22H15L13.25,16H10.75L9,22H7L8.75,16H3V5H2V3M5,5V14H19V5H5Z" />
+        </svg></IconButton>
+          <IconButton
+            size="small"
+          ><VideocamOutlinedIcon sx={{fontSize: 17}}/></IconButton> */}
+          {/* 
+          <Typography sx={{ fontSize: 14}} color="text.secondary" display="inline-flex" marginBottom={1}>|</Typography>
+          </Box> */}
+        
+        {/* <Typography sx={{ fontSize: 14 }} color="text.secondary">
+          iDEC 2021 | Edinburgh
+        </Typography> */}
+      {/* </Stack> */}
+      {/* <Stack direction="row" spacing={1}>
+      <KeyWordChip label="Molecular Evolutionary Machines" />
+      <KeyWordChip label="Molecular Evolutionary Outcomes" />
+      <KeyWordChip label="Pathway Evolutionary Outcomes" />
+      </Stack> */}
+      <Typography component="div" sx={{ fontSize:18, fontWeight: "bold", mb: 0.5 }}>
         <Link href={href} underline="hover">{articleCardInfo.title}</Link>
-              </Typography>
+      </Typography>
       <Typography variant="body2">{authors}</Typography>
-            </CardContent>
-            {/* <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions> */}
-          </Card>
+    </CardContent>
+    {/* <CardActions>
+      <Button size="small">Learn More</Button>
+    </CardActions> */}
+  </Card>
   )
 }
 
@@ -475,7 +475,7 @@ function AppBarBreadcrum() {
     if (to==="/article") {
       return null;
     }
-
+    
     if (breadcrumNameMapping.hasOwnProperty(value)===false) {
       return linkInBreadcrum("404 Not Found");
     }
