@@ -514,10 +514,11 @@ function NoMatch() {
         display: "flex", 
         alignItems: "center",
         justifyContent: "center",
+        padding: theme.spacing(4),
       }}
     >
       <Typography
-        variant="h3"
+        variant="h5"
         color="text.secondary"
         sx={{
           mx: "auto",
