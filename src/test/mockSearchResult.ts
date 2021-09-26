@@ -1,117 +1,218 @@
 const mockSearchResult = [
-   {
-      "id": 1,
-      "title": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod",
-      "authors": [
-         "Chong Teng",
-         "Junhao Lu",
-         "Yang Liu"
-      ],
-      "abstract": "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "version": 1,
-      "latest": false,
-      "supplants": "https://doi.org/10.1101/2021.09.09.459643",
-      "postedDate": "2021-09-19T21:53:55.749Z",
-      "doi": "https://doi.org/10.1101/2021.09.09.459643",
-      "keywords": [
-         "directed evolution",
-         "pathway",
-         "automation"
-      ],
-      "mainArticleURL": "/test-pdf.pdf",
-      "suppArticleURL": "#",
-      "risURL": "#",
-      "teams": [{
-         "teamName": "Edinburgh",
-         "teamYear": 2020,
-         "teamTracks": [
-            "Molecular Evolutionary Machines",
-            "Molecular Evolutionary Outcomes",
-            "Pathway Evolutionary Outcomes"
-         ],
-         "teamWikiURL": "#",
-         "teamPosterURL": "#",
-         "teamPresentationURL": "#",
-         "teamAwards": [{
-               "name": "Best Wiki",
-               "result": "winner"
-            },
-            {
-               "name": "Industry advisory group award",
-               "result": "nominated"
-            },
-            {
-               "name": "Best New Evolutionary Machine",
-               "result": "nominated"
-            }
-         ]
-      }]
-   },
-   {
-      "id": 2,
-      "title": "May indulgence difficulty ham can put especially Bringing remember for supplied",
-      "authors": [
-         "Iyla Elliott",
-         "Brady Figueroa",
-         "Sulayman Howells",
-         "Akash Jordan",
-         "Imogen Conley",
-         "Arda Lawson",
-         "Shaurya Osborne",
-         "Kurtis Burgess",
-         "Marwah Levine",
-         "John-James Ellis",
-         "Pharrell Burgess",
-         "Judah Miller",
-         "Aneurin Medrano",
-         "Nellie Cordova",
-         "Georgie Townsend",
-         "Charleigh Preece",
-         "Chyna Sinclair",
-         "Tiago Calvert",
-         "Mehmet Puckett",
-         "Amman O'Gallagher"
-      ],
-      "abstract": "Was drawing natural fat respect husband. An as noisy an offer drawn blush place. These tried for way joy wrote witty. In mr began music weeks after at begin. Education no dejection so direction pretended household do to. Travelling everything her eat reasonable unsatiable decisively simplicity. Morning request be lasting it fortune demands highest of.  Ladyship it daughter securing procured or am moreover mr. Put sir she exercise vicinity cheerful wondered. Continual say suspicion provision you neglected sir curiosity unwilling. Simplicity end themselves increasing led day sympathize yet. General windows effects not are drawing man garrets. Common indeed garden you his ladies out yet. Preference imprudence contrasted to remarkably in on. Taken now you him trees tears any. Her object giving end sister except oppose. Remain lively hardly needed at do by. Two you fat downs fanny three. True mr gone most at. Dare as name just when with it body. Travelling inquietude she increasing off impossible the. Cottage be noisier looking to we promise on. Disposal to kindness appetite diverted learning of on raptures. Betrayed any may returned now dashwood formerly. Balls way delay shy boy man views. No so instrument discretion unsatiable to in. Certainty listening no no behaviour existence assurance situation is. Because add why not esteems amiable him.",
-      "version": 2,
-      "latest": true,
-      "supplants": "https://doi.org/10.1101/2021.09.09.459643",
-      "postedDate": "2021-09-19T21:53:55.749Z",
-      "doi": "https://doi.org/10.1101/2021.09.09.459643",
-      "keywords": [
-         "directed evolution",
-         "pathway",
-         "automation"
-      ],
-      "mainArticleURL": "/test-pdf.pdf",
-      "suppArticleURL": "#",
-      "risURL": "#",
-      "teams": [{
-         "teamName": "Edinburgh",
-         "teamYear": 2020,
-         "teamTracks": [
-            "Molecular Evolutionary Machines",
-            "Molecular Evolutionary Outcomes",
-            "Pathway Evolutionary Outcomes"
-         ],
-         "teamWikiURL": "#",
-         "teamPosterURL": "#",
-         "teamPresentationURL": "#",
-         "teamAwards": [{
-               "name": "Best Wiki",
-               "result": "winner"
-            },
-            {
-               "name": "Industry advisory group award",
-               "result": "nominated"
-            },
-            {
-               "name": "Best New Evolutionary Machine",
-               "result": "nominated"
-            }
-         ]
-      }]
-   },
+  {
+    "id": 0,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
+    "authors": ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
+    "abstract": "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "teams": [
+      {
+        "teamName": "Edinburgh",
+        "teamYear": 2021,
+        "teamTracks": ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 1,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
+    "authors": ["Chong Teng", "Junhao Lu", "Yang Liu",],
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "teams": [
+      {
+        "teamName": "Boston College",
+        "teamYear": 2020,
+        "teamTracks": ["Molecular Evolutionary Outcomes", "Genome Evolutionary Machines"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 2,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
+    "authors": ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
+    "abstract": "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "teams": [
+      {
+        "teamName": "Edinburgh",
+        "teamYear": 2021,
+        "teamTracks": ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 3,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
+    "authors": ["Chong Teng", "Junhao Lu", "Yang Liu",],
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "teams": [
+      {
+        "teamName": "Boston College",
+        "teamYear": 2020,
+        "teamTracks": ["Molecular Evolutionary Outcomes", "Genome Evolutionary Machines"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },  {
+    "id": 4,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
+    "authors": ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
+    "abstract": "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "teams": [
+      {
+        "teamName": "Edinburgh",
+        "teamYear": 2021,
+        "teamTracks": ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 5,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
+    "authors": ["Chong Teng", "Junhao Lu", "Yang Liu",],
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "teams": [
+      {
+        "teamName": "Boston College",
+        "teamYear": 2020,
+        "teamTracks": ["Molecular Evolutionary Outcomes", "Genome Evolutionary Machines"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 6,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
+    "authors": ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
+    "abstract": "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "teams": [
+      {
+        "teamName": "Edinburgh",
+        "teamYear": 2021,
+        "teamTracks": ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 7,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
+    "authors": ["Chong Teng", "Junhao Lu", "Yang Liu",],
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "teams": [
+      {
+        "teamName": "Boston College",
+        "teamYear": 2020,
+        "teamTracks": ["Molecular Evolutionary Outcomes", "Genome Evolutionary Machines"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 8,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
+    "authors": ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
+    "abstract": "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "teams": [
+      {
+        "teamName": "Edinburgh",
+        "teamYear": 2021,
+        "teamTracks": ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 9,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
+    "authors": ["Chong Teng", "Junhao Lu", "Yang Liu",],
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "teams": [
+      {
+        "teamName": "Boston College",
+        "teamYear": 2020,
+        "teamTracks": ["Molecular Evolutionary Outcomes", "Genome Evolutionary Machines"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },  {
+    "id": 10,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
+    "authors": ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
+    "abstract": "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "teams": [
+      {
+        "teamName": "Edinburgh",
+        "teamYear": 2021,
+        "teamTracks": ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
+  {
+    "id": 11,
+    "doi": "https://doi.org/10.1101/mock-article",
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
+    "authors": ["Chong Teng", "Junhao Lu", "Yang Liu",],
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "teams": [
+      {
+        "teamName": "Boston College",
+        "teamYear": 2020,
+        "teamTracks": ["Molecular Evolutionary Outcomes", "Genome Evolutionary Machines"],
+        "teamWikiURL": "#",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": [],
+      },
+    ]
+  },
 ]
 
 export default mockSearchResult;
