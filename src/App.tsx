@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Switch as RouterSwitch,
   Route,
-  NavLink, 
   useLocation,
 } from 'react-router-dom';
 import Link from '@mui/material/Link'
@@ -73,6 +72,7 @@ import KeyWordChip from './components/CustomChips';
 
 import Popper from '@mui/material/Popper';
 
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 // Mock info
 import mockInfoJson from './test/mockInfo'
@@ -402,6 +402,74 @@ function ArticleLoader() {
   return <p>{location}</p>
 }
 
+
+function AppBarBreadcrum() {
+  const location = useLocation<Location>().pathname;
+
+  const breadcrumNameMapping: { [key: string]: string } = {
+    'terms': 'Terms and Conditions',
+    'article': 'Articles',
+    "mock-article": "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum"
+  };
+  const pathnames = location.split('/').filter((x) => x);
+
+  const linkInBreadcrum = (displayName: string, to?: string) => {
+    if (to) { return (
+    <Typography
+      variant="h6"
+      noWrap={true}
+      color="white"
+      component={Link}
+      href={to}
+      sx={{display: "inline"}}
+      >
+        {displayName}
+      </Typography>
+      )
+    } else { return (
+      <Typography
+      variant="h6"
+      noWrap={true}
+      color="white"
+      sx={{display: "inline"}}
+      >
+        {displayName}
+      </Typography>
+    )}
+
+  }
+
+  const breadcrums = pathnames.map((value, index) => {
+    const last = index === pathnames.length - 1;
+    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+
+    if (to==="/article") {
+      return null;
+    }
+
+    return last ? linkInBreadcrum(breadcrumNameMapping[value]) : linkInBreadcrum(breadcrumNameMapping[value], to)
+  })
+
+  return (
+    <div style={{overflow: "hidden"}}>
+    <Breadcrumbs
+      separator="›"
+      // component="div"
+      sx={{
+        flexDirection: "row",
+        color: "white",
+        // flexGrow: 1,
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+        display: { xs: 'none', sm: 'inline-block' }
+      }}
+    >
+      {linkInBreadcrum("idecRχiv", "/")}
+      {breadcrums}
+    </Breadcrumbs></div>
+  )
+}
+
 export default function App() {
   const [mainMenuState, setMainMenuState] = React.useState(false);
 
@@ -456,6 +524,7 @@ export default function App() {
               >
                 <MenuIcon />
               </IconButton>
+              <AppBarBreadcrum />
               {/* <AppSearchBar /> */}
             </Toolbar>
           </AppBar>
@@ -475,7 +544,7 @@ export default function App() {
               <Route path="/acknowledgement">
                 <Acknowledgements />
               </Route>
-              <Route exact path="/">
+              <Route path="/">
                 <Home />
               </Route>
             </RouterSwitch>
