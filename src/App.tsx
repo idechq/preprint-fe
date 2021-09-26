@@ -392,6 +392,14 @@ function ArticleCard({articleCardInfo}: ArticleCardProps) {
   )
 }
 
+function ArticleList() {
+  return (
+    <Stack spacing={theme.spacing(2)}>
+      <ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/>
+    </Stack>
+  )
+}
+
 function Home() {
 
   // const abstractWindow = (
@@ -417,9 +425,7 @@ function Home() {
               },
             }}
           >
-            <Stack spacing={theme.spacing(2)}>
-            <ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/>
-            </Stack>
+            <ArticleList />
           </Box>
         </Grid>
       </Grid>
