@@ -258,6 +258,7 @@ function BasicGreetingDiv() {
               width="100%"
               height="100%"
               src="/logo512.png"
+              alt="iDEC logo"
               // color="#ffffff00"
               // aspectRatio={1}
               // animationDuration={0}
