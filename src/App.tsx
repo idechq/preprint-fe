@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Location } from "history";
 import {
-  Link as RouterLink,
   BrowserRouter as Router,
   Switch as RouterSwitch,
   Route,
@@ -77,8 +76,9 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 // Mock info
 import mockInfoJson from './test/mockInfo'
+import mockSearchResult from './test/mockSearchResult';
 const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
-
+const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
 
 const mainMenueDrawerWidth = 270;
 
@@ -304,11 +304,12 @@ function BasicGreetingDiv() {
 
 type ArticleCardProps = {
   articleCardInfo: {
-      id: number,
-      doi: string,
-      title: string,
-      authors: Array<string>,
-      abstract: string,
+    id: number,
+    doi: string,
+    title: string,
+    authors: Array<string>,
+    abstract: string,
+    teams: Array<{
       teamName: string,
       teamYear: number,
       teamTracks: Array<string>,
@@ -316,10 +317,11 @@ type ArticleCardProps = {
       teamPosterURL?: string,
       teamPresentationURL?: string,
       teamAwards?: Array<{
-        name: string,
-        result: string,
-      }>
-    },
+        name?: string,
+        result?: string,
+      }>,
+    }>,
+  },
 }
 
 function LoadingArticleCard({id=0}: {id?: number}) {
@@ -344,15 +346,17 @@ function LoadingArticleCard({id=0}: {id?: number}) {
 
 function ArticleCard({articleCardInfo}: ArticleCardProps) {
   const authors = articleCardInfo.authors.join(", ").slice(0, -2);
-  const tracks = articleCardInfo.teamTracks.join(", ").slice(0, -2);
   const href = "/article/" + articleCardInfo.doi.split("/").slice(-1);
+  const teamInfo = articleCardInfo.teams[0];
+  const tracks = teamInfo.teamTracks.join(", ").slice(0, -2);
+
   return(
   <Card sx={{ minWidth: 275 }} key={"article-card" + articleCardInfo.id}>
     <CardContent>
       {/* <Stack direction="row" justifyContent="space-between" alignItems="center"> */}
           {/* <Box padding={0} margin={0}> */}
           <Typography sx={{ fontSize: 14, fontWeight: "bold"}} color="text.secondary" display="inline">
-            iDEC {articleCardInfo.teamYear} | {articleCardInfo.teamName}
+            iDEC {teamInfo.teamYear} | {teamInfo.teamName}
           </Typography>
           <Typography sx={{ fontSize: 12, }} color="text.secondary">
             {tracks}
@@ -399,9 +403,14 @@ function ArticleCard({articleCardInfo}: ArticleCardProps) {
 }
 
 function ArticleList() {
+  const articleList = mockArticleList.map((articleEssentialInfo)=> {
+    return <ArticleCard articleCardInfo={articleEssentialInfo}/>
+  })
+
   return (
     <Stack spacing={theme.spacing(2)}>
-      <ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/><ArticleCard articleCardInfo={mockArticleCardInfo}/>
+      <LoadingArticleCard id={1}/>
+      {articleList}
     </Stack>
   )
 }
