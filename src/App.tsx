@@ -80,6 +80,11 @@ import mockSearchResult from './test/mockSearchResult';
 const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
 const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
 
+// Mock API
+// const articleListFetchURL = "https://api.idec.io/articles";
+const apiURL = "https://e9d696e6-8d23-45a5-9a7c-3594ceb0f32d.mock.pstmn.io";
+const articleListFetchURL = apiURL + "/article";
+
 const mainMenueDrawerWidth = 270;
 
 const Search = styled('div')(({ theme }) => ({
@@ -403,27 +408,48 @@ function ArticleCard({articleCardInfo}: ArticleCardProps) {
 }
 
 function ArticleList() {
-  const articleList = mockArticleList.map((articleEssentialInfo)=> {
-    return <ArticleCard articleCardInfo={articleEssentialInfo}/>
-  })
+  const [error, setError] = React.useState<Error | null>(null);
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [articleJSON, setArticleJSON] = React.useState([]);
 
-  return (
-    <Stack spacing={theme.spacing(2)}>
-      <LoadingArticleCard id={1}/>
-      {articleList}
-    </Stack>
-  )
+  React.useEffect(() => {
+    fetch(articleListFetchURL)
+      .then(response => response.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setArticleJSON(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    const dummyArray = Array.from(Array(3).keys());
+    return (
+      <React.Fragment>
+        {dummyArray.map((item, index) => (
+            <LoadingArticleCard id={index} />
+        ))}
+      </React.Fragment>
+    )
+  } else {
+    return (
+      <React.Fragment>
+        {articleJSON.map((articleEssentialInfo) => (
+            <ArticleCard articleCardInfo={articleEssentialInfo}/>
+        ))}
+      </React.Fragment>
+    )
+  }
 }
 
 function Home() {
-
-  // const abstractWindow = (
-  //   <Box>
-  //     <Typography variant="h6" mt={2}>Abstract</Typography>
-  //     <Typography variant="body1">Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>
-  //   </Box>
-  // )
-
   return (
       <Container>
       <Grid container spacing={0}>
@@ -440,7 +466,9 @@ function Home() {
               },
             }}
           >
+          <Stack spacing={theme.spacing(2)}>
             <ArticleList />
+          </Stack>
           </Box>
         </Grid>
       </Grid>
