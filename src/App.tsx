@@ -54,9 +54,6 @@ import ListItem  from '@mui/material/ListItem';
 import ListItemButton  from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
-import Image from 'material-ui-image'
-
 import theme from './styles/theme'
 import DrawerHeader from './components/DrawerHeader';
 import ArticleDisplayPage from './pages/ArticleDisplayPage';
