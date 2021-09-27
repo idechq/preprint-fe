@@ -83,8 +83,8 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 // const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
 
 // API call
-const apiURL = "https://e9d696e6-8d23-45a5-9a7c-3594ceb0f32d.mock.pstmn.io";
-const getArticleListURL = apiURL + "/article";
+const apiURL = "https://989bf91f-502f-4f91-ad7a-b050f5adabac.mock.pstmn.io";
+const getArticleListURL = apiURL + "/articles";
 
 const mainMenueDrawerWidth = 270;
 
