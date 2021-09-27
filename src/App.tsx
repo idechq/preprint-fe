@@ -538,6 +538,8 @@ function ArticleLoader() {
       )
   }, [])
 
+  // console.log(articleJSON);
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -553,11 +555,11 @@ function ArticleLoader() {
       <CircularProgress color="secondary" size="5em"/>
     </ScreenHeightDiv>
     )
-  } else {
+  } else if (articleJSON.hasOwnProperty(0)) {
     return (
       <ArticleDisplayPage articleMetadata={articleJSON[0]} />
     )
-  }
+  } else { return <NoMatch /> }
 }
 
 function AppBarBreadcrum() {
