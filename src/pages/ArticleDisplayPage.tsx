@@ -94,7 +94,7 @@ const ArticleDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
 
 type ArticleDisplayPageProps = {
   articleMetadata: {
-    id:Number,
+    id: number,
     title: string,
     authors: Array<string>,
     abstract: string,
@@ -104,7 +104,7 @@ type ArticleDisplayPageProps = {
     postedDate: string,
     doi: string,
     keywords: Array<string>,
-    license, string,
+    license: string,
     mainArticleURL: string,
     suppArticleURL: string,
     risURL:string,
