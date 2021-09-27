@@ -77,13 +77,12 @@ import Popper from '@mui/material/Popper';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 // Mock info
-import mockInfoJson from './test/mockInfo'
-import mockSearchResult from './test/mockSearchResult';
-const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
-const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
+// import mockInfoJson from './test/mockInfo'
+// import mockSearchResult from './test/mockSearchResult';
+// const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
+// const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
 
-// Mock API
-// const getArticleListURL = "https://api.idec.io/articles";
+// API call
 const apiURL = "https://e9d696e6-8d23-45a5-9a7c-3594ceb0f32d.mock.pstmn.io";
 const getArticleListURL = apiURL + "/article";
 
