@@ -26,6 +26,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Icon from '@mdi/react';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import {Card, CardActions, CardContent} from '@mui/material';
 import Button from '@mui/material/Button';
@@ -81,9 +83,9 @@ const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
 const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
 
 // Mock API
-// const articleListFetchURL = "https://api.idec.io/articles";
+// const getArticleListURL = "https://api.idec.io/articles";
 const apiURL = "https://e9d696e6-8d23-45a5-9a7c-3594ceb0f32d.mock.pstmn.io";
-const articleListFetchURL = apiURL + "/article";
+const getArticleListURL = apiURL + "/article";
 
 const mainMenueDrawerWidth = 270;
 
@@ -410,15 +412,15 @@ function ArticleCard({articleCardInfo}: ArticleCardProps) {
 function ArticleList() {
   const [error, setError] = React.useState<Error | null>(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
-  const [articleJSON, setArticleJSON] = React.useState([]);
+  const [articleListJSON, setArticleListJSON] = React.useState([]);
 
   React.useEffect(() => {
-    fetch(articleListFetchURL)
+    fetch(getArticleListURL)
       .then(response => response.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          setArticleJSON(result);
+          setArticleListJSON(result);
         },
         (error) => {
           setIsLoaded(true);
@@ -441,8 +443,8 @@ function ArticleList() {
   } else {
     return (
       <React.Fragment>
-        {articleJSON.map((articleEssentialInfo) => (
-            <ArticleCard articleCardInfo={articleEssentialInfo}/>
+        {articleListJSON.map((articleListEssentialInfo) => (
+            <ArticleCard articleCardInfo={articleListEssentialInfo}/>
         ))}
       </React.Fragment>
     )
@@ -476,10 +478,86 @@ function Home() {
   )
 }
 
+
+const defaultArticleJSON = [
+  {
+    id: 0,
+    title: "",
+    authors: [],
+    abstract: "",
+    version: 0,
+    latest: true,
+    supplants:"#",
+    postedDate:"0000-00-00",
+    doi: "#",
+    keywords:[],
+    license: "CC-BY-4.0 License",
+    mainArticleURL: "#",
+    suppArticleURL: "#",
+    risURL: "#",
+    teams:[
+      {
+        teamName: "",
+        teamYear: 0,
+        teamTracks: [],
+        teamWikiURL: "#",
+        teamPosterURL: "#",
+        teamPresentationURL: "#",
+        teamAwards: [
+          {
+            "name":"",
+            "result":""
+          }
+        ]
+      }
+    ]
+  }
+]
+
 function ArticleLoader() {
   const location = useLocation<Location>().pathname;
-  
-  return <p>{location}</p>
+  const doiQueryFragment = location.split("/").slice(-1);
+  const getArticleURL = apiURL + "/" + doiQueryFragment;
+
+  const [error, setError] = React.useState<Error | null>(null);
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [articleJSON, setArticleJSON] = React.useState(defaultArticleJSON);
+
+  React.useEffect(() => {
+    fetch(getArticleURL)
+      .then(response => response.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setArticleJSON(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return (
+      <ScreenHeightDiv
+      sx={{
+        display: "flex", 
+        alignItems: "center",
+        justifyContent: "center",
+        padding: theme.spacing(4),
+      }}
+    >
+      <CircularProgress color="secondary" size="5em"/>
+    </ScreenHeightDiv>
+    )
+  } else {
+    return (
+      <ArticleDisplayPage articleMetadata={articleJSON[0]} />
+    )
+  }
 }
 
 function AppBarBreadcrum() {
@@ -642,11 +720,8 @@ export default function App() {
           <Box sx={{ width: "100vw", backgroundColor: "#EAEEF3" }}>
             <DrawerHeader />
             <RouterSwitch>
-              <Route path="/article/test">
+              <Route path="/article/*">
                 <ArticleLoader/>
-              </Route>
-              <Route path="/article/mock-article">
-                <ArticleDisplayPage articleMetadata={mockInfo} />
               </Route>
               <Route path="/terms">
                 <Terms />
