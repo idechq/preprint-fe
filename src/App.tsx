@@ -16,6 +16,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack'
+import Skeleton from '@mui/material/Skeleton';
 
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
@@ -321,20 +322,25 @@ type ArticleCardProps = {
     },
 }
 
-const mockArticleCardInfo = {
-      id: 1,
-      doi: "https://doi.org/10.1101/mock-article",
-      title: "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
-      authors: ["Iyla Elliott", "Brady Figueroa", "Sulayman Howells", "Akash Jordan", "Imogen Conley", "Arda Lawson", "Shaurya Osborne", "Kurtis Burgess", "Marwah Levine", "John-James Ellis", "Pharrell Burgess", "Judah Miller", "Aneurin Medrano", "Nellie Cordova", "Georgie Townsend", "Charleigh Preece", "Chyna Sinclair", "Tiago Calvert"],
-      abstract: "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      teamName: "Edinburgh",
-      teamYear: 2021,
-      teamTracks: ["Molecular Evolutionary Machines", "Pathway Evolutionary Outcomes"],
-      teamWikiURL: "#",
-      teamPosterURL: "#",
-      teamPresentationURL: "#",
-      teamAwards: [],
-}
+function LoadingArticleCard({id=0}: {id?: number}) {
+  return (
+    <Card sx={{ minWidth: 275 }} key={"mock-article-card" + id}>
+    <CardContent>
+          <Typography sx={{ fontSize: 14, fontWeight: "bold"}} color="text.secondary" display="inline">
+            <Skeleton variant="text" width="20%"/>
+          </Typography>
+          <Typography sx={{ fontSize: 12, }} color="text.secondary">
+            <Skeleton variant="text" width="40%"/>
+          </Typography>
+      <Typography component="div" sx={{ fontSize:18, fontWeight: "bold", mb: 0.5 }}>
+        <Skeleton variant="text" width="100%" height="3em" />
+      </Typography>
+      <Typography variant="body2">
+        <Skeleton variant="text" width="70%" height="2em" />
+      </Typography>
+    </CardContent>
+  </Card>
+)}
 
 function ArticleCard({articleCardInfo}: ArticleCardProps) {
   const authors = articleCardInfo.authors.join(", ").slice(0, -2);
