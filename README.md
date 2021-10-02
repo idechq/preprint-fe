@@ -26,10 +26,20 @@ Build image
 docker build -f Dockerfile.prod -t preprint-fe:prod .
 ```
 
+### HTTP
+
 Run
 
 ```shell
-docker run -it --rm -p 80:80 preprint-fe:prod
+docker run -it --rm -p 80:80 --name preprint preprint-fe:prod
+```
+
+### HTTPS
+
+Run
+
+```shell
+docker run -it --rm -p 443:443 --name preprint preprint-fe:prod
 ```
 
 Then visit [https://localhost:80/](https://localhost:80/).
