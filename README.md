@@ -10,13 +10,14 @@ build image
 docker build -t preprint-fe:dev .
 ```
 
-warning: please be patient you will see it takes an absurd amount of time running the following step  
+Run
 
 ```shell
-RUN chown -R node
+bash start.sh
 ```
 
-don't know how to fix it yet.
+Then visit [https://localhost:3001/](https://localhost:3001/) for live update.
+
 
 run
 

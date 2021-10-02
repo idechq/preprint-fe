@@ -1,26 +1,29 @@
 # Dockerization following example from:
 # https://mherman.org/blog/dockerizing-a-react-app/
+# https://github.com/nodejs/docker-node/issues/740#issuecomment-538644464
 
-# pull official base image
-FROM node:16.3.0-alpine3.11
+# Pull official base image
+FROM node:16-alpine3.14
 
-# set working directory
+# Transfer permission to user "node" before doing any installation
+RUN mkdir -p /app
+RUN chown node /app
+USER node
+
+# Set working directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
+# Add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
+# Install app dependencies
+COPY --chown=node:node package.json ./
+COPY --chown=node:node package-lock.json ./
 
 RUN npm install
 
-# add app
-COPY . ./
+# Add app
+COPY --chown=node:node . ./
 
-# https://stackoverflow.com/a/66508369
-RUN chown -R node.node /app
-
-# start app
+# Start app
 CMD ["npm", "start"]
