@@ -18,14 +18,21 @@ bash start.sh
 
 Then visit [https://localhost:3001/](https://localhost:3001/) for live update.
 
+## Deploy
 
-run
+Build image
 
-```shell
-bash start.sh
+``` shell
+docker build -f Dockerfile.prod -t preprint-fe:prod .
 ```
 
-Then visit [https://localhost:3001/](https://localhost:3001/) to look at it.
+Run
+
+```shell
+docker run -it --rm -p 1337:80 preprint-fe:prod
+```
+
+Then visit [https://localhost:1337/](https://localhost:1337/).
 
 ## Getting Started with Create React App
 
