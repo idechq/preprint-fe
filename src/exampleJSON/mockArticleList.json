@@ -1,38 +1,40 @@
 [
   {
     "id":0,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
-    "authors":[
-      "Iyla Elliott",
-      "Brady Figueroa",
-      "Sulayman Howells",
-      "Akash Jordan",
-      "Imogen Conley",
-      "Arda Lawson",
-      "Shaurya Osborne",
-      "Kurtis Burgess",
-      "Marwah Levine",
-      "John-James Ellis",
-      "Pharrell Burgess",
-      "Judah Miller",
-      "Aneurin Medrano",
-      "Nellie Cordova",
-      "Georgie Townsend",
-      "Charleigh Preece",
-      "Chyna Sinclair",
-      "Tiago Calvert"
+    "postedTime":"2021-10-01T00:00:00.000Z",
+    "title":"DiversiPhi29: an orthogonal system for the continuous directed evolution of genes in vivo",
+    "abstract":"Continuous directed evolution techniques leverage error-prone replication machinery for rapid in vivo mutagenesis of target genes. However, promiscuous activity by error-prone machinery can lead to damage of the host genome.nHere, we propose an orthogonal replication system, DiversiPhi29, for the continuous directed evolution of genes in vivo in a bacterial chassis. This system leverages the well-studied bacteriophage u03a629 and E. coli. In this project, we first attempt to modify four u03a629 proteins to enable the heterologous replication of a linear construct consisting of a single gene-of-interest and origin sequences. Once orthogonal replication is established, we will implement a system capable of tuning the mutation rate of the linear constructu2019s replication by altering the ratio of two u03a629 DNA polymerases, one of which contains fidelity-reducing mutations. This approach will enable high throughput molecular evolution in the best understood model organism.",
+    "keywords":[
+      "directed evolution",
+      "protein engineering",
+      "orthogonal",
+      "phi29",
+      "bacteriophage",
+      "continuous evolution"
     ],
-    "abstract":"Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Nora Claire Kearns",
+      "Calin Plesa",
+      "Amanda Rose Kreppel"
+    ],
     "teams":[
       {
-        "teamName":"Edinburgh",
-        "teamYear":2021,
+        "teamName":"UOregon",
+        "teamID":8,
         "teamTracks":[
-          "Molecular Evolutionary Machines",
-          "Pathway Evolutionary Outcomes"
+          "Molecular Evolutionary Machines"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/UOregon/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -43,23 +45,48 @@
   },
   {
     "id":1,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
-    "authors":[
-      "Chong Teng",
-      "Junhao Lu",
-      "Yang Liu"
+    "postedTime":"2021-10-01T00:00:00.000Z",
+    "title":"Directed Evolution of OsNramp5 in Saccharomyces cerevisiae",
+    "abstract":"Excessive cadmium accumulation has been a long-term crucial problem which affects the production of crops and health. Consumption of cadmium-containing rice forces cells to accumulate a large amount of cadmium, and then brings damage to kidneys. OsNramp5 is the main transporter for rice to absorb Mn2+, but it also absorbs Cd2+. Current modification on OsNramp5 managed to reduce the absorption of Cd2+ at the cost of lack of Mn2+. Therefore, we tried to obtain a mutant through directed evolution. Error-prone PCR was used to construct a gene mutation library of OsNramp5 and then we obtained 4 strains with expected phenotype. Finally, the homology modeling was conducted through SWISS-MODEL. We searched the related papers and compared with the structure of channel proteins of the same family that had been analyzed to find the possible catalytic site which provide theoretical basis for rational design of OsNramp5. We hope that the protein to  evolute could be used in the cultivation of low-cadmium rice and eventually be applied in field production to obtain healthful crops.",
+    "keywords":[
+      "OsNramp5",
+      "error-prone PCR",
+      "directed evolution",
+      "metal transporter"
     ],
-    "abstract":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-ND-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Weiran Lin",
+      "Wenhui Tao",
+      "Xiaorui Liu",
+      "Puze Geng",
+      "Ke Xu ",
+      "Rui Yuan",
+      "Tianxin Chen ",
+      "Yitong Zheng ",
+      "Ye Xu ",
+      "Yuping Zhu",
+      "Guolong Shi",
+      "Xin Yan ",
+      "Xi Chen"
+    ],
     "teams":[
       {
-        "teamName":"Boston College",
-        "teamYear":2020,
+        "teamName":"ED-NAU",
+        "teamID":12,
         "teamTracks":[
-          "Molecular Evolutionary Outcomes",
-          "Genome Evolutionary Machines"
+          "Molecular Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/ED-NAU/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -70,38 +97,45 @@
   },
   {
     "id":2,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
-    "authors":[
-      "Iyla Elliott",
-      "Brady Figueroa",
-      "Sulayman Howells",
-      "Akash Jordan",
-      "Imogen Conley",
-      "Arda Lawson",
-      "Shaurya Osborne",
-      "Kurtis Burgess",
-      "Marwah Levine",
-      "John-James Ellis",
-      "Pharrell Burgess",
-      "Judah Miller",
-      "Aneurin Medrano",
-      "Nellie Cordova",
-      "Georgie Townsend",
-      "Charleigh Preece",
-      "Chyna Sinclair",
-      "Tiago Calvert"
+    "postedTime":"2021-10-01T00:00:00.000Z",
+    "title":"CRISPR-guided DNA polymerases enable directed evolution of luciferase",
+    "abstract":"EvolvR, a system that can continuously diversify all nucleotides within a tunable window length at user-defined site, is an attractive method for continuously directed evolution. Our project attempts to conduct directed evolution of luciferase lux of Marine Vibrio FG-1 isolated from the Yellow Sea by using EvolvR system, aiming to explore a luciferase mutant with better potential performance and various luminescence spectrum. In addition, multiple gRNAs-guided EvolvR system is of great application value. However, due to the problem of genetic instability in the construction process of multiple gRNA, we propose the idea of using ELSA (Extra-long sgRNA Arrays) to help buildmultiple gRNAs-guided EvolvR system. We envision that a stable multiple gRNAs-guided EvolvR system will provide a new strategy for simultaneous evolution of multiple genes, such as metabolic pathways. ",
+    "keywords":[
+      "CRISPR-guided DNA polymerases",
+      "directed evolution",
+      "vibrio",
+      "luciferase",
+      "luxA"
     ],
-    "abstract":"Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Weizhe Chen",
+      "Rongxiao Zhang",
+      "Jiushi Wei",
+      "Xuyao Song",
+      "Jialiang Guo",
+      "Xinqi Zou",
+      "Zixiang Zhong",
+      "Xianghong Wang"
+    ],
     "teams":[
       {
-        "teamName":"Edinburgh",
-        "teamYear":2021,
+        "teamName":"OUC",
+        "teamID":5,
         "teamTracks":[
           "Molecular Evolutionary Machines",
-          "Pathway Evolutionary Outcomes"
+          "Molecular Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/OUC/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -112,23 +146,51 @@
   },
   {
     "id":3,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
-    "authors":[
-      "Chong Teng",
-      "Junhao Lu",
-      "Yang Liu"
+    "postedTime":"2021-10-01T15:39:31.000Z",
+    "title":"Directed evolution of the allosteric transcription factor PobR to generate a biosensor for hydroxy-mandelic acid (HMA)",
+    "abstract":"Hydroxy-mandelic acid (HMA) is widely applied in pharmaceuticals, food and cosmetics. In this study, we aimed to develop an allosteric transcription factors (aTFs) based biosensor for HMA. PobR, an aTF for HMA analog 4-hydroxybenzoic acid, was used to alter its selectivity and create novel aTFs responsive to HMA by directed evolution. We established a PobR mutant library with a capacity of 550,000 clones using error-prone PCR and Megawhop PCR. Through our screening, two mutants were obtained with responsiveness to HMA. Analysis of each missense mutation indicating residues 122-126 were involved in its PobR ligand specificity. Then the strain with HMA biosensor and HMA synthetic module was evolved with a 600-fold increase in genome mutation rate. After successive rounds of evolution, HMA titer reached 8.4 mg/L with a 4.5-fold increase. These results showed the effectiveness of directed evolution in switching the ligand specificity of a biosensor and improving HMA production.",
+    "keywords":[
+      "hydroxy-mandelic acid",
+      "directed evolution",
+      "PobR",
+      "ligand specificity"
     ],
-    "abstract":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-ND-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Juan Luo",
+      "Chenhao Yang",
+      "Shuning Guo",
+      "Bowen Zhang",
+      "Yi Dong",
+      "Fengqianrui Chen",
+      "Zhihao Wang",
+      "Kairui Su",
+      "Yulong Zhang",
+      "Hongda Fu",
+      "Baitong Shen",
+      "Peiyao Chang",
+      "Zishu Yang",
+      "Linshan Cao"
+    ],
     "teams":[
       {
-        "teamName":"Boston College",
-        "teamYear":2020,
+        "teamName":"NEFU_China",
+        "teamID":13,
         "teamTracks":[
           "Molecular Evolutionary Outcomes",
-          "Genome Evolutionary Machines"
+          "Genome Evolutionary Machines",
+          "Genome Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/NEFU_China/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -139,38 +201,44 @@
   },
   {
     "id":4,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
-    "authors":[
-      "Iyla Elliott",
-      "Brady Figueroa",
-      "Sulayman Howells",
-      "Akash Jordan",
-      "Imogen Conley",
-      "Arda Lawson",
-      "Shaurya Osborne",
-      "Kurtis Burgess",
-      "Marwah Levine",
-      "John-James Ellis",
-      "Pharrell Burgess",
-      "Judah Miller",
-      "Aneurin Medrano",
-      "Nellie Cordova",
-      "Georgie Townsend",
-      "Charleigh Preece",
-      "Chyna Sinclair",
-      "Tiago Calvert"
+    "postedTime":"2021-10-01T16:49:48.000Z",
+    "title":"Peplib Generator: In silico directed evolution and de novo generation for peptide drug powered by AlphaFold2",
+    "abstract":"The process from target discovery to drug approval are always costly and complicated. In recent decade, distributed AI models have been widely deployed to accelerate the R & D cycle (Research and Development Cycle) and reduce costs in multiple stages, yet the cost of drug development still increases annually resulting from the expensive computation processes.nThe recent release of Alphafold2 by DeepMind, however, brings some new insight into these long-lasting complicated problems. Inspired by its power to predict protein structures efficiently and accurately, we combined protein-peptide complex structure prediction and in silico directed evolution and developed Peplib Generator, which allowed us to generate optimized peptide ligands from target protein information in one step. nPeplib Generator has the following 2 parts: a peptide sequence generator and optimization network, and a gradient evaluation network powered by turbo-AlphaFold2. Given the target pocket information and expected properties, Peplib Generator can quickly and finely generate multiple new potential peptide binders for the pocket, achieving the goal of one-step generation of sequence library.",
+    "keywords":[
+      "Directed Evolution",
+      "Peptide Drug",
+      "Deep Learning"
     ],
-    "abstract":"Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Yanzhe Peldom Zhang",
+      "Kelvin Zheng Li",
+      "Wanqing Zhu",
+      "Junbo Liao",
+      "Shiyu Liu",
+      "Jianyong Yi",
+      "Yinglu Wan",
+      "Qiong He",
+      "Shuwen Li",
+      "Dong-Sheng Cao"
+    ],
     "teams":[
       {
-        "teamName":"Edinburgh",
-        "teamYear":2021,
+        "teamName":"CSU_CHINA",
+        "teamID":3,
         "teamTracks":[
-          "Molecular Evolutionary Machines",
-          "Pathway Evolutionary Outcomes"
+          "Molecular Evolutionary Machines"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/CSU_CHINA/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -181,23 +249,43 @@
   },
   {
     "id":5,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
-    "authors":[
-      "Chong Teng",
-      "Junhao Lu",
-      "Yang Liu"
+    "postedTime":"2021-10-01T17:13:54.000Z",
+    "title":"Directed evolution of a Bacillus-derived glycosyltransferase for enhanced glycosylation efficiency",
+    "abstract":"The Bacillus-derived glycosyltransferase (GT) BmmGT1 exhibited broad substrate flexibility, especially towards sugar acceptors, showing a great potential in natural products diversification. However, compared to the natural sugar acceptor macrolactin A (MLN A), the conversion rates of BmmGT1 towards other acceptors are much lower. Herein, the catalytic activities of BmmGT1 towards sugar acceptors was enhanced via directed evolution. A small library of variant BmmGT1 with mutated binding sites mutants were generated and screened using a 3-acetyl-7-hydroxycoumarin-based ultraviolet spectrophotometry screening method. Two mutants (M79F and M79W) were obtained, showing ~2.1-fold higher glucosylation activities towards 3-acetyl-7-hydroxycoumarin than the wild-type BmmGT1. Their catalytic activities towards other sugar acceptors were further tested, and the glucosylation activities of M79W was identified with ~3.6-fold and ~1.2-fold increase towards MLN A and piericidin A, respectively. Our study would provide guidance for engineering of other natural-product GTs via directed evolution.",
+    "keywords":[
+      "glycosyltransferase (GT); directed evolution; sugar acceptors selectivity; glucosylation efficiency; 3-acetyl-7-hydroxycoumarin"
     ],
-    "abstract":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-ND-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Chunni Liu",
+      "Wenli Li",
+      "Fei Xiao",
+      "Yuchao Gu",
+      "Feng Han",
+      "Shengmin Piao",
+      "Fang Wang",
+      "Yuechen Jiang",
+      "Chengying Yin",
+      "Shiji Chu",
+      "Ziwei Wei"
+    ],
     "teams":[
       {
-        "teamName":"Boston College",
-        "teamYear":2020,
+        "teamName":"OUC-Marine Drugs",
+        "teamID":14,
         "teamTracks":[
-          "Molecular Evolutionary Outcomes",
-          "Genome Evolutionary Machines"
+          "Molecular Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/OUC-Marine_Drugs/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -208,38 +296,40 @@
   },
   {
     "id":6,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
-    "authors":[
-      "Iyla Elliott",
-      "Brady Figueroa",
-      "Sulayman Howells",
-      "Akash Jordan",
-      "Imogen Conley",
-      "Arda Lawson",
-      "Shaurya Osborne",
-      "Kurtis Burgess",
-      "Marwah Levine",
-      "John-James Ellis",
-      "Pharrell Burgess",
-      "Judah Miller",
-      "Aneurin Medrano",
-      "Nellie Cordova",
-      "Georgie Townsend",
-      "Charleigh Preece",
-      "Chyna Sinclair",
-      "Tiago Calvert"
+    "postedTime":"2021-10-01T22:17:33.000Z",
+    "title":"Ultra-high throughput evolution of a bacterial endolysin as a new antimicrobial agent",
+    "abstract":"Peptidoglycan consists of N-acetylglucosamine and N-acetylmuramic acid chains interlinked by short peptides. These peptides u2013 specific by class of bacteria u2013 are targeted by autolysins, enzymes with an important role in bacterial cell growth and duplication that act by remodeling and relaxing the peptidoglycan structure. Given the increasing threat posed by antibiotic resistance and the demand of new antimicrobial agents, we decided to explore whether it is possible to improve the proteolytic properties of an autolysin.nWith our project, we aim to perform rounds of directed evolution on the autolysin SagA to make it suitable to act as an endolysin against the well-known pathogen Staphylococcus aureus. Using the aid of the powerful tool of droplet microfluidic, libraries of SagA will be screened for increased activity against a model fluorogenic peptide, and the final product of evolution will be then used to perform in vivo assays to assess the new activity.",
+    "keywords":[
+      "directed evolution",
+      "droplet microfluidics",
+      "ultra-high throughput",
+      "endolysin",
+      "antimicrobial agents",
+      "antibiotic resistance"
     ],
-    "abstract":"Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-ND-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Lorenzo Camisi",
+      "Jonas Juozapaitis",
+      "Linas Mazutis"
+    ],
     "teams":[
       {
-        "teamName":"Edinburgh",
-        "teamYear":2021,
+        "teamName":"Vilnius GMC",
+        "teamID":20,
         "teamTracks":[
-          "Molecular Evolutionary Machines",
-          "Pathway Evolutionary Outcomes"
+          "Molecular Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/Vilnius_GMC/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -250,23 +340,44 @@
   },
   {
     "id":7,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
-    "authors":[
-      "Chong Teng",
-      "Junhao Lu",
-      "Yang Liu"
+    "postedTime":"2021-10-02T00:48:41.000Z",
+    "title":"Library Generation Method Development for the Directed Evolution of Enzymes Related to Recalcitrant Polymer Degradation.",
+    "abstract":"Lignocellulosic biomass is an abundant waste stream which represents a rich source of glucose monomers and is currently underutilised due to ineffective current processing technology. The Edinburgh iDEC team is therefore looking into the generation of new mutant libraries with increased enzymatic activity. Libraries were generated by two differing methodologies. Sequence Saturation Mutagenesis is a random mutagenesis method which has been successfully optimised in this study, resulting in a 5-fold increase in DNA yields, enhancing subsequent library generation. Moreover, the need for expensive phosphorothioate nucleotides has been made redundant by incorporating a novel shearing method using sonication, allowing for greater accessibility to this directed evolution technique for future studies. Additionally, a library was successfully designed using the GeneORator method, in which secondary shell active site residues were targeted with the degenerate NNK codon. Preliminary high-throughput screening suggests active variants are present, however, further sequencing and kinetic studies are required.",
+    "keywords":[
+      "mutagenesis",
+      "directed evolution",
+      "synthetic biology",
+      "cellulase",
+      "method development"
     ],
-    "abstract":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Danghatai Wongthanaroj",
+      "Charles Wackwitz",
+      "Davide Annese",
+      "Finn Slattery",
+      "Chris French",
+      "Nadanai Laohakunakorn",
+      "Joanna Sadler"
+    ],
     "teams":[
       {
-        "teamName":"Boston College",
-        "teamYear":2020,
+        "teamName":"Edinburgh",
+        "teamID":19,
         "teamTracks":[
-          "Molecular Evolutionary Outcomes",
-          "Genome Evolutionary Machines"
+          "Molecular Evolutionary Machines",
+          "Molecular Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/Edinburgh/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -277,38 +388,54 @@
   },
   {
     "id":8,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
-    "authors":[
-      "Iyla Elliott",
-      "Brady Figueroa",
-      "Sulayman Howells",
-      "Akash Jordan",
-      "Imogen Conley",
-      "Arda Lawson",
-      "Shaurya Osborne",
-      "Kurtis Burgess",
-      "Marwah Levine",
-      "John-James Ellis",
-      "Pharrell Burgess",
-      "Judah Miller",
-      "Aneurin Medrano",
-      "Nellie Cordova",
-      "Georgie Townsend",
-      "Charleigh Preece",
-      "Chyna Sinclair",
-      "Tiago Calvert"
+    "postedTime":"2021-10-02T00:52:52.000Z",
+    "title":"Applying Semi-rational Directed Evolution Strategy towards Manganese Peroxidase for Stability Improvement",
+    "abstract":"Manganese peroxidase (MnP) is a key enzyme in degradation of lignin. It is derived from white-rot fungi in carbon or nitrogen deficiency environments. Previously, we characterized MnP hoping to utilize it for polyethylene degradation. In the 1st iDEC, we applied semi-rational directed evolution strategy on MnP in order to improve its stability. We introduced molecular dynamic simulation on thermodynamic properties of MnP. The influence of amino acid residues, secondary structures and salt bridge alterations on MnP thermostability were analyzed, the results of which were used to construct our MnPu2019s single-point-mutation library (342 samples in total). Subsequently, we built a multi-functional enzyme library and rectified the calculated free energy of the aforementioned single-point mutations, thereby improving the reliability of our data. In addition, we expressed and purified four MnP mutants in Pichia pastoris, and evaluated their improvements in stability and activity compared to the original MnP. Finally, mutant 8# showed a significant activity improvement under low pH condition, while mutant 7#u2019s organic solvent stability was remarkably improved.",
+    "keywords":[
+      "semi-rational directed evolution",
+      "manganese peroxidase",
+      "molecular dynamic simulation",
+      "FoldX"
     ],
-    "abstract":"Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-ND-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Meiling Lu",
+      "Ruyi Ma",
+      "Zekai Shen",
+      "Ziyang Huang",
+      "Wentao Chen",
+      "Peng Luo",
+      "Linyu Zheng",
+      "Zihan Yuan",
+      "Qinyue Wang",
+      "Gongyu Liu",
+      "Hongjie Qian",
+      "Duanduan Wang",
+      "Ying Yuan",
+      "Qian Li",
+      "Weixuan Lu",
+      "Yanfeng Liu",
+      "Jia Zhang",
+      "Jianxiang Guan"
+    ],
     "teams":[
       {
-        "teamName":"Edinburgh",
-        "teamYear":2021,
+        "teamName":"CPU_CHINA 2021",
+        "teamID":21,
         "teamTracks":[
           "Molecular Evolutionary Machines",
-          "Pathway Evolutionary Outcomes"
+          "Molecular Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
+        "teamYear":2021,
+        "teamWikiURL":"https://idec2021.github.io/CPU_CHINA_2021/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[
@@ -319,92 +446,41 @@
   },
   {
     "id":9,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
-    "authors":[
-      "Chong Teng",
-      "Junhao Lu",
-      "Yang Liu"
+    "postedTime":"2021-10-02T01:08:14.000Z",
+    "title":"Developing Orthogonal Quorum Sensing Transcription Regulators",
+    "abstract":"Quorum sensing (QS) allows bacteria to communicate by regulating gene expression in response to population cell density. Cell density is indicated by the concentration of diffusible autoinducer molecules produced within cells. Population-wide gene regulation is widely attractive for synthetic biology circuits to link cell-to-cell communication with decision making.nThe Gram-negative quorum sensing system relies on N-acyl homoserine lactones (AHLs) as autoinducer molecules. Transcription regulators that bind to specific AHLs control downstream expression of genes in response to the concentration of the AHL. A key bottleneck in using quorum sensing parts to build complex genetic circuits is orthogonality between transcription regulators, either caused by non-specific binding to AHLs or non-specific binding to promoters. To address this, we designed an experimental pipeline for the directed evolution of quorum sensing transcription regulators to respond to non-cognate AHL molecules, which would expand the toolbox to build orthogonal genetic circuits.nOur protein of interest is the EsaR transcription regulator that has a rare dual activation/repression function, which would be useful as a circuit switch by allowing linked activator-repressor motifs to be constructed more efficiently. We used bioinformatics tools to design a pipeline for the evolution of EsaR, using site-saturation mutagenesis to generate a library and ON/OFF screening methods to select best performing variants. Although working with EsaR would have been preferred, we had to adapt our wet lab approach due to unforeseen circumstances and decided that working on the well-characterised homologue LuxR instead would still provide us with informative conclusions about our pipeline design whilst gaining insight into the novel properties of LuxR mutants.nWe used semi-rational directed evolution has been utilised to improve the orthogonality of these density-dependent systems, by altering key residues involved in the recognition of inducer molecules, thus changing receptor sensitivity to novel molecules. Further work must be conducted to optimise such methods, although directed evolution provides a promising avenue to engineer these bacterial transcription factors for broader applications in synthetic biology.",
+    "keywords":[
+      "quorum sensing",
+      "LuxR",
+      "transcription regulator"
     ],
-    "abstract":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
+    "version":1,
+    "doi":"#",
+    "latest":true,
+    "supersedes":-1,
+    "supersededBy":-1,
+    "license":"CC-BY-NC-4.0",
+    "mainArticleURL":"#",
+    "suppArticleURL":"#",
+    "risURL":"#",
+    "authors":[
+      "Isabelle Zhang",
+      "Sifeng Chen",
+      "Daniela Dana Danilova",
+      "Laima Susta",
+      "Aarushi Bellani",
+      "Juan Ivars-Minana",
+      "David Tsang"
+    ],
     "teams":[
       {
-        "teamName":"Boston College",
-        "teamYear":2020,
+        "teamName":"Imperial",
+        "teamID":18,
         "teamTracks":[
-          "Molecular Evolutionary Outcomes",
-          "Genome Evolutionary Machines"
+          "Molecular Evolutionary Outcomes"
         ],
-        "teamWikiURL":"#",
-        "teamPosterURL":"#",
-        "teamPresentationURL":"#",
-        "teamAwards":[
-          
-        ]
-      }
-    ]
-  },
-  {
-    "id":10,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
-    "authors":[
-      "Iyla Elliott",
-      "Brady Figueroa",
-      "Sulayman Howells",
-      "Akash Jordan",
-      "Imogen Conley",
-      "Arda Lawson",
-      "Shaurya Osborne",
-      "Kurtis Burgess",
-      "Marwah Levine",
-      "John-James Ellis",
-      "Pharrell Burgess",
-      "Judah Miller",
-      "Aneurin Medrano",
-      "Nellie Cordova",
-      "Georgie Townsend",
-      "Charleigh Preece",
-      "Chyna Sinclair",
-      "Tiago Calvert"
-    ],
-    "abstract":"Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "teams":[
-      {
-        "teamName":"Edinburgh",
         "teamYear":2021,
-        "teamTracks":[
-          "Molecular Evolutionary Machines",
-          "Pathway Evolutionary Outcomes"
-        ],
-        "teamWikiURL":"#",
-        "teamPosterURL":"#",
-        "teamPresentationURL":"#",
-        "teamAwards":[
-          
-        ]
-      }
-    ]
-  },
-  {
-    "id":11,
-    "doi":"https://doi.org/10.1101/mock-article",
-    "title":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel.",
-    "authors":[
-      "Chong Teng",
-      "Junhao Lu",
-      "Yang Liu"
-    ],
-    "abstract":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus porta porttitor urna, eu placerat felis laoreet sit amet. Integer elementum mauris vitae fringilla bibendum. Donec tempor semper sem vitae cursus. Sed malesuada metus non ultricies iaculis. Integer vestibulum dapibus imperdiet. Maecenas posuere sagittis sodales. Pellentesque consectetur ipsum vitae lorem varius, ac maximus neque feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet ipsum ut libero maximus scelerisque. Fusce metus ligula, commodo id est ut, aliquet venenatis odio. Sed id urna blandit, rutrum diam vitae, fringilla ipsum. Nunc in lacus vel ante blandit pharetra blandit vitae odio. Integer pharetra in purus ac hendrerit. Quisque sed metus ultricies, iaculis augue at, lobortis neque. Aliquam tincidunt faucibus dolor, et tempor leo vestibulum quis.Integer tempus nunc et justo tristique, bibendum blandit est porttitor. Nulla vestibulum ornare elit, sed consectetur magna blandit in. Sed in augue lobortis, efficitur augue in, congue eros. Donec consectetur massa nec sollicitudin varius. Aenean nec velit nunc. Nullam malesuada dolor odio, vel tristique diam placerat et. Duis non eros nunc. Aliquam luctus quis tellus sit amet vestibulum. Maecenas vitae erat libero. Quisque eros nisl, lacinia vitae dolor ac, imperdiet aliquam dolor. Nam auctor, sem ut consectetur ullamcorper.",
-    "teams":[
-      {
-        "teamName":"Boston College",
-        "teamYear":2020,
-        "teamTracks":[
-          "Molecular Evolutionary Outcomes",
-          "Genome Evolutionary Machines"
-        ],
-        "teamWikiURL":"#",
+        "teamWikiURL":"https://idec2021.github.io/Imperial/",
         "teamPosterURL":"#",
         "teamPresentationURL":"#",
         "teamAwards":[

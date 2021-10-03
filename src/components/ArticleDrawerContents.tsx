@@ -29,8 +29,9 @@ type articleInfoProps = {
   articleInfo: {
     version: number,
     latest: boolean,
-    supplants: string,
-    postedDate: string,
+    supersedes: number,
+    supersededBy: number,
+    postedTime: string,
     doi: string,
     keywords: Array<string>,
     license: string,
@@ -42,7 +43,7 @@ type articleInfoProps = {
 
 function ArticleInfoItems({articleInfo}: articleInfoProps) {
 
-  const postedDate = articleInfo.postedDate.slice(0, 10);
+  const postedDate = articleInfo.postedTime.slice(0, 10);
 
   const keywordChips = articleInfo.keywords.map((item) => <KeyWordChip label={item} /> );
 
@@ -108,16 +109,32 @@ function ArticleInfoItems({articleInfo}: articleInfoProps) {
             secondary={articleInfo.latest ? "latest" : ""}
           />
         </ListItem>
+        {articleInfo.supersedes !== -1 ?
         <ListItemButton
-          key="listKey-supplantedBy"
+          key="listKey-supersedes"
           component="a"
-          href={articleInfo.supplants}
+          href={"/article/" + articleInfo.supersedes.toString().padStart(6, "0") + "/"}
         >
           <ListItemText
-            primary="Supplanted by"
-            secondary={articleInfo.supplants}
+            primary="Supersedes"
+            secondary={articleInfo.supersedes}
           />
         </ListItemButton>
+        : null
+        }
+        {articleInfo.supersededBy !== -1 ?
+        <ListItemButton
+          key="listKey-supersededBy"
+          component="a"
+          href={"/article/" + articleInfo.supersededBy.toString().padStart(6, "0") + "/"}
+        >
+          <ListItemText
+            primary="Superseded by"
+            secondary={articleInfo.supersededBy}
+          />
+        </ListItemButton>
+        : null
+        }
         <ListItem key="listKey-keywords-title">
           <ListItemText
             primary="Keywords"

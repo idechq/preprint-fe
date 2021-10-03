@@ -349,7 +349,7 @@ function LoadingArticleCard({id=0}: {id?: number}) {
 
 function ArticleCard({articleCardInfo}: ArticleCardProps) {
   const authors = articleCardInfo.authors.join(", ").slice(0, -2);
-  const href = "/article/" + articleCardInfo.doi.split("/").slice(-1);
+  const href = "/article/" + articleCardInfo.id.toString().padStart(6, '0') + "/";
   const teamInfo = articleCardInfo.teams[0];
   const tracks = teamInfo.teamTracks.join(", ").slice(0, -2);
 
@@ -483,8 +483,9 @@ const defaultArticleJSON = [
     abstract: "",
     version: 0,
     latest: true,
-    supplants:"#",
-    postedDate:"0000-00-00",
+    supersedes:-1,
+    supersededBy:-1,
+    postedTime:"0000-00-00T00:00:00.000Z",
     doi: "#",
     keywords:[],
     license: "CC-BY-4.0 License",
