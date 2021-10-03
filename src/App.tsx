@@ -348,10 +348,10 @@ function LoadingArticleCard({id=0}: {id?: number}) {
 )}
 
 function ArticleCard({articleCardInfo}: ArticleCardProps) {
-  const authors = articleCardInfo.authors.join(", ").slice(0, -2);
+  const authors = articleCardInfo.authors.join(", ");
   const href = "/article/" + articleCardInfo.id.toString().padStart(6, '0') + "/";
   const teamInfo = articleCardInfo.teams[0];
-  const tracks = teamInfo.teamTracks.join(", ").slice(0, -2);
+  const tracks = teamInfo.teamTracks.join(", ");
 
   return(
   <Card sx={{ minWidth: 275 }} key={"article-card" + articleCardInfo.id}>
