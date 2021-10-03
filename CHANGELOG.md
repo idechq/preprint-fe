@@ -5,12 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [0.2.0] - 2021-10-03
+
+### Added
+
+- Abstract display on homepage
+- DOI Tooltip and copy to clipboard
 
 ### Fixed
 
 - DOI display where there is no DOI
-
 
 ## [0.1.0] - 2021-10-02
 
