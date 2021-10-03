@@ -6,7 +6,7 @@ import ListItemButton  from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
@@ -141,9 +141,15 @@ function ArticleInfoItems({articleInfo}: articleInfoProps) {
           />
         </ListItem>
         <ListItem key="listKey-keywords-chips">
-          <Stack direction="row" spacing={1}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "8px 8px",
+            }}
+          >
             {keywordChips}
-          </Stack>
+          </Box>
         </ListItem>
     </List>
     <Divider />
