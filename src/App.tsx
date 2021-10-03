@@ -411,94 +411,89 @@ function ArticleCard({ articleCardInfo, id }: ArticleCardProps) {
   const teamInfo = articleCardInfo.teams[0];
   const tracks = teamInfo.teamTracks.join(", ");
 
+  const abstractParagraphs = articleCardInfo.abstract
+    .split("\n")
+    .map((para, index) => (
+      <Typography key={"abstractParagraph-" + id + "-" + index}>
+        {para}
+      </Typography>
+    ));
+
   return (
     <React.Fragment>
-      <Popper
-        className="abstract-popper"
-        key={"abstract-popover" + id}
-        id={"mouse-over-popover" + id}
-        open={popperOpen}
-        anchorEl={anchorEl}
-        placement="left-start"
-        transition
-        disablePortal={false}
-        modifiers={[
-          {
-            name: "flip",
-            enabled: true,
-            options: {
-              altBoundary: true,
-              rootBoundary: "viewport",
-              padding: 8,
+      <Box onMouseEnter={handlePopperOpen} onMouseLeave={handlePopperClose}>
+        <Popper
+          className="abstract-popper"
+          key={"abstract-popover" + id}
+          id={"mouse-over-popover" + id}
+          open={popperOpen}
+          anchorEl={anchorEl}
+          placement="left-start"
+          transition
+          disablePortal={false}
+          modifiers={[
+            {
+              name: "flip",
+              enabled: true,
+              options: {
+                altBoundary: true,
+                rootBoundary: "viewport",
+                padding: 8,
+              },
             },
-          },
-          {
-            name: "preventOverflow",
-            enabled: true,
-            options: {
-              altAxis: true,
-              altBoundary: true,
-              tether: true,
-              rootBoundary: "viewport",
-              padding: 8,
+            {
+              name: "preventOverflow",
+              enabled: true,
+              options: {
+                altAxis: true,
+                altBoundary: true,
+                tether: true,
+                rootBoundary: "viewport",
+                padding: 8,
+              },
             },
-          },
-          {
-            name: "arrow",
-            enabled: false,
-            // options: {
-            //   element: arrowRef,
-            // },
-          },
-        ]}
-      >
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Paper
-              elevation={3}
-              sx={{
-                zIndex: theme.zIndex.tooltip,
-                display: "flex",
-                [theme.breakpoints.down("md")]: {
-                  display: "none",
-                },
-                width: "32vw",
-                height: "80vh",
-                overflowY: "scroll",
-                marginRight: theme.spacing(1),
-              }}
+          ]}
+        >
+          {({ TransitionProps }) => (
+            <Fade {...TransitionProps} timeout={350}>
+              <Paper
+                elevation={3}
+                sx={{
+                  padding: theme.spacing(3),
+                  [theme.breakpoints.down("md")]: {
+                    display: "none",
+                  },
+                  width: "32vw",
+                  height: "80vh",
+                  overflowY: "auto",
+                  marginRight: theme.spacing(1),
+                }}
+              >
+                <Typography variant="h6">Abstract</Typography>
+                <Stack spacing={theme.spacing(2)}>{abstractParagraphs}</Stack>
+              </Paper>
+            </Fade>
+          )}
+        </Popper>
+        <Card sx={{ minWidth: 275 }} key={"article-card" + articleCardInfo.id}>
+          <CardContent>
+            {/* <Stack direction="row" justifyContent="space-between" alignItems="center"> */}
+            {/* <Box padding={0} margin={0}> */}
+            <Typography
+              sx={{ fontSize: 14, fontWeight: "bold" }}
+              color="text.secondary"
+              display="inline"
             >
-              <Typography sx={{ p: theme.spacing(3) }}>
-                {articleCardInfo.abstract}
-              </Typography>
-            </Paper>
-          </Fade>
-        )}
-      </Popper>
-      <Card
-        sx={{ minWidth: 275 }}
-        key={"article-card" + articleCardInfo.id}
-        onMouseEnter={handlePopperOpen}
-        onMouseLeave={handlePopperClose}
-      >
-        <CardContent>
-          {/* <Stack direction="row" justifyContent="space-between" alignItems="center"> */}
-          {/* <Box padding={0} margin={0}> */}
-          <Typography
-            sx={{ fontSize: 14, fontWeight: "bold" }}
-            color="text.secondary"
-            display="inline"
-          >
-            iDEC {teamInfo.teamYear} | {teamInfo.teamName}
-          </Typography>
-          <Typography sx={{ fontSize: 12 }} color="text.secondary">
-            {tracks}
-          </Typography>
-          {/* <Typography sx={{ fontSize: 14}} color="text.secondary" marginBottom={1}>
+              iDEC {teamInfo.teamYear} | {teamInfo.teamName}
+            </Typography>
+            <Typography sx={{ fontSize: 12 }} color="text.secondary">
+              {tracks}
+            </Typography>
+            {/* <Typography sx={{ fontSize: 14}} color="text.secondary" marginBottom={1}>
             Tracks: Molecular Evolutionary Machines, Molecular Evolutionary Outcomes, Pathway Evolutionary Outcomes
           </Typography> */}
 
-          {/* <IconButton
+            {/* <IconButton
             size="small"
             sx={{ml: 0.25,}}
           ><MenuBookOutlinedIcon sx={{fontSize: 15}}/></IconButton>
@@ -510,33 +505,36 @@ function ArticleCard({ articleCardInfo, id }: ArticleCardProps) {
           <IconButton
             size="small"
           ><VideocamOutlinedIcon sx={{fontSize: 17}}/></IconButton> */}
+            {/* 
           {/* 
+            {/* 
           <Typography sx={{ fontSize: 14}} color="text.secondary" display="inline-flex" marginBottom={1}>|</Typography>
           </Box> */}
 
-          {/* <Typography sx={{ fontSize: 14 }} color="text.secondary">
+            {/* <Typography sx={{ fontSize: 14 }} color="text.secondary">
           iDEC 2021 | Edinburgh
         </Typography> */}
-          {/* </Stack> */}
-          {/* <Stack direction="row" spacing={1}>
+            {/* </Stack> */}
+            {/* <Stack direction="row" spacing={1}>
       <KeyWordChip label="Molecular Evolutionary Machines" />
       <KeyWordChip label="Molecular Evolutionary Outcomes" />
       <KeyWordChip label="Pathway Evolutionary Outcomes" />
       </Stack> */}
-          <Typography
-            component="div"
-            sx={{ fontSize: 18, fontWeight: "bold", mb: 0.5 }}
-          >
-            <Link href={href} underline="hover">
-              {articleCardInfo.title}
-            </Link>
-          </Typography>
-          <Typography variant="body2">{authors}</Typography>
-        </CardContent>
-        {/* <CardActions>
+            <Typography
+              component="div"
+              sx={{ fontSize: 18, fontWeight: "bold", mb: 0.5 }}
+            >
+              <Link href={href} underline="hover">
+                {articleCardInfo.title}
+              </Link>
+            </Typography>
+            <Typography variant="body2">{authors}</Typography>
+          </CardContent>
+          {/* <CardActions>
       <Button size="small">Learn More</Button>
     </CardActions> */}
-      </Card>
+        </Card>
+      </Box>
     </React.Fragment>
   );
 }
