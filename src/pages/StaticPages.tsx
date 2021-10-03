@@ -1,16 +1,15 @@
-import { Container } from '@mui/material';
-import theme from '../styles/theme'
-import TermsText from './termsSantinized';
+import { Container } from "@mui/material";
+import theme from "../styles/theme";
+import TermsText from "./termsSantinized";
 
 function Acknowledgements() {
   return (
     <div>
-      The idecRXiv uses react-pdf-viewer for PDF display and has purchased a license at "name goes here".
-
-      The idecRXiv also uses disqus for managing comments.
-
+      The idecRXiv uses react-pdf-viewer for PDF display and has purchased a
+      license at "name goes here". The idecRXiv also uses disqus for managing
+      comments.
     </div>
-  )
+  );
 }
 
 function Terms() {
@@ -24,10 +23,9 @@ function Terms() {
         backgroundColor: "white",
       }}
     >
-    <TermsText />
-      
+      <TermsText />
     </Container>
-  )
+  );
 }
 
 export { Acknowledgements, Terms };

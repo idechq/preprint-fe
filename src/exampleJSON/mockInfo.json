@@ -1,10 +1,10 @@
 [
   {
-    "id":0,
-    "postedTime":"2021-10-01T00:00:00.000Z",
-    "title":"DiversiPhi29: an orthogonal system for the continuous directed evolution of genes in vivo",
-    "abstract":"Continuous directed evolution techniques leverage error-prone replication machinery for rapid in vivo mutagenesis of target genes. However, promiscuous activity by error-prone machinery can lead to damage of the host genome.nHere, we propose an orthogonal replication system, DiversiPhi29, for the continuous directed evolution of genes in vivo in a bacterial chassis. This system leverages the well-studied bacteriophage u03a629 and E. coli. In this project, we first attempt to modify four u03a629 proteins to enable the heterologous replication of a linear construct consisting of a single gene-of-interest and origin sequences. Once orthogonal replication is established, we will implement a system capable of tuning the mutation rate of the linear constructu2019s replication by altering the ratio of two u03a629 DNA polymerases, one of which contains fidelity-reducing mutations. This approach will enable high throughput molecular evolution in the best understood model organism.",
-    "keywords":[
+    "id": 0,
+    "postedTime": "2021-10-01T00:00:00.000Z",
+    "title": "DiversiPhi29: an orthogonal system for the continuous directed evolution of genes in vivo",
+    "abstract": "Continuous directed evolution techniques leverage error-prone replication machinery for rapid in vivo mutagenesis of target genes. However, promiscuous activity by error-prone machinery can lead to damage of the host genome.nHere, we propose an orthogonal replication system, DiversiPhi29, for the continuous directed evolution of genes in vivo in a bacterial chassis. This system leverages the well-studied bacteriophage u03a629 and E. coli. In this project, we first attempt to modify four u03a629 proteins to enable the heterologous replication of a linear construct consisting of a single gene-of-interest and origin sequences. Once orthogonal replication is established, we will implement a system capable of tuning the mutation rate of the linear constructu2019s replication by altering the ratio of two u03a629 DNA polymerases, one of which contains fidelity-reducing mutations. This approach will enable high throughput molecular evolution in the best understood model organism.",
+    "keywords": [
       "directed evolution",
       "protein engineering",
       "orthogonal",
@@ -12,34 +12,26 @@
       "bacteriophage",
       "continuous evolution"
     ],
-    "version":1,
-    "doi":"#",
-    "latest":true,
-    "supersedes":-1,
-    "supersededBy":-1,
-    "license":"CC-BY-NC-4.0",
-    "mainArticleURL":"#",
-    "suppArticleURL":"#",
-    "risURL":"#",
-    "authors":[
-      "Nora Claire Kearns",
-      "Calin Plesa",
-      "Amanda Rose Kreppel"
-    ],
-    "teams":[
+    "version": 1,
+    "doi": "#",
+    "latest": true,
+    "supersedes": -1,
+    "supersededBy": -1,
+    "license": "CC-BY-NC-4.0",
+    "mainArticleURL": "#",
+    "suppArticleURL": "#",
+    "risURL": "#",
+    "authors": ["Nora Claire Kearns", "Calin Plesa", "Amanda Rose Kreppel"],
+    "teams": [
       {
-        "teamName":"UOregon",
-        "teamID":8,
-        "teamTracks":[
-          "Molecular Evolutionary Machines"
-        ],
-        "teamYear":2021,
-        "teamWikiURL":"https://idec2021.github.io/UOregon/",
-        "teamPosterURL":"#",
-        "teamPresentationURL":"#",
-        "teamAwards":[
-          
-        ]
+        "teamName": "UOregon",
+        "teamID": 8,
+        "teamTracks": ["Molecular Evolutionary Machines"],
+        "teamYear": 2021,
+        "teamWikiURL": "https://idec2021.github.io/UOregon/",
+        "teamPosterURL": "#",
+        "teamPresentationURL": "#",
+        "teamAwards": []
       }
     ]
   }
