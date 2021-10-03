@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './App.css';
 import { Location } from "history";
 import {
   BrowserRouter as Router,
@@ -28,6 +28,8 @@ import InputBase from '@mui/material/InputBase';
 import Icon from '@mdi/react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import Popper from '@mui/material/Popper';
+import Fade from '@mui/material/Fade';
 
 import {Card, CardActions, CardContent} from '@mui/material';
 import Button from '@mui/material/Button';
@@ -68,8 +70,6 @@ import {
 import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
 
 import KeyWordChip from './components/CustomChips';
-
-import Popper from '@mui/material/Popper';
 
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 
@@ -325,6 +325,7 @@ type ArticleCardProps = {
       }>,
     }>,
   },
+  id: number,
 }
 
 function LoadingArticleCard({id}: {id?: number}) {
@@ -347,14 +348,97 @@ function LoadingArticleCard({id}: {id?: number}) {
   </Card>
 )}
 
-function ArticleCard({articleCardInfo}: ArticleCardProps) {
+function ArticleCard({articleCardInfo, id}: ArticleCardProps) {
+
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [popperOpen, setPopperOpen] = React.useState(false);
+  const handlePopperOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setPopperOpen(true);
+  };
+  const handlePopperClose = () => {
+    setTimeout(()=> {
+      setAnchorEl(null);
+      setPopperOpen(false);
+    }, 0)
+    
+  };
+  
   const authors = articleCardInfo.authors.join(", ");
   const href = "/article/" + articleCardInfo.id.toString().padStart(6, '0') + "/";
   const teamInfo = articleCardInfo.teams[0];
   const tracks = teamInfo.teamTracks.join(", ");
 
   return(
-  <Card sx={{ minWidth: 275 }} key={"article-card" + articleCardInfo.id}>
+  <React.Fragment>
+  <Popper
+    className="abstract-popper"
+    key={"abstract-popover" + id}
+    id={"mouse-over-popover" + id}
+    open={popperOpen}
+    anchorEl={anchorEl}
+    placement="left-start"
+    transition
+    disablePortal={false}
+    modifiers={[
+      {
+        name: 'flip',
+        enabled: true,
+        options: {
+          altBoundary: true,
+          rootBoundary: 'viewport',
+          padding: 8,
+        },
+      },
+    {
+      name: 'preventOverflow',
+      enabled: true,
+      options: {
+        altAxis: true,
+        altBoundary: true,
+        tether: true,
+        rootBoundary: 'viewport',
+        padding: 8,
+      },
+    },
+    {
+      name: 'arrow',
+      enabled: false,
+      // options: {
+      //   element: arrowRef,
+      // },
+    },
+  ]}
+  >
+    {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={350}>
+            <Paper
+              elevation={3}
+              sx={{
+                zIndex: theme.zIndex.tooltip,
+                display: 'flex',
+                [theme.breakpoints.down("md")]:{
+                  display: "none",
+                },
+                width: "32vw",
+                height: "80vh",
+                overflowY: "scroll",
+                marginRight: theme.spacing(1),
+              }}
+            >
+              <Typography 
+                sx={{ p: theme.spacing(3) }}
+              >{articleCardInfo.abstract}</Typography>
+            </Paper>
+          </Fade>
+        )}
+  </Popper>
+  <Card
+    sx={{ minWidth: 275 }}
+    key={"article-card" + articleCardInfo.id}
+    onMouseEnter={handlePopperOpen}
+    onMouseLeave={handlePopperClose}
+  >
     <CardContent>
       {/* <Stack direction="row" justifyContent="space-between" alignItems="center"> */}
           {/* <Box padding={0} margin={0}> */}
@@ -402,6 +486,7 @@ function ArticleCard({articleCardInfo}: ArticleCardProps) {
       <Button size="small">Learn More</Button>
     </CardActions> */}
   </Card>
+    </React.Fragment>
   )
 }
 
@@ -440,7 +525,11 @@ function ArticleList() {
     return (
       <React.Fragment>
         {articleListJSON.map((articleListEssentialInfo, index) => (
-            <ArticleCard articleCardInfo={articleListEssentialInfo} key={"articleCard-" + index}/>
+            <ArticleCard
+              articleCardInfo={articleListEssentialInfo}
+              key={"articleCard-" + index}
+              id={index}
+            />
         ))}
       </React.Fragment>
     )
