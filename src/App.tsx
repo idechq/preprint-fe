@@ -327,7 +327,7 @@ type ArticleCardProps = {
   },
 }
 
-function LoadingArticleCard({id=0}: {id?: number}) {
+function LoadingArticleCard({id}: {id?: number}) {
   return (
     <Card sx={{ minWidth: 275 }} key={"mock-article-card" + id}>
     <CardContent>
@@ -432,15 +432,15 @@ function ArticleList() {
     return (
       <React.Fragment>
         {dummyArray.map((item, index) => (
-            <LoadingArticleCard id={index} />
+            <LoadingArticleCard key={index} id={index} />
         ))}
       </React.Fragment>
     )
   } else {
     return (
       <React.Fragment>
-        {articleListJSON.map((articleListEssentialInfo) => (
-            <ArticleCard articleCardInfo={articleListEssentialInfo}/>
+        {articleListJSON.map((articleListEssentialInfo, index) => (
+            <ArticleCard articleCardInfo={articleListEssentialInfo} key={"articleCard-" + index}/>
         ))}
       </React.Fragment>
     )
