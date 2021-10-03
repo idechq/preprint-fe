@@ -10,11 +10,13 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 
+import IconButton from "@mui/material/IconButton";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 import FormatQuoteOutlinedIcon from "@mui/icons-material/FormatQuoteOutlined";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
 
 import Icon from "@mdi/react";
 import { mdiPresentation, mdiTrophyVariant } from "@mdi/js";
@@ -72,10 +74,15 @@ function ArticleInfoItems({ articleInfo }: articleInfoProps) {
         key={"listKey-dlBtn-" + item.id}
         component="a"
         href={item.href}
+        target="_blank"
+        rel="noreferrer"
         disabled={item.href === "#"}
       >
         <ListItemIcon>{item.icon}</ListItemIcon>
         <ListItemText primary={item.label} />
+        <IconButton disabled>
+          <OpenInNewOutlinedIcon fontSize="small" />
+        </IconButton>
       </ListItemButton>
     );
   });
@@ -271,6 +278,9 @@ function ArticleTeamInfoItems({ teamInfo }: articleTeamInfoProps) {
           primary={item.label}
           secondary={item.href === "#" ? "To be released" : ""}
         />
+        <IconButton disabled>
+          <OpenInNewOutlinedIcon fontSize="small" />
+        </IconButton>
       </ListItemButton>
     );
   });
