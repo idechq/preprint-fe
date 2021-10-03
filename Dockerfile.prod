@@ -6,6 +6,10 @@
 FROM node:current-slim as build
 
 RUN mkdir -p /app
+
+# Temporary solution until API is ready
+RUN mkdir -p /usr/share/nginx/html/pdf/
+
 RUN chown node /app
 USER node
 WORKDIR /app
