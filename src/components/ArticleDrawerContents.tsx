@@ -1,3 +1,4 @@
+import React from 'react';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import Divider from '@mui/material/Divider';
@@ -8,6 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
 
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
@@ -81,22 +83,34 @@ function ArticleInfoItems({articleInfo}: articleInfoProps) {
       </ListItemButton>
   )})
 
+  const [copyDOItoolTipText, setCopyDOItoolTipText] = React.useState<"Copy DOI to clipboard" | "DOI Copied">("Copy DOI to clipboard")
+  const copyDOI = () => {
+    navigator.clipboard.writeText(articleInfo.doi);
+    setCopyDOItoolTipText("DOI Copied");
+    setTimeout(() => {  setCopyDOItoolTipText("Copy DOI to clipboard"); }, 1000);
+  }
+
   return (
     <>
     <List dense={true}>
         <ListItem key="listKey-postedDate">
           <ListItemText>Posted: {postedDate}</ListItemText>
         </ListItem>
+        <Tooltip
+          arrow
+          title={copyDOItoolTipText}
+        >
         <ListItemButton
           key="listKey-doi"
-          component="a"
-          href={articleInfo.doi}
+          onClick={copyDOI}
+          disabled={articleInfo.doi==="#"? true : false}
         >
           <ListItemText
             primary="DOI:"
-            secondary={articleInfo.doi}
+            secondary={articleInfo.doi==="#"? "(To Be Assigned)" : articleInfo.doi}
           />
         </ListItemButton>
+        </Tooltip>
          <ListItem key="listKey-license">
           <ListItemText
             primary="License"
