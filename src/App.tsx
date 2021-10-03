@@ -517,8 +517,7 @@ type ArticleLoaderProps = {
 
 function ArticleLoader({setAppbarArticleTitle} : ArticleLoaderProps) {
   const location = useLocation<Location>().pathname;
-  const idQueryFragment = location.split("/").slice(-1);
-  const getArticleURL = apiURL + "/article/" + idQueryFragment;
+  const getArticleURL = apiURL + location;
 
   const [error, setError] = React.useState<Error | null>(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -535,6 +534,7 @@ function ArticleLoader({setAppbarArticleTitle} : ArticleLoaderProps) {
         (error) => {
           setIsLoaded(true);
           setError(error);
+          setArticleJSON(defaultArticleJSON);
         }
       )
   }, [])
