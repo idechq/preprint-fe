@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { Location } from "history";
 import {
@@ -26,7 +26,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import Icon from "@mdi/react";
-import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Popper from "@mui/material/Popper";
 import Fade from "@mui/material/Fade";
@@ -62,6 +61,8 @@ import ArticleDisplayPage from "./pages/ArticleDisplayPage";
 import { Acknowledgements, Terms } from "./pages/StaticPages";
 import ScreenHeightDiv from "./components/ScreenHeightDiv";
 import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
+import FoundationOutlinedIcon from '@mui/icons-material/FoundationOutlined';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import { mdiPresentation, mdiTrophyVariant } from "@mdi/js";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
@@ -140,7 +141,7 @@ function AppSearchBar() {
 
 function MainMenuItems() {
   const browseByInfo = [
-    { key: "all", icon: mdiFormatListBulleted, label: "All", href: "/" },
+    { key: "all", icon: <ListAltOutlinedIcon/>, label: "All", href: "/" },
     // { key: "byYear",
     //   icon: mdiCalendarClock,
     //   label: "by Year",
@@ -158,32 +159,32 @@ function MainMenuItems() {
   const iDECLinkInfo = [
     {
       key: "link-main-site",
-      icon: mdiHome,
+      icon: <Icon path={mdiHome} size={1} />,
       label: "iDEC Home",
       href: "https://idec.io/",
       newWindow: true,
     },
     {
       key: "link-team-portal",
-      icon: mdiBadgeAccountHorizontal,
+      icon: <Icon path={mdiBadgeAccountHorizontal} size={1} />,
       label: "iDEC Team Portal",
       href: "https://reg.idec.io/",
       newWindow: true,
     },
     {
       key: "link-idec-wiki",
-      icon: mdiBookshelf,
+      icon: <Icon path={mdiBookshelf} size={1} />,
       label: "iDEC Wiki",
       href: "https://wiki.idec.io/",
       newWindow: true,
     },
-    // { key: "link-acknowledgement",
-    //   icon: mdiHandshake,
-    //   label: "Acknowledgements",
-    //   href: "/acknowledgements" },
+    { key: "link-acknowledgement",
+      icon: <FoundationOutlinedIcon />,
+      label: "Acknowledgements",
+      href: "/acknowledgements" },
     {
       key: "link-terms",
-      icon: mdiScaleBalance,
+      icon: <Icon path={mdiScaleBalance} size={1} />,
       label: "Terms and Conditions",
       href: "/terms",
     },
@@ -197,7 +198,7 @@ function MainMenuItems() {
     newWindow,
   }: {
     key: string;
-    icon: string;
+    icon: any;
     label: string;
     href: string;
     newWindow?: boolean;
@@ -211,7 +212,7 @@ function MainMenuItems() {
         rel={newWindow ? "noreferrer" : ""}
       >
         <ListItemIcon>
-          <Icon path={icon} size={1} />
+          {icon}
         </ListItemIcon>
         <ListItemText primary={label} />
         {newWindow ? (
@@ -506,8 +507,6 @@ function ArticleCard({ articleCardInfo, id }: ArticleCardProps) {
             size="small"
           ><VideocamOutlinedIcon sx={{fontSize: 17}}/></IconButton> */}
             {/* 
-          {/* 
-            {/* 
           <Typography sx={{ fontSize: 14}} color="text.secondary" display="inline-flex" marginBottom={1}>|</Typography>
           </Box> */}
 
@@ -709,6 +708,7 @@ function AppBarBreadcrum({ breadCrumLabel = undefined }: AppBarBreadcrumProp) {
   const breadcrumNameMapping: { [key: string]: string } = {
     terms: "Terms and Conditions",
     article: "Articles",
+    acknowledgements: "Acknowledgements",
     "mock-article":
       "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
   };
@@ -885,7 +885,7 @@ export default function App() {
                 <Route path="/terms">
                   <Terms />
                 </Route>
-                <Route path="/acknowledgement">
+                <Route path="/acknowledgements">
                   <Acknowledgements />
                 </Route>
                 <Route exact path="/">
