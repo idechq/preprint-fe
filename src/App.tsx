@@ -511,10 +511,14 @@ const defaultArticleJSON = [
   }
 ]
 
-function ArticleLoader() {
+type ArticleLoaderProps = {
+  setAppbarArticleTitle: Function,
+}
+
+function ArticleLoader({setAppbarArticleTitle} : ArticleLoaderProps) {
   const location = useLocation<Location>().pathname;
-  const doiQueryFragment = location.split("/").slice(-1);
-  const getArticleURL = apiURL + "/article/" + doiQueryFragment;
+  const idQueryFragment = location.split("/").slice(-1);
+  const getArticleURL = apiURL + "/article/" + idQueryFragment;
 
   const [error, setError] = React.useState<Error | null>(null);
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -553,13 +557,16 @@ function ArticleLoader() {
     </ScreenHeightDiv>
     )
   } else if (articleJSON.hasOwnProperty(0)) {
+    setAppbarArticleTitle(articleJSON[0].title);
     return (
       <ArticleDisplayPage articleMetadata={articleJSON[0]} />
     )
   } else { return <NoMatch /> }
 }
 
-function AppBarBreadcrum() {
+type AppBarBreadcrumProp = {breadCrumLabel?: string}
+
+function AppBarBreadcrum({breadCrumLabel = undefined}: AppBarBreadcrumProp) {
   const location = useLocation<Location>().pathname;
 
   const breadcrumNameMapping: { [key: string]: string } = {
@@ -603,8 +610,10 @@ function AppBarBreadcrum() {
       return null;
     }
     
-    if (breadcrumNameMapping.hasOwnProperty(value)===false) {
+    if (breadcrumNameMapping.hasOwnProperty(value)===false && !breadCrumLabel) {
       return linkInBreadcrum("404 Not Found");
+    } else if (breadCrumLabel) {
+      return linkInBreadcrum(breadCrumLabel);
     }
 
     return last ? linkInBreadcrum(breadcrumNameMapping[value]) : linkInBreadcrum(breadcrumNameMapping[value], to)
@@ -659,6 +668,7 @@ function NoMatch() {
 
 export default function App() {
   const [mainMenuState, setMainMenuState] = React.useState(false);
+  const [appbarArticleTitle, setAppbarArticleTitle] = React.useState<string>("");
 
   const toggleDrawer = (open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent,
@@ -711,7 +721,7 @@ export default function App() {
               >
                 <MenuIcon />
               </IconButton>
-              <AppBarBreadcrum />
+              <AppBarBreadcrum breadCrumLabel={appbarArticleTitle}/>
               {/* <AppSearchBar /> */}
             </Toolbar>
           </AppBar>
@@ -720,7 +730,7 @@ export default function App() {
             <DrawerHeader />
             <RouterSwitch>
               <Route path="/article/*">
-                <ArticleLoader/>
+                <ArticleLoader setAppbarArticleTitle={setAppbarArticleTitle}/>
               </Route>
               <Route path="/terms">
                 <Terms />
