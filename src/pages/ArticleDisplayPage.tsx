@@ -177,8 +177,8 @@ export default function ArticleDisplayPage({
   const articleDrawerMinimizedButtonInfo = [
     { id: "teamInfo", icon: <GroupOutlinedIcon />, disabled: false },
     { id: "articleInfo", icon: <InfoOutlinedIcon />, disabled: false },
-    { id: "comments", icon: <CommentOutlinedIcon />, disabled: true },
-    { id: "annotations", icon: <BorderColorOutlinedIcon />, disabled: true },
+    // { id: "comments", icon: <CommentOutlinedIcon />, disabled: true },
+    // { id: "annotations", icon: <BorderColorOutlinedIcon />, disabled: true },
   ];
 
   const articleDrawerMinimizedButtons = articleDrawerMinimizedButtonInfo.map(
