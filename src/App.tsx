@@ -61,8 +61,8 @@ import ArticleDisplayPage from "./pages/ArticleDisplayPage";
 import { Acknowledgements, Terms } from "./pages/StaticPages";
 import ScreenHeightDiv from "./components/ScreenHeightDiv";
 import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
-import FoundationOutlinedIcon from '@mui/icons-material/FoundationOutlined';
-import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+import FoundationOutlinedIcon from "@mui/icons-material/FoundationOutlined";
+import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import { mdiPresentation, mdiTrophyVariant } from "@mdi/js";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
@@ -141,7 +141,7 @@ function AppSearchBar() {
 
 function MainMenuItems() {
   const browseByInfo = [
-    { key: "all", icon: <ListAltOutlinedIcon/>, label: "All", href: "/" },
+    { key: "all", icon: <ListAltOutlinedIcon />, label: "All", href: "/" },
     // { key: "byYear",
     //   icon: mdiCalendarClock,
     //   label: "by Year",
@@ -178,10 +178,12 @@ function MainMenuItems() {
       href: "https://wiki.idec.io/",
       newWindow: true,
     },
-    { key: "link-acknowledgement",
+    {
+      key: "link-acknowledgement",
       icon: <FoundationOutlinedIcon />,
       label: "Acknowledgements",
-      href: "/acknowledgements" },
+      href: "/acknowledgements",
+    },
     {
       key: "link-terms",
       icon: <Icon path={mdiScaleBalance} size={1} />,
@@ -211,9 +213,7 @@ function MainMenuItems() {
         target={newWindow ? "_blank" : ""}
         rel={newWindow ? "noreferrer" : ""}
       >
-        <ListItemIcon>
-          {icon}
-        </ListItemIcon>
+        <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={label} />
         {newWindow ? (
           <IconButton disabled>
@@ -648,18 +648,24 @@ const defaultArticleJSON = [
 ];
 
 type ArticleLoaderProps = {
+  isLoaded: boolean;
+  setIsLoaded: Function;
   setAppbarArticleTitle: Function;
 };
 
-function ArticleLoader({ setAppbarArticleTitle }: ArticleLoaderProps) {
+function ArticleLoader({
+  isLoaded,
+  setIsLoaded,
+  setAppbarArticleTitle,
+}: ArticleLoaderProps) {
   const location = useLocation<Location>().pathname;
   const getArticleURL = apiURL + location;
 
   const [error, setError] = React.useState<Error | null>(null);
-  const [isLoaded, setIsLoaded] = React.useState(false);
   const [articleJSON, setArticleJSON] = React.useState(defaultArticleJSON);
 
   React.useEffect(() => {
+    setIsLoaded(false);
     fetch(getArticleURL)
       .then((response) => response.json())
       .then(
@@ -674,8 +680,6 @@ function ArticleLoader({ setAppbarArticleTitle }: ArticleLoaderProps) {
         }
       );
   }, []);
-
-  // console.log(articleJSON);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -693,26 +697,29 @@ function ArticleLoader({ setAppbarArticleTitle }: ArticleLoaderProps) {
       </ScreenHeightDiv>
     );
   } else if (articleJSON.hasOwnProperty(0)) {
+    setIsLoaded(true);
     setAppbarArticleTitle(articleJSON[0].title);
     return <ArticleDisplayPage articleMetadata={articleJSON[0]} />;
   } else {
+    setIsLoaded(true);
     return <NoMatch />;
   }
 }
 
-type AppBarBreadcrumProp = { breadCrumLabel?: string };
+type AppBarBreadcrumProp = { isLoaded: boolean; breadCrumLabel?: string };
 
-function AppBarBreadcrum({ breadCrumLabel = undefined }: AppBarBreadcrumProp) {
+function AppBarBreadcrum({
+  isLoaded = true,
+  breadCrumLabel = undefined,
+}: AppBarBreadcrumProp) {
   const location = useLocation<Location>().pathname;
+  const pathnames = location.split("/").filter((x) => x);
 
   const breadcrumNameMapping: { [key: string]: string } = {
     terms: "Terms and Conditions",
     article: "Articles",
     acknowledgements: "Acknowledgements",
-    "mock-article":
-      "Lorem Ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod sed do eiusmod Ipsum",
   };
-  const pathnames = location.split("/").filter((x) => x);
 
   const linkInBreadcrum = (displayName: string, to?: string, sx?: {}) => {
     if (to) {
@@ -758,35 +765,38 @@ function AppBarBreadcrum({ breadCrumLabel = undefined }: AppBarBreadcrumProp) {
     } else if (breadCrumLabel) {
       return linkInBreadcrum(breadCrumLabel);
     }
-
     return last
       ? linkInBreadcrum(breadcrumNameMapping[value])
       : linkInBreadcrum(breadcrumNameMapping[value], to);
   });
 
-  return (
-    <>
-      {linkInBreadcrum("idecRχiv", "/", {
-        display: { xs: "inline-block", sm: "none" },
-      })}
-      <Breadcrumbs
-        separator="›"
-        component="div"
-        sx={{
-          "& ol": {
-            flexWrap: "nowrap",
-            whiteSpace: "nowrap",
-            textOverflow: "ellipsis",
-          },
-          color: "white",
-          display: { xs: "none", sm: "inline-block" },
-        }}
-      >
-        {linkInBreadcrum("idecRχiv", "/")}
-        {breadcrums}
-      </Breadcrumbs>
-    </>
-  );
+  if (!isLoaded) {
+    return <>{linkInBreadcrum("Loading ...")}</>;
+  } else {
+    return (
+      <>
+        {linkInBreadcrum("idecRχiv", "/", {
+          display: { xs: "inline-block", sm: "none" },
+        })}
+        <Breadcrumbs
+          separator="›"
+          component="div"
+          sx={{
+            "& ol": {
+              flexWrap: "nowrap",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            },
+            color: "white",
+            display: { xs: "none", sm: "inline-block" },
+          }}
+        >
+          {linkInBreadcrum("idecRχiv", "/")}
+          {breadcrums}
+        </Breadcrumbs>
+      </>
+    );
+  }
 }
 
 function NoMatch() {
@@ -815,6 +825,7 @@ function NoMatch() {
 
 export default function App() {
   const [mainMenuState, setMainMenuState] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(true);
   const [appbarArticleTitle, setAppbarArticleTitle] =
     React.useState<string>("");
 
@@ -869,7 +880,10 @@ export default function App() {
                 >
                   <MenuIcon />
                 </IconButton>
-                <AppBarBreadcrum breadCrumLabel={appbarArticleTitle} />
+                <AppBarBreadcrum
+                  isLoaded={isLoaded}
+                  breadCrumLabel={appbarArticleTitle}
+                />
                 {/* <AppSearchBar /> */}
               </Toolbar>
             </AppBar>
@@ -879,6 +893,8 @@ export default function App() {
               <RouterSwitch>
                 <Route path="/article/*">
                   <ArticleLoader
+                    isLoaded={isLoaded}
+                    setIsLoaded={setIsLoaded}
                     setAppbarArticleTitle={setAppbarArticleTitle}
                   />
                 </Route>
