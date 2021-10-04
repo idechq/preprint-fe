@@ -29,10 +29,16 @@ docker build -f Dockerfile.prod -t preprint-fe:prod .
 Run
 
 ```shell
-docker run -it --rm -p 443:443 -p 80:80 --name preprint preprint-fe:prod
+docker run -it -p 443:443 -p 80:80 --name preprint preprint-fe:prod
 ```
 
 Then visit [https://localhost:80/](https://localhost:80/).
+
+Shut down server (Stop and remove containers)
+
+```shell
+docker stop preprint && docker rm $_
+```
 
 ## Getting Started with Create React App
 
