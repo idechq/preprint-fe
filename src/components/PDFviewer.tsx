@@ -12,9 +12,12 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import theme from "../styles/theme";
 
-import ScreenHeightDiv from "./ScreenHeightDiv";
+import {
+  ArticleInfoItems,
+  ArticleTeamInfoItems,
+} from "./ArticleDrawerContents";
 
-type PDFViewer1Props = {
+type PDFViewerProps = {
   articleHref: string;
   defaultScale?: number;
 };
@@ -22,7 +25,7 @@ type PDFViewer1Props = {
 export default function PDFViewer({
   articleHref,
   defaultScale,
-}: PDFViewer1Props) {
+}: PDFViewerProps) {
   const above600pxScreen = useMediaQuery("(min-width:600px)");
   const aboveLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const aboveMdScreen = useMediaQuery(theme.breakpoints.up("md"));
@@ -148,13 +151,11 @@ export default function PDFViewer({
   return (
     <>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-        <ScreenHeightDiv>
-          <Viewer
-            fileUrl={articleHref}
-            plugins={[defaultLayoutPluginInstance]}
-            defaultScale={defaultScale ? defaultScale : autoScale()}
-          />
-        </ScreenHeightDiv>
+        <Viewer
+          fileUrl={articleHref}
+          plugins={[defaultLayoutPluginInstance]}
+          defaultScale={defaultScale ? defaultScale : autoScale()}
+        />
       </Worker>
     </>
   );

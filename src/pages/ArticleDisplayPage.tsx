@@ -7,14 +7,17 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
+import Paper from "@mui/material/Paper";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 
-import DrawerHeader from "../components/DrawerHeader";
 import PDFViewer from "../components/PDFviewer";
 import {
   ArticleInfoItems,
@@ -22,6 +25,11 @@ import {
   ArticleCommentItems,
   ArticleAnnotationsItems,
 } from "../components/ArticleDrawerContents";
+
+import theme from "../styles/theme";
+import DrawerHeader from "../components/DrawerHeader";
+import ScreenHeightDiv from "../components/ScreenHeightDiv";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const articleDrawerWidth = 350;
 const articleCommentDrawerWidth = 600;
@@ -157,7 +165,7 @@ export default function ArticleDisplayPage({
   // Should turn the following into useReducer for better management
   const [articleDrawerOpen, setDrawerOpen] = React.useState(false);
   const [tabOpened, setTabOpened] = React.useState<string | null>(
-    "articleInfo"
+    "articleDisplay"
   );
   const [tabName, setTabName] = React.useState<string | null>(
     "Article Information"
@@ -173,6 +181,10 @@ export default function ArticleDisplayPage({
   const handleArticleDrawerClose = () => {
     setDrawerOpen(false);
   };
+
+  // Extra work for xs screen
+  // useStates for BottomNavigation
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const articleDrawerMinimizedButtonInfo = [
     { id: "teamInfo", icon: <GroupOutlinedIcon />, disabled: false },
@@ -219,6 +231,8 @@ export default function ArticleDisplayPage({
 
   const renderArticleDrawer = (tabOpened: any) => {
     switch (tabOpened) {
+      case "articleDisplay":
+        return null;
       case "articleInfo":
         return <ArticleInfoItems articleInfo={articleInfo} />;
       case "teamInfo":
@@ -235,8 +249,66 @@ export default function ArticleDisplayPage({
   return (
     <React.Fragment>
       <Main open={articleDrawerOpen}>
-        <PDFViewer articleHref={articleInfo.mainArticleURL} />
+        <ScreenHeightDiv
+          sx={{
+            [theme.breakpoints.down("sm")]: {
+              height: `calc(100vh - 56px - 56px)`,
+            },
+          }}
+        >
+          {tabOpened !== "articleDisplay" && isSmallScreen ? (
+            <Paper
+              sx={{
+                overflowY: "auto",
+                paddingX: theme.spacing(2),
+                paddingY: theme.spacing(3),
+                height: "100%",
+                [theme.breakpoints.up("sm")]: {
+                  display: "none",
+                },
+              }}
+            >
+              {renderArticleDrawer(tabOpened)}
+            </Paper>
+          ) : (
+            <PDFViewer articleHref={articleInfo.mainArticleURL} />
+          )}
+        </ScreenHeightDiv>
       </Main>
+      <Paper
+        sx={{
+          [theme.breakpoints.up("sm")]: { display: "none" },
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+        elevation={3}
+      >
+        <BottomNavigation
+          showLabels
+          value={tabOpened}
+          onChange={(event, newValue) => {
+            setTabOpened(newValue);
+          }}
+        >
+          <BottomNavigationAction
+            label="Show Article"
+            value="articleDisplay"
+            icon={<ArticleOutlinedIcon />}
+          />
+          <BottomNavigationAction
+            label="Team Info"
+            value="teamInfo"
+            icon={<GroupOutlinedIcon />}
+          />
+          <BottomNavigationAction
+            label="Article Info"
+            value="articleInfo"
+            icon={<InfoOutlinedIcon />}
+          />
+        </BottomNavigation>
+      </Paper>
 
       <ArticleDrawer
         variant="permanent"
