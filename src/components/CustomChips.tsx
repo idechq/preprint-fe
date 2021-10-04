@@ -1,6 +1,7 @@
 import Chip from "@mui/material/Chip";
 
 type chipProps = {
+  id: number;
   label: string;
   color?: "default" | "primary" | "secondary";
   href?: string;
@@ -8,8 +9,9 @@ type chipProps = {
 };
 
 export default function KeyWordChip({
+  id,
   label = "label",
   color = "secondary",
 }: chipProps) {
-  return <Chip label={label} size="small" color={color} />;
+  return <Chip key={id} label={label} size="small" color={color} />;
 }

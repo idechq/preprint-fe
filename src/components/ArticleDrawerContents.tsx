@@ -43,8 +43,8 @@ type articleInfoProps = {
 function ArticleInfoItems({ articleInfo }: articleInfoProps) {
   const postedDate = articleInfo.postedTime.slice(0, 10);
 
-  const keywordChips = articleInfo.keywords.map((item) => (
-    <KeyWordChip label={item} />
+  const keywordChips = articleInfo.keywords.map((item, index) => (
+    <KeyWordChip id={index} label={item} />
   ));
 
   const downloadButtonInfo = [
