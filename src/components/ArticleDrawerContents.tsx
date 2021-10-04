@@ -98,6 +98,19 @@ function ArticleInfoItems({ articleInfo }: articleInfoProps) {
     }, 1000);
   };
 
+  const getLicenseURL = (license: string) => {
+    switch (license) {
+      case "CC-BY-4.0":
+        return "https://creativecommons.org/licenses/by/4.0/";
+      case "CC-BY-NC-4.0":
+        return "https://creativecommons.org/licenses/by-nc/4.0/";
+      case "CC-BY-ND-4.0":
+        return "https://creativecommons.org/licenses/by-nd/4.0/";
+      case "CC-BY-NC-ND-4.0":
+        return "https://creativecommons.org/licenses/by-nc-nd/4.0/";
+    }
+  };
+
   return (
     <>
       <List dense={true}>
@@ -118,9 +131,20 @@ function ArticleInfoItems({ articleInfo }: articleInfoProps) {
             />
           </ListItemButton>
         </Tooltip>
-        <ListItem key="listKey-license">
-          <ListItemText primary="License" secondary={articleInfo.license} />
-        </ListItem>
+        <Tooltip arrow title="Read License Info">
+          <ListItemButton
+            key="listKey-license"
+            component="a"
+            href={getLicenseURL(articleInfo.license)}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <ListItemText primary="License" secondary={articleInfo.license} />
+            <IconButton disabled>
+              <OpenInNewOutlinedIcon fontSize="small" />
+            </IconButton>
+          </ListItemButton>
+        </Tooltip>
         <ListItem key="listKey-version">
           <ListItemText
             primary={"Version " + articleInfo.version}
