@@ -10,7 +10,7 @@ import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-
+import Tooltip from "@mui/material/Tooltip";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -320,10 +320,12 @@ export default function ArticleDisplayPage({
           // Opened tab contains tabName and clickable header for closing drawer
           <>
             <DrawerHeader>
-              <ListItem button onClick={handleArticleDrawerClose}>
-                <ChevronRightIcon />
-                <Typography>{tabName}</Typography>
-              </ListItem>
+              <Tooltip arrow title="Hide Drawer">
+                <ListItem button onClick={handleArticleDrawerClose}>
+                  <ChevronRightIcon />
+                  <Typography>{tabName}</Typography>
+                </ListItem>
+              </Tooltip>
               <Divider />
             </DrawerHeader>
             {renderArticleDrawer(tabOpened)}
