@@ -41,7 +41,7 @@ import {
   mdiHome,
   mdiBadgeAccountHorizontal,
   mdiBookshelf,
-  mdiRedhat ,
+  mdiRedhat,
   mdiScaleBalance,
 } from "@mdi/js";
 
@@ -721,10 +721,16 @@ function AppBarBreadcrum({
     acknowledgements: "Acknowledgements",
   };
 
-  const linkInBreadcrum = (displayName: string, to?: string, sx?: {}) => {
+  const linkInBreadcrum = (
+    displayName: string,
+    id?: number,
+    to?: string,
+    sx?: {}
+  ) => {
     if (to) {
       return (
         <Typography
+          key={"breadcrumLink-" + id}
           variant="h6"
           noWrap={true}
           color="white"
@@ -738,6 +744,7 @@ function AppBarBreadcrum({
     } else {
       return (
         <Typography
+          key={"breadcrumLink-" + id}
           variant="h6"
           noWrap={true}
           color="white"
@@ -761,13 +768,13 @@ function AppBarBreadcrum({
       breadcrumNameMapping.hasOwnProperty(value) === false &&
       !breadCrumLabel
     ) {
-      return linkInBreadcrum("404 Not Found");
+      return linkInBreadcrum("404 Not Found", 404);
     } else if (breadCrumLabel) {
       return linkInBreadcrum(breadCrumLabel);
     }
     return last
-      ? linkInBreadcrum(breadcrumNameMapping[value])
-      : linkInBreadcrum(breadcrumNameMapping[value], to);
+      ? linkInBreadcrum(breadcrumNameMapping[value], index)
+      : linkInBreadcrum(breadcrumNameMapping[value], index, to);
   });
 
   if (!isLoaded) {
@@ -775,7 +782,7 @@ function AppBarBreadcrum({
   } else {
     return (
       <>
-        {linkInBreadcrum("idecRχiv", "/", {
+        {linkInBreadcrum("idecRχiv", 0, "/", {
           display: { xs: "inline-block", sm: "none" },
         })}
         <Breadcrumbs
@@ -791,7 +798,7 @@ function AppBarBreadcrum({
             display: { xs: "none", sm: "inline-block" },
           }}
         >
-          {linkInBreadcrum("idecRχiv", "/")}
+          {linkInBreadcrum("idecRχiv", 100, "/")}
           {breadcrums}
         </Breadcrumbs>
       </>
