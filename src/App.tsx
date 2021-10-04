@@ -41,7 +41,7 @@ import {
   mdiHome,
   mdiBadgeAccountHorizontal,
   mdiBookshelf,
-  mdiHandshake,
+  mdiRedhat ,
   mdiScaleBalance,
 } from "@mdi/js";
 
@@ -180,7 +180,7 @@ function MainMenuItems() {
     },
     {
       key: "link-acknowledgement",
-      icon: <FoundationOutlinedIcon />,
+      icon: <Icon path={mdiRedhat} size={1} />,
       label: "Acknowledgements",
       href: "/acknowledgements",
     },
