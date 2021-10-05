@@ -72,10 +72,10 @@ import KeyWordChip from "./components/CustomChips";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 
 // Mock info
-// import mockInfoJson from './test/mockInfo'
+import realDataJSON from './exampleJSON/realData.json'
 // import mockSearchResult from './test/mockSearchResult';
 // const mockInfo = JSON.parse(JSON.stringify(mockInfoJson[0]));
-// const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
+const realData = JSON.parse(JSON.stringify(realDataJSON));
 
 // API call
 const apiURL = "https://06935b22-e063-4e84-bc7b-18d1fa7ae50d.mock.pstmn.io";
@@ -544,18 +544,8 @@ function ArticleList() {
   const [articleListJSON, setArticleListJSON] = React.useState([]);
 
   React.useEffect(() => {
-    fetch(getArticleListURL)
-      .then((response) => response.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setArticleListJSON(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    setArticleListJSON(realData);
+    setIsLoaded(true);
   }, []);
 
   if (error) {
@@ -659,26 +649,14 @@ function ArticleLoader({
   setAppbarArticleTitle,
 }: ArticleLoaderProps) {
   const location = useLocation<Location>().pathname;
-  const getArticleURL = apiURL + location;
 
   const [error, setError] = React.useState<Error | null>(null);
   const [articleJSON, setArticleJSON] = React.useState(defaultArticleJSON);
 
+  const articleID = parseInt(location.split("/").filter((item)=>item).at(-1));
+  const articleInfo = realData.filter((item)=> item.id===articleID);
   React.useEffect(() => {
-    setIsLoaded(false);
-    fetch(getArticleURL)
-      .then((response) => response.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setArticleJSON(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-          setArticleJSON(defaultArticleJSON);
-        }
-      );
+    setArticleJSON(articleInfo);
   }, []);
 
   if (error) {
