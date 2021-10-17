@@ -32,7 +32,7 @@ import ScreenHeightDiv from "../components/ScreenHeightDiv";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const articleDrawerWidth = 350;
-const articleCommentDrawerWidth = "40vw";
+const articleCommentDrawerWidth = 550;
 
 const openedMixin = (theme: Theme, wideDrawer: boolean | undefined): CSSObject => ({
   width: ! wideDrawer ? articleDrawerWidth : articleCommentDrawerWidth,
@@ -79,7 +79,7 @@ const Main = styled("div", { shouldForwardProp: (prop) => prop !== "open" && pro
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen * 1.7,
     }),
-    width: `calc(100vw - ${articleCommentDrawerWidth})`,
+    width: `calc(100vw - ${articleCommentDrawerWidth}px)`,
   }),
 }));
 
@@ -306,6 +306,11 @@ export default function ArticleDisplayPage({
             label="Article Info"
             value="articleInfo"
             icon={<InfoOutlinedIcon />}
+          />
+          <BottomNavigationAction
+            label="Comments"
+            value="comments"
+            icon={<CommentOutlinedIcon />}
           />
         </BottomNavigation>
       </Paper>
