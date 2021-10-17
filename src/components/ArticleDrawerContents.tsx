@@ -24,6 +24,10 @@ import { mdiPresentation, mdiTrophyVariant } from "@mdi/js";
 import theme from "../styles/theme";
 import KeyWordChip from "./CustomChips";
 
+import Disqus from "disqus-react";
+import { Location } from "history";
+import { useLocation } from "react-router-dom";
+
 type articleInfoProps = {
   articleInfo: {
     version: number;
@@ -363,7 +367,20 @@ function ArticleTeamInfoItems({ teamInfo }: articleTeamInfoProps) {
 }
 
 function ArticleCommentItems() {
-  return <></>;
+  const location = useLocation<Location>().pathname;
+  const articleIDstring = location.split("/").filter((item: string)=>item).at(-1);
+  const disqusShortname = "idecrxiv";
+  const disqusConfig = {
+    url: "https://arxiv.idec.io",
+    identifier: articleIDstring,
+    title: "Title of Your Article",
+  };
+  // console.log(articleIDstring)
+  return (
+    <Box sx={{padding: theme.spacing(3)}}>
+    <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+    </Box>
+  );
 }
 
 function ArticleAnnotationsItems() {
