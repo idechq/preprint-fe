@@ -61,13 +61,10 @@ import ArticleDisplayPage from "./pages/ArticleDisplayPage";
 import { Acknowledgements, Terms } from "./pages/StaticPages";
 import ScreenHeightDiv from "./components/ScreenHeightDiv";
 import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
-import FoundationOutlinedIcon from "@mui/icons-material/FoundationOutlined";
 import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import { mdiPresentation, mdiTrophyVariant } from "@mdi/js";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
-
-import KeyWordChip from "./components/CustomChips";
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 
@@ -510,15 +507,6 @@ function ArticleCard({ articleCardInfo, id }: ArticleCardProps) {
           <Typography sx={{ fontSize: 14}} color="text.secondary" display="inline-flex" marginBottom={1}>|</Typography>
           </Box> */}
 
-            {/* <Typography sx={{ fontSize: 14 }} color="text.secondary">
-          iDEC 2021 | Edinburgh
-        </Typography> */}
-            {/* </Stack> */}
-            {/* <Stack direction="row" spacing={1}>
-      <KeyWordChip label="Molecular Evolutionary Machines" />
-      <KeyWordChip label="Molecular Evolutionary Outcomes" />
-      <KeyWordChip label="Pathway Evolutionary Outcomes" />
-      </Stack> */}
             <Typography
               component="div"
               sx={{ fontSize: 18, fontWeight: "bold", mb: 0.5 }}
