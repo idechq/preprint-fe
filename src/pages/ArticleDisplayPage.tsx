@@ -58,7 +58,7 @@ const closedMixin = (theme: Theme, wideDrawer: boolean | undefined): CSSObject =
   },
 });
 
-const Main = styled("div", { shouldForwardProp: (prop) => prop !== "open" && prop !== "wide" })<{
+const Main = styled("div", { shouldForwardProp: (prop) => prop !== "open" && prop !== "wideDrawer" })<{
   open?: boolean; wideDrawer?: boolean;
 }>(({ theme, open, wideDrawer }) => ({
   // backgroundColor: "blue", //Used for checking div stretch
@@ -84,7 +84,7 @@ const Main = styled("div", { shouldForwardProp: (prop) => prop !== "open" && pro
 }));
 
 const ArticleDrawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open" && prop !== "wide",
+  shouldForwardProp: (prop) => prop !== "open" && prop !== "wideDrawer",
 })<{open?: boolean, wideDrawer?: boolean}>(({ theme, open, wideDrawer }) => ({
   width: ! wideDrawer ? articleDrawerWidth : articleCommentDrawerWidth,
   flexShrink: 0,
