@@ -32,10 +32,10 @@ import ScreenHeightDiv from "../components/ScreenHeightDiv";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const articleDrawerWidth = 350;
-const articleCommentDrawerWidth = 600;
+const articleCommentDrawerWidth = "40vw";
 
-const openedMixin = (theme: Theme): CSSObject => ({
-  width: articleDrawerWidth,
+const openedMixin = (theme: Theme, wideDrawer: boolean | undefined): CSSObject => ({
+  width: ! wideDrawer ? articleDrawerWidth : articleCommentDrawerWidth,
   [theme.breakpoints.down("sm")]: {
     width: "100vw",
   },
@@ -46,7 +46,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
   overflowX: "hidden",
 });
 
-const closedMixin = (theme: Theme): CSSObject => ({
+const closedMixin = (theme: Theme, wideDrawer: boolean | undefined): CSSObject => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -58,45 +58,45 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const Main = styled("div", { shouldForwardProp: (prop) => prop !== "open" })<{
-  open?: boolean;
-}>(({ theme, open }) => ({
+const Main = styled("div", { shouldForwardProp: (prop) => prop !== "open" && prop !== "wide" })<{
+  open?: boolean; wideDrawer?: boolean;
+}>(({ theme, open, wideDrawer }) => ({
   // backgroundColor: "blue", //Used for checking div stretch
   width: `calc(100vw - (${theme.spacing(8)}) - 1px)`,
-  // flexGrow: 1,
-  // padding: theme.spacing(3),
-  transition: theme.transitions.create("margin", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  marginRight: -articleDrawerWidth,
   [theme.breakpoints.down("sm")]: {
     width: "100vw",
     marginRight: 0,
   },
-  ...(open && {
+  ...(open && ! wideDrawer && {
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
     width: `calc(100vw - (${articleDrawerWidth}px))`,
   }),
+  ...(open && wideDrawer && {
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen * 1.7,
+    }),
+    width: `calc(100vw - ${articleCommentDrawerWidth})`,
+  }),
 }));
 
 const ArticleDrawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  width: articleDrawerWidth,
+  shouldForwardProp: (prop) => prop !== "open" && prop !== "wide",
+})<{open?: boolean, wideDrawer?: boolean}>(({ theme, open, wideDrawer }) => ({
+  width: ! wideDrawer ? articleDrawerWidth : articleCommentDrawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
   ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
+    ...openedMixin(theme, wideDrawer),
+    "& .MuiDrawer-paper": openedMixin(theme, wideDrawer),
   }),
   ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
+    ...closedMixin(theme, wideDrawer),
+    "& .MuiDrawer-paper": closedMixin(theme, wideDrawer),
   }),
 }));
 
@@ -189,7 +189,7 @@ export default function ArticleDisplayPage({
   const articleDrawerMinimizedButtonInfo = [
     { id: "teamInfo", icon: <GroupOutlinedIcon />, disabled: false },
     { id: "articleInfo", icon: <InfoOutlinedIcon />, disabled: false },
-    // { id: "comments", icon: <CommentOutlinedIcon />, disabled: true },
+    { id: "comments", icon: <CommentOutlinedIcon />, disabled: false },
     // { id: "annotations", icon: <BorderColorOutlinedIcon />, disabled: true },
   ];
 
@@ -248,7 +248,7 @@ export default function ArticleDisplayPage({
 
   return (
     <React.Fragment>
-      <Main open={articleDrawerOpen}>
+      <Main open={articleDrawerOpen} wideDrawer={tabOpened==="comments"? true : false}>
         <ScreenHeightDiv
           sx={{
             [theme.breakpoints.down("sm")]: {
@@ -313,6 +313,7 @@ export default function ArticleDisplayPage({
       <ArticleDrawer
         variant="permanent"
         open={articleDrawerOpen}
+        wideDrawer={tabOpened==="comments"? true : false}
         anchor="right"
       >
         <Toolbar />
