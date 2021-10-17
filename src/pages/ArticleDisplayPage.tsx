@@ -189,7 +189,7 @@ export default function ArticleDisplayPage({
   const articleDrawerMinimizedButtonInfo = [
     { id: "teamInfo", icon: <GroupOutlinedIcon />, disabled: false },
     { id: "articleInfo", icon: <InfoOutlinedIcon />, disabled: false },
-    // { id: "comments", icon: <CommentOutlinedIcon />, disabled: true },
+    { id: "comments", icon: <CommentOutlinedIcon />, disabled: false },
     // { id: "annotations", icon: <BorderColorOutlinedIcon />, disabled: true },
   ];
 
@@ -248,7 +248,7 @@ export default function ArticleDisplayPage({
 
   return (
     <React.Fragment>
-      <Main open={articleDrawerOpen} wideDrawer={true}>
+      <Main open={articleDrawerOpen} wideDrawer={tabOpened==="comments"? true : false}>
         <ScreenHeightDiv
           sx={{
             [theme.breakpoints.down("sm")]: {
@@ -313,7 +313,7 @@ export default function ArticleDisplayPage({
       <ArticleDrawer
         variant="permanent"
         open={articleDrawerOpen}
-        wideDrawer={true}
+        wideDrawer={tabOpened==="comments"? true : false}
         anchor="right"
       >
         <Toolbar />
