@@ -3,7 +3,7 @@
 # https://github.com/nodejs/docker-node/issues/740#issuecomment-538644464
 
 # build environment
-FROM node:current-slim as build
+FROM node:lts-alpine3.14 as build
 
 RUN mkdir -p /app
 
