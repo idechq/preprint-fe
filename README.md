@@ -13,10 +13,10 @@ docker build -t preprint-fe:dev .
 Run
 
 ```shell
-bash start.sh
+bash start-dev.sh
 ```
 
-Then visit [https://localhost:3001/](https://localhost:3001/) for live update.
+Then visit [https://localhost:3000/](https://localhost:3000/) for live update.
 
 ## Deploy
 
