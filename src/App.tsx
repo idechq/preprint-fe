@@ -75,7 +75,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 // const mockArticleList = JSON.parse(JSON.stringify(mockSearchResult));
 
 // API call
-const apiURL = "https://3450d60a-ccde-4100-977b-4b8d6dc44c59.mock.pstmn.io";
+const apiURL = "https://86413acb-ab57-4aeb-b639-ebaa7bd58cfb.mock.pstmn.io";
 const getArticleListURL = apiURL + "/articles";
 
 const mainMenueDrawerWidth = 270;
@@ -341,6 +341,7 @@ function BasicGreetingDiv() {
 type ArticleCardProps = {
   articleCardInfo: {
     id: number;
+    articleId: string;
     doi: string;
     title: string;
     authors: Array<string>;
@@ -758,7 +759,7 @@ function AppBarBreadcrum({
     ) {
       return linkInBreadcrum("404 Not Found", 404);
     } else if (breadCrumLabel) {
-      return linkInBreadcrum(breadCrumLabel);
+      return linkInBreadcrum(`${breadCrumLabel} (preprint)`);
     }
     return last
       ? linkInBreadcrum(breadcrumNameMapping[value], index)
